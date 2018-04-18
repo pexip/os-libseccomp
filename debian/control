@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Kees Cook <kees@debian.org>
 XSBC-Pexip-Original-Uploaders: Luca Bruno <lucab@debian.org>
-Build-Depends: debhelper (>= 9), dh-autoreconf, linux-libc-dev
+Build-Depends: debhelper (>= 9), dh-autoreconf, linux-libc-dev, dh-python, python-all-dev, python3-all-dev, cython, cython3
 Standards-Version: 3.9.7
 Homepage: https://github.com/seccomp/libseccomp
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/libseccomp.git
@@ -44,3 +44,23 @@ Description: helper tools for high level interface to Linux seccomp filter
  Provides helper tools for interacting with libseccomp. Currently, only
  a single tool exists, providing a way to easily enumerate syscalls across
  the supported architectures.
+
+Package: python-seccomp
+Architecture: linux-any
+Multi-Arch: same
+Section: python
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: high level interface to Linux seccomp filter (Python 2 bindings)
+ This library provides a high level interface to constructing, analyzing
+ and installing seccomp filters via a BPF passed to the Linux Kernel's
+ prctl() syscall.
+
+Package: python3-seccomp
+Architecture: linux-any
+Multi-Arch: same
+Section: python
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Description: high level interface to Linux seccomp filter (Python 3 bindings)
+ This library provides a high level interface to constructing, analyzing
+ and installing seccomp filters via a BPF passed to the Linux Kernel's
+ prctl() syscall.
