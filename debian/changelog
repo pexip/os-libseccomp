@@ -1,3 +1,11 @@
+libseccomp (2.3.1-2.1+deb9u1) stretch; urgency=medium
+
+  * Add support for Linux 4.9 syscalls:
+    preadv2, pwritev2, pkey_mprotect, pkey_alloc and pkey_free
+  * Add support for the statx syscall.
+
+ -- Felix Geyer <fgeyer@debian.org>  Sat, 08 Sep 2018 21:34:13 +0200
+
 libseccomp (2.3.1-2.1) unstable; urgency=medium
 
   [ Martin Pitt ]
