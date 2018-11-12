@@ -1,0 +1,528 @@
+From e8ef0f9a32e33bd5ec78eae9e3bf91684ce91e0a Mon Sep 17 00:00:00 2001
+From: Justin Cormack <justin.cormack@docker.com>
+Date: Thu, 2 Feb 2017 19:19:27 -0500
+Subject: [PATCH] arch: update syscalls for Linux 4.9
+
+Add support for the following syscalls added in Linux v4.9:
+
+- preadv2 and pwritev2
+- pkey_mprotect, pkey_alloc, pkey_free
+
+Signed-off-by: Justin Cormack <justin.cormack@docker.com>
+[PM: update subject line, description, and some whitespace]
+Signed-off-by: Paul Moore <paul@paul-moore.com>
+(imported from commit d9102f12fd39bd77151a1f630fcfc8c80f86c55c)
+---
+ include/seccomp.h.in          | 15 +++++++++++++++
+ src/arch-aarch64-syscalls.c   |  7 ++++++-
+ src/arch-arm-syscalls.c       |  7 ++++++-
+ src/arch-mips-syscalls.c      |  7 ++++++-
+ src/arch-mips64-syscalls.c    |  7 ++++++-
+ src/arch-mips64n32-syscalls.c |  7 ++++++-
+ src/arch-ppc-syscalls.c       |  7 ++++++-
+ src/arch-ppc64-syscalls.c     |  7 ++++++-
+ src/arch-s390-syscalls.c      |  7 ++++++-
+ src/arch-s390x-syscalls.c     |  7 ++++++-
+ src/arch-x32-syscalls.c       |  5 +++++
+ src/arch-x86-syscalls.c       |  7 ++++++-
+ src/arch-x86_64-syscalls.c    |  7 ++++++-
+ 13 files changed, 86 insertions(+), 11 deletions(-)
+
+diff --git a/include/seccomp.h.in b/include/seccomp.h.in
+index 6bf6751..70f1e20 100644
+--- a/include/seccomp.h.in
++++ b/include/seccomp.h.in
+@@ -1603,6 +1603,21 @@ int seccomp_export_bpf(const scmp_filter_ctx ctx, int fd);
+ #define __NR_userfaultfd	__PNR_userfaultfd
+ #endif /* __NR_userfaultfd */
+ 
++#define __PNR_pkey_mprotect	-10201
++#ifndef __NR_pkey_mprotect
++#define __NR_pkey_mprotect	__PNR_pkey_mprotect
++#endif /* __NR_pkey_mprotect */
++
++#define __PNR_pkey_alloc	-10202
++#ifndef __NR_pkey_alloc
++#define __NR_pkey_alloc	__PNR_pkey_alloc
++#endif /* __NR_pkey_alloc */
++
++#define __PNR_pkey_free		-10203
++#ifndef __NR_pkey_free
++#define __NR_pkey_free		__PNR_pkey_free
++#endif /* __NR_pkey_free */
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/src/arch-aarch64-syscalls.c b/src/arch-aarch64-syscalls.c
+index 357f290..6c04ad5 100644
+--- a/src/arch-aarch64-syscalls.c
++++ b/src/arch-aarch64-syscalls.c
+@@ -26,7 +26,7 @@
+ #include "arch.h"
+ #include "arch-aarch64.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def aarch64_syscall_table[] = { \
+ 	{ "_llseek", __PNR__llseek },
+ 	{ "_newselect", __PNR__newselect },
+@@ -254,11 +254,15 @@ const struct arch_syscall_def aarch64_syscall_table[] = { \
+ 	{ "pipe", __PNR_pipe },
+ 	{ "pipe2", 59 },
+ 	{ "pivot_root", 41 },
++	{ "pkey_alloc", __PNR_pkey_alloc },
++	{ "pkey_free", __PNR_pkey_free },
++	{ "pkey_mprotect", __PNR_pkey_mprotect },
+ 	{ "poll", __PNR_poll },
+ 	{ "ppoll", 73 },
+ 	{ "prctl", 167 },
+ 	{ "pread64", 67 },
+ 	{ "preadv", 69 },
++	{ "preadv2", 392 },
+ 	{ "prlimit64", 261 },
+ 	{ "process_vm_readv", 270 },
+ 	{ "process_vm_writev", 271 },
+@@ -269,6 +273,7 @@ const struct arch_syscall_def aarch64_syscall_table[] = { \
+ 	{ "putpmsg", __PNR_putpmsg },
+ 	{ "pwrite64", 68 },
+ 	{ "pwritev", 70 },
++	{ "pwritev2", 393 },
+ 	{ "query_module", __PNR_query_module },
+ 	{ "quotactl", 60 },
+ 	{ "read", 63 },
+diff --git a/src/arch-arm-syscalls.c b/src/arch-arm-syscalls.c
+index d1349a1..e7e2d31 100644
+--- a/src/arch-arm-syscalls.c
++++ b/src/arch-arm-syscalls.c
+@@ -37,7 +37,7 @@
+ #define __SCMP_NR_BASE			__SCMP_NR_OABI_SYSCALL_BASE
+ #endif
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def arm_syscall_table[] = { \
+ 	/* NOTE: arm_sync_file_range() and sync_file_range2() share values */
+ 	{ "_llseek", (__SCMP_NR_BASE + 140) },
+@@ -266,11 +266,15 @@ const struct arch_syscall_def arm_syscall_table[] = { \
+ 	{ "pipe", (__SCMP_NR_BASE + 42) },
+ 	{ "pipe2", (__SCMP_NR_BASE + 359) },
+ 	{ "pivot_root", (__SCMP_NR_BASE + 218) },
++	{ "pkey_alloc", (__SCMP_NR_BASE + 395) },
++	{ "pkey_free", (__SCMP_NR_BASE + 396) },
++	{ "pkey_mprotect", (__SCMP_NR_BASE + 394) },
+ 	{ "poll", (__SCMP_NR_BASE + 168) },
+ 	{ "ppoll", (__SCMP_NR_BASE + 336) },
+ 	{ "prctl", (__SCMP_NR_BASE + 172) },
+ 	{ "pread64", (__SCMP_NR_BASE + 180) },
+ 	{ "preadv", (__SCMP_NR_BASE + 361) },
++	{ "preadv2", (__SCMP_NR_BASE + 392) },
+ 	{ "prlimit64", (__SCMP_NR_BASE + 369) },
+ 	{ "process_vm_readv", (__SCMP_NR_BASE + 376) },
+ 	{ "process_vm_writev", (__SCMP_NR_BASE + 377) },
+@@ -281,6 +285,7 @@ const struct arch_syscall_def arm_syscall_table[] = { \
+ 	{ "putpmsg", __PNR_putpmsg },
+ 	{ "pwrite64", (__SCMP_NR_BASE + 181) },
+ 	{ "pwritev", (__SCMP_NR_BASE + 362) },
++	{ "pwritev2", (__SCMP_NR_BASE + 393) },
+ 	{ "query_module", __PNR_query_module },
+ 	{ "quotactl", (__SCMP_NR_BASE + 131) },
+ 	{ "read", (__SCMP_NR_BASE +  3) },
+diff --git a/src/arch-mips-syscalls.c b/src/arch-mips-syscalls.c
+index 2cd86cd..dada5a9 100644
+--- a/src/arch-mips-syscalls.c
++++ b/src/arch-mips-syscalls.c
+@@ -30,7 +30,7 @@
+ /* O32 ABI */
+ #define __SCMP_NR_BASE		4000
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def mips_syscall_table[] = { \
+ 	{ "_llseek", (__SCMP_NR_BASE + 140) },
+ 	{ "_newselect", (__SCMP_NR_BASE + 142) },
+@@ -258,11 +258,15 @@ const struct arch_syscall_def mips_syscall_table[] = { \
+ 	{ "pipe", (__SCMP_NR_BASE + 42) },
+ 	{ "pipe2", (__SCMP_NR_BASE + 328) },
+ 	{ "pivot_root", (__SCMP_NR_BASE + 216) },
++	{ "pkey_alloc", (__SCMP_NR_BASE + 364) },
++	{ "pkey_free", (__SCMP_NR_BASE + 365) },
++	{ "pkey_mprotect", (__SCMP_NR_BASE + 363) },
+ 	{ "poll", (__SCMP_NR_BASE + 188) },
+ 	{ "ppoll", (__SCMP_NR_BASE + 302) },
+ 	{ "prctl", (__SCMP_NR_BASE + 192) },
+ 	{ "pread64", (__SCMP_NR_BASE + 200) },
+ 	{ "preadv", (__SCMP_NR_BASE + 330) },
++	{ "preadv2", (__SCMP_NR_BASE + 361) },
+ 	{ "prlimit64", (__SCMP_NR_BASE + 338) },
+ 	{ "process_vm_readv", (__SCMP_NR_BASE + 345) },
+ 	{ "process_vm_writev", (__SCMP_NR_BASE + 346) },
+@@ -273,6 +277,7 @@ const struct arch_syscall_def mips_syscall_table[] = { \
+ 	{ "putpmsg", (__SCMP_NR_BASE + 209) },
+ 	{ "pwrite64", (__SCMP_NR_BASE + 201) },
+ 	{ "pwritev", (__SCMP_NR_BASE + 331) },
++	{ "pwritev2", (__SCMP_NR_BASE + 362) },
+ 	{ "query_module", (__SCMP_NR_BASE + 187) },
+ 	{ "quotactl", (__SCMP_NR_BASE + 131) },
+ 	{ "read", (__SCMP_NR_BASE + 3) },
+diff --git a/src/arch-mips64-syscalls.c b/src/arch-mips64-syscalls.c
+index 80db447..bbf8906 100644
+--- a/src/arch-mips64-syscalls.c
++++ b/src/arch-mips64-syscalls.c
+@@ -30,7 +30,7 @@
+ /* 64 ABI */
+ #define __SCMP_NR_BASE	5000
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def mips64_syscall_table[] = { \
+ 	{ "_llseek", __PNR__llseek },
+ 	{ "_newselect", (__SCMP_NR_BASE + 22) },
+@@ -258,11 +258,15 @@ const struct arch_syscall_def mips64_syscall_table[] = { \
+ 	{ "pipe", (__SCMP_NR_BASE + 21) },
+ 	{ "pipe2", (__SCMP_NR_BASE + 287) },
+ 	{ "pivot_root", (__SCMP_NR_BASE + 151) },
++	{ "pkey_alloc", (__SCMP_NR_BASE + 324) },
++	{ "pkey_free", (__SCMP_NR_BASE + 325) },
++	{ "pkey_mprotect", (__SCMP_NR_BASE + 323) },
+ 	{ "poll", (__SCMP_NR_BASE + 7) },
+ 	{ "ppoll", (__SCMP_NR_BASE + 261) },
+ 	{ "prctl", (__SCMP_NR_BASE + 153) },
+ 	{ "pread64", (__SCMP_NR_BASE + 16) },
+ 	{ "preadv", (__SCMP_NR_BASE + 289) },
++	{ "preadv2", (__SCMP_NR_BASE + 321) },
+ 	{ "prlimit64", (__SCMP_NR_BASE + 297) },
+ 	{ "process_vm_readv", (__SCMP_NR_BASE + 304) },
+ 	{ "process_vm_writev", (__SCMP_NR_BASE + 305) },
+@@ -273,6 +277,7 @@ const struct arch_syscall_def mips64_syscall_table[] = { \
+ 	{ "putpmsg", (__SCMP_NR_BASE + 175) },
+ 	{ "pwrite64", (__SCMP_NR_BASE + 17) },
+ 	{ "pwritev", (__SCMP_NR_BASE + 290) },
++	{ "pwritev2", (__SCMP_NR_BASE + 322) },
+ 	{ "query_module", (__SCMP_NR_BASE + 171) },
+ 	{ "quotactl", (__SCMP_NR_BASE + 172) },
+ 	{ "read", (__SCMP_NR_BASE + 0) },
+diff --git a/src/arch-mips64n32-syscalls.c b/src/arch-mips64n32-syscalls.c
+index 5cf03d2..3484882 100644
+--- a/src/arch-mips64n32-syscalls.c
++++ b/src/arch-mips64n32-syscalls.c
+@@ -30,7 +30,7 @@
+ /* N32 ABI */
+ #define __SCMP_NR_BASE	6000
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def mips64n32_syscall_table[] = { \
+ 	{ "_llseek", __PNR__llseek },
+ 	{ "_newselect", (__SCMP_NR_BASE + 22) },
+@@ -258,11 +258,15 @@ const struct arch_syscall_def mips64n32_syscall_table[] = { \
+ 	{ "pipe", (__SCMP_NR_BASE + 21) },
+ 	{ "pipe2", (__SCMP_NR_BASE + 291) },
+ 	{ "pivot_root", (__SCMP_NR_BASE + 151) },
++	{ "pkey_alloc", (__SCMP_NR_BASE + 328) },
++	{ "pkey_free", (__SCMP_NR_BASE + 329) },
++	{ "pkey_mprotect", (__SCMP_NR_BASE + 327) },
+ 	{ "poll", (__SCMP_NR_BASE + 7) },
+ 	{ "ppoll", (__SCMP_NR_BASE + 265) },
+ 	{ "prctl", (__SCMP_NR_BASE + 153) },
+ 	{ "pread64", (__SCMP_NR_BASE + 16) },
+ 	{ "preadv", (__SCMP_NR_BASE + 293) },
++	{ "preadv2", (__SCMP_NR_BASE + 325) },
+ 	{ "prlimit64", (__SCMP_NR_BASE + 302) },
+ 	{ "process_vm_readv", (__SCMP_NR_BASE + 309) },
+ 	{ "process_vm_writev", (__SCMP_NR_BASE + 310) },
+@@ -273,6 +277,7 @@ const struct arch_syscall_def mips64n32_syscall_table[] = { \
+ 	{ "putpmsg", (__SCMP_NR_BASE + 175) },
+ 	{ "pwrite64", (__SCMP_NR_BASE + 17) },
+ 	{ "pwritev", (__SCMP_NR_BASE + 294) },
++	{ "pwritev2", (__SCMP_NR_BASE + 326) },
+ 	{ "query_module", (__SCMP_NR_BASE + 171) },
+ 	{ "quotactl", (__SCMP_NR_BASE + 172) },
+ 	{ "read", (__SCMP_NR_BASE + 0) },
+diff --git a/src/arch-ppc-syscalls.c b/src/arch-ppc-syscalls.c
+index 2bd8a36..26b4ff1 100644
+--- a/src/arch-ppc-syscalls.c
++++ b/src/arch-ppc-syscalls.c
+@@ -27,7 +27,7 @@
+ #include "arch.h"
+ #include "arch-ppc.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def ppc_syscall_table[] = { \
+ 	{ "_llseek", 140 },
+ 	{ "_newselect", 142 },
+@@ -255,11 +255,15 @@ const struct arch_syscall_def ppc_syscall_table[] = { \
+ 	{ "pipe", 42 },
+ 	{ "pipe2", 317 },
+ 	{ "pivot_root", 203 },
++	{ "pkey_alloc", __PNR_pkey_alloc },
++	{ "pkey_free", __PNR_pkey_free },
++	{ "pkey_mprotect", __PNR_pkey_mprotect },
+ 	{ "poll", 167 },
+ 	{ "ppoll", 281 },
+ 	{ "prctl", 171 },
+ 	{ "pread64", 179 },
+ 	{ "preadv", 320 },
++	{ "preadv2", 380 },
+ 	{ "prlimit64", 325 },
+ 	{ "process_vm_readv", 351 },
+ 	{ "process_vm_writev", 352 },
+@@ -270,6 +274,7 @@ const struct arch_syscall_def ppc_syscall_table[] = { \
+ 	{ "putpmsg", 188 },
+ 	{ "pwrite64", 180 },
+ 	{ "pwritev", 321 },
++	{ "pwritev2", 381 },
+ 	{ "query_module", 166 },
+ 	{ "quotactl", 131 },
+ 	{ "read", 3 },
+diff --git a/src/arch-ppc64-syscalls.c b/src/arch-ppc64-syscalls.c
+index 73621a1..3ebd086 100644
+--- a/src/arch-ppc64-syscalls.c
++++ b/src/arch-ppc64-syscalls.c
+@@ -27,7 +27,7 @@
+ #include "arch.h"
+ #include "arch-ppc64.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def ppc64_syscall_table[] = { \
+ 	{ "_llseek", 140 },
+ 	{ "_newselect", 142 },
+@@ -255,11 +255,15 @@ const struct arch_syscall_def ppc64_syscall_table[] = { \
+ 	{ "pipe", 42 },
+ 	{ "pipe2", 317 },
+ 	{ "pivot_root", 203 },
++	{ "pkey_alloc", __PNR_pkey_alloc },
++	{ "pkey_free", __PNR_pkey_free },
++	{ "pkey_mprotect", __PNR_pkey_mprotect },
+ 	{ "poll", 167 },
+ 	{ "ppoll", 281 },
+ 	{ "prctl", 171 },
+ 	{ "pread64", 179 },
+ 	{ "preadv", 320 },
++	{ "preadv2", 380 },
+ 	{ "prlimit64", 325 },
+ 	{ "process_vm_readv", 351 },
+ 	{ "process_vm_writev", 352 },
+@@ -270,6 +274,7 @@ const struct arch_syscall_def ppc64_syscall_table[] = { \
+ 	{ "putpmsg", 188 },
+ 	{ "pwrite64", 180 },
+ 	{ "pwritev", 321 },
++	{ "pwritev2", 381 },
+ 	{ "query_module", 166 },
+ 	{ "quotactl", 131 },
+ 	{ "read", 3 },
+diff --git a/src/arch-s390-syscalls.c b/src/arch-s390-syscalls.c
+index a04673a..84253a6 100644
+--- a/src/arch-s390-syscalls.c
++++ b/src/arch-s390-syscalls.c
+@@ -10,7 +10,7 @@
+ #include "arch.h"
+ #include "arch-s390.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def s390_syscall_table[] = { \
+ 	{ "_llseek", 140 },
+ 	{ "_newselect", 142 },
+@@ -238,11 +238,15 @@ const struct arch_syscall_def s390_syscall_table[] = { \
+ 	{ "pipe", 42 },
+ 	{ "pipe2", 325 },
+ 	{ "pivot_root", 217 },
++	{ "pkey_alloc", __PNR_pkey_alloc },
++	{ "pkey_free", __PNR_pkey_free },
++	{ "pkey_mprotect", __PNR_pkey_mprotect },
+ 	{ "poll", 168 },
+ 	{ "ppoll", 302 },
+ 	{ "prctl", 172 },
+ 	{ "pread64", 180 },
+ 	{ "preadv", 328 },
++	{ "preadv2", 376 },
+ 	{ "prlimit64", 334 },
+ 	{ "process_vm_readv", 340 },
+ 	{ "process_vm_writev", 341 },
+@@ -253,6 +257,7 @@ const struct arch_syscall_def s390_syscall_table[] = { \
+ 	{ "putpmsg", 189 },
+ 	{ "pwrite64", 181 },
+ 	{ "pwritev", 329 },
++	{ "pwritev2", 377 },
+ 	{ "query_module", 167 },
+ 	{ "quotactl", 131 },
+ 	{ "read", 3 },
+diff --git a/src/arch-s390x-syscalls.c b/src/arch-s390x-syscalls.c
+index 9825c63..cc9763d 100644
+--- a/src/arch-s390x-syscalls.c
++++ b/src/arch-s390x-syscalls.c
+@@ -10,7 +10,7 @@
+ #include "arch.h"
+ #include "arch-s390x.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def s390x_syscall_table[] = { \
+ 	{ "_llseek", __PNR__llseek },
+ 	{ "_newselect", __PNR__newselect },
+@@ -238,11 +238,15 @@ const struct arch_syscall_def s390x_syscall_table[] = { \
+ 	{ "pipe", 42 },
+ 	{ "pipe2", 325 },
+ 	{ "pivot_root", 217 },
++	{ "pkey_alloc", __PNR_pkey_alloc },
++	{ "pkey_free", __PNR_pkey_free },
++	{ "pkey_mprotect", __PNR_pkey_mprotect },
+ 	{ "poll", 168 },
+ 	{ "ppoll", 302 },
+ 	{ "prctl", 172 },
+ 	{ "pread64", 180 },
+ 	{ "preadv", 328 },
++	{ "preadv2", 376 },
+ 	{ "prlimit64", 334 },
+ 	{ "process_vm_readv", 340 },
+ 	{ "process_vm_writev", 341 },
+@@ -253,6 +257,7 @@ const struct arch_syscall_def s390x_syscall_table[] = { \
+ 	{ "putpmsg", 189 },
+ 	{ "pwrite64", 181 },
+ 	{ "pwritev", 329 },
++	{ "pwritev2", 377 },
+ 	{ "query_module", 167 },
+ 	{ "quotactl", 131 },
+ 	{ "read", 3 },
+diff --git a/src/arch-x32-syscalls.c b/src/arch-x32-syscalls.c
+index 80dd38b..5b9970b 100644
+--- a/src/arch-x32-syscalls.c
++++ b/src/arch-x32-syscalls.c
+@@ -254,11 +254,15 @@ const struct arch_syscall_def x32_syscall_table[] = { \
+ 	{ "pipe", (X32_SYSCALL_BIT + 22) },
+ 	{ "pipe2", (X32_SYSCALL_BIT + 293) },
+ 	{ "pivot_root", (X32_SYSCALL_BIT + 155) },
++	{ "pkey_alloc", (X32_SYSCALL_BIT + 330) },
++	{ "pkey_free", (X32_SYSCALL_BIT + 331) },
++	{ "pkey_mprotect", (X32_SYSCALL_BIT + 329) },
+ 	{ "poll", (X32_SYSCALL_BIT + 7) },
+ 	{ "ppoll", (X32_SYSCALL_BIT + 271) },
+ 	{ "prctl", (X32_SYSCALL_BIT + 157) },
+ 	{ "pread64", (X32_SYSCALL_BIT + 17) },
+ 	{ "preadv", (X32_SYSCALL_BIT + 534) },
++	{ "preadv2", (X32_SYSCALL_BIT + 546) },
+ 	{ "prlimit64", (X32_SYSCALL_BIT + 302) },
+ 	{ "process_vm_readv", (X32_SYSCALL_BIT + 539) },
+ 	{ "process_vm_writev", (X32_SYSCALL_BIT + 540) },
+@@ -269,6 +273,7 @@ const struct arch_syscall_def x32_syscall_table[] = { \
+ 	{ "putpmsg", (X32_SYSCALL_BIT + 182) },
+ 	{ "pwrite64", (X32_SYSCALL_BIT + 18) },
+ 	{ "pwritev", (X32_SYSCALL_BIT + 535) },
++	{ "pwritev2", (X32_SYSCALL_BIT + 547) },
+ 	{ "query_module", __PNR_query_module },
+ 	{ "quotactl", (X32_SYSCALL_BIT + 179) },
+ 	{ "read", (X32_SYSCALL_BIT + 0) },
+diff --git a/src/arch-x86-syscalls.c b/src/arch-x86-syscalls.c
+index 58e0597..00684ac 100644
+--- a/src/arch-x86-syscalls.c
++++ b/src/arch-x86-syscalls.c
+@@ -26,7 +26,7 @@
+ #include "arch.h"
+ #include "arch-x86.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def x86_syscall_table[] = { \
+ 	{ "_llseek", 140 },
+ 	{ "_newselect", 142 },
+@@ -254,11 +254,15 @@ const struct arch_syscall_def x86_syscall_table[] = { \
+ 	{ "pipe", 42 },
+ 	{ "pipe2", 331 },
+ 	{ "pivot_root", 217 },
++	{ "pkey_alloc", 381 },
++	{ "pkey_free", 382 },
++	{ "pkey_mprotect", 380 },
+ 	{ "poll", 168 },
+ 	{ "ppoll", 309 },
+ 	{ "prctl", 172 },
+ 	{ "pread64", 180 },
+ 	{ "preadv", 333 },
++	{ "preadv2", 378 },
+ 	{ "prlimit64", 340 },
+ 	{ "process_vm_readv", 347 },
+ 	{ "process_vm_writev", 348 },
+@@ -269,6 +273,7 @@ const struct arch_syscall_def x86_syscall_table[] = { \
+ 	{ "putpmsg", 189 },
+ 	{ "pwrite64", 181 },
+ 	{ "pwritev", 334 },
++	{ "pwritev2", 379 },
+ 	{ "query_module", 167 },
+ 	{ "quotactl", 131 },
+ 	{ "read", 3 },
+diff --git a/src/arch-x86_64-syscalls.c b/src/arch-x86_64-syscalls.c
+index 2dd9818..655cf5f 100644
+--- a/src/arch-x86_64-syscalls.c
++++ b/src/arch-x86_64-syscalls.c
+@@ -26,7 +26,7 @@
+ #include "arch.h"
+ #include "arch-x86_64.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def x86_64_syscall_table[] = { \
+ 	{ "_llseek", __PNR__llseek },
+ 	{ "_newselect", __PNR__newselect },
+@@ -254,11 +254,15 @@ const struct arch_syscall_def x86_64_syscall_table[] = { \
+ 	{ "pipe", 22 },
+ 	{ "pipe2", 293 },
+ 	{ "pivot_root", 155 },
++	{ "pkey_alloc", 330 },
++	{ "pkey_free", 331 },
++	{ "pkey_mprotect", 329 },
+ 	{ "poll", 7 },
+ 	{ "ppoll", 271 },
+ 	{ "prctl", 157 },
+ 	{ "pread64", 17 },
+ 	{ "preadv", 295 },
++	{ "preadv2", 327 },
+ 	{ "prlimit64", 302 },
+ 	{ "process_vm_readv", 310 },
+ 	{ "process_vm_writev", 311 },
+@@ -269,6 +273,7 @@ const struct arch_syscall_def x86_64_syscall_table[] = { \
+ 	{ "putpmsg", 182 },
+ 	{ "pwrite64", 18 },
+ 	{ "pwritev", 296 },
++	{ "pwritev2", 328 },
+ 	{ "query_module", 178 },
+ 	{ "quotactl", 179 },
+ 	{ "read", 0 },
+diff --git a/src/arch-parisc-syscalls.c b/src/arch-parisc-syscalls.c
+index 2dd9818..655cf5f 100644
+--- a/src/arch-parisc-syscalls.c
++++ b/src/arch-parisc-syscalls.c
+@@ -26,7 +26,7 @@
+ #include "arch.h"
+ #include "arch-parisc.h"
+ 
+-/* NOTE: based on Linux 4.5-rc4 */
++/* NOTE: based on Linux 4.9 */
+ const struct arch_syscall_def parisc_syscall_table[] = { \
+ 	{ "_llseek",	140 },
+ 	{ "_newselect",	142 },
+@@ -254,11 +254,15 @@ const struct arch_syscall_def x86_64_syscall_table[] = { \
+ 	{ "pipe",	42 },
+ 	{ "pipe2",	313 },
+ 	{ "pivot_root",	67 },
++	{ "pkey_alloc",	__PNR_pkey_alloc },
++	{ "pkey_free",	__PNR_pkey_free },
++	{ "pkey_mprotect",	__PNR_pkey_mprotect },
+ 	{ "poll",	168 },
+ 	{ "ppoll",	274 },
+ 	{ "prctl",	172 },
+ 	{ "pread64",	108 },
+ 	{ "preadv",	315 },
++	{ "preadv2",	347 },
+ 	{ "prlimit64",	321 },
+ 	{ "process_vm_readv",	330 },
+ 	{ "process_vm_writev",	331 },
+@@ -269,6 +273,7 @@ const struct arch_syscall_def x86_64_syscall_table[] = { \
+ 	{ "putpmsg",	197 },
+ 	{ "pwrite64",	109 },
+ 	{ "pwritev",	316 },
++	{ "pwritev2", 328 },
+ 	{ "query_module",	167 },
+ 	{ "quotactl",	131 },
+ 	{ "read",	3 },
