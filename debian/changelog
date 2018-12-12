@@ -1,3 +1,9 @@
+libseccomp (2.3.1-2.1+deb9u1pexip2) pexip; urgency=medium
+
+  * Backport upstream change to build python bindings
+
+ -- John-Mark Bell <jmb@pexip.com>  Wed, 12 Dec 2018 16:43:03 +0000
+
 libseccomp (2.3.1-2.1+deb9u1pexip1) pexip; urgency=medium
 
   * New upstream release
