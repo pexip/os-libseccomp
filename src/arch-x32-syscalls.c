@@ -26,7 +26,7 @@
 #include "arch.h"
 #include "arch-x32.h"
 
-/* NOTE: based on Linux 4.5-rc4 */
+/* NOTE: based on Linux 4.15-rc7 */
 const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "_llseek", __PNR__llseek },
 	{ "_newselect", __PNR__newselect },
@@ -122,6 +122,7 @@ const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "get_mempolicy", (X32_SYSCALL_BIT + 239) },
 	{ "get_robust_list", (X32_SYSCALL_BIT + 531) },
 	{ "get_thread_area", __PNR_get_thread_area },
+	{ "get_tls", __PNR_get_tls },
 	{ "getcpu", (X32_SYSCALL_BIT + 309) },
 	{ "getcwd", (X32_SYSCALL_BIT + 79) },
 	{ "getdents", (X32_SYSCALL_BIT + 78) },
@@ -254,11 +255,15 @@ const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "pipe", (X32_SYSCALL_BIT + 22) },
 	{ "pipe2", (X32_SYSCALL_BIT + 293) },
 	{ "pivot_root", (X32_SYSCALL_BIT + 155) },
+	{ "pkey_alloc", (X32_SYSCALL_BIT + 330) },
+	{ "pkey_free", (X32_SYSCALL_BIT + 331) },
+	{ "pkey_mprotect", (X32_SYSCALL_BIT + 329) },
 	{ "poll", (X32_SYSCALL_BIT + 7) },
 	{ "ppoll", (X32_SYSCALL_BIT + 271) },
 	{ "prctl", (X32_SYSCALL_BIT + 157) },
 	{ "pread64", (X32_SYSCALL_BIT + 17) },
 	{ "preadv", (X32_SYSCALL_BIT + 534) },
+	{ "preadv2", (X32_SYSCALL_BIT + 546) },
 	{ "prlimit64", (X32_SYSCALL_BIT + 302) },
 	{ "process_vm_readv", (X32_SYSCALL_BIT + 539) },
 	{ "process_vm_writev", (X32_SYSCALL_BIT + 540) },
@@ -269,6 +274,7 @@ const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "putpmsg", (X32_SYSCALL_BIT + 182) },
 	{ "pwrite64", (X32_SYSCALL_BIT + 18) },
 	{ "pwritev", (X32_SYSCALL_BIT + 535) },
+	{ "pwritev2", (X32_SYSCALL_BIT + 547) },
 	{ "query_module", __PNR_query_module },
 	{ "quotactl", (X32_SYSCALL_BIT + 179) },
 	{ "read", (X32_SYSCALL_BIT + 0) },
@@ -299,9 +305,11 @@ const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "rt_sigtimedwait", (X32_SYSCALL_BIT + 523) },
 	{ "rt_tgsigqueueinfo", (X32_SYSCALL_BIT + 536) },
 	{ "rtas", __PNR_rtas },
+	{ "s390_guarded_storage", __PNR_s390_guarded_storage },
 	{ "s390_pci_mmio_read", __PNR_s390_pci_mmio_read },
 	{ "s390_pci_mmio_write", __PNR_s390_pci_mmio_write },
 	{ "s390_runtime_instr", __PNR_s390_runtime_instr },
+	{ "s390_sthyi", __PNR_s390_sthyi },
 	{ "sched_get_priority_max", (X32_SYSCALL_BIT + 146) },
 	{ "sched_get_priority_min", (X32_SYSCALL_BIT + 147) },
 	{ "sched_getaffinity", (X32_SYSCALL_BIT + 204) },
@@ -387,6 +395,7 @@ const struct arch_syscall_def x32_syscall_table[] = { \
 	{ "stat64", __PNR_stat64 },
 	{ "statfs", (X32_SYSCALL_BIT + 137) },
 	{ "statfs64", __PNR_statfs64 },
+	{ "statx", (X32_SYSCALL_BIT + 332) },
 	{ "stime", __PNR_stime },
 	{ "stty", __PNR_stty },
 	{ "subpage_prot", __PNR_subpage_prot },
@@ -501,15 +510,15 @@ const char *x32_syscall_resolve_num(int num)
 }
 
 /**
- * Iterate through the syscall table and return the syscall name
+ * Iterate through the syscall table and return the syscall mapping
  * @param spot the offset into the syscall table
  *
- * Return the syscall name at position @spot or NULL on failure.  This function
- * should only ever be used internally by libseccomp.
+ * Return the syscall mapping at position @spot or NULL on failure.  This
+ * function should only ever be used internally by libseccomp.
  *
  */
-const char *x32_syscall_iterate_name(unsigned int spot)
+const struct arch_syscall_def *x32_syscall_iterate(unsigned int spot)
 {
 	/* XXX - no safety checks here */
-	return x32_syscall_table[spot].name;
+	return &x32_syscall_table[spot];
 }

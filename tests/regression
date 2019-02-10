@@ -82,6 +82,7 @@ optional arguments:
   -s SINGLE_TEST specifies individual test number to be run
   -t [TEMP_DIR]  specifies directory to create temporary files in
   -T [TEST_TYPE] only run tests matching the specified type
+                  can also be set via LIBSECCOMP_TSTCFG_TYPE env variable
   -v             specifies that verbose output be provided
 EOF
 }
@@ -279,6 +280,10 @@ function run_test_bpf_sim_fuzz() {
 	local testname=${line[0]}
 	local stress_count=${line[1]}
 
+	# check for stress count configuration via environment variables
+	[[ -n $LIBSECCOMP_TSTCFG_STRESSCNT ]] && \
+		stress_count=$LIBSECCOMP_TSTCFG_STRESSCNT
+
 	for i in $(get_seq 1 $stress_count); do
 		local sys=$(generate_random_data)
 		local -a arg=($(generate_random_data) $(generate_random_data) \
@@ -470,7 +475,7 @@ function run_test_bpf_sim() {
 
 		# get low and high syscall values and convert them to numbers
 		low_syscall=$(get_range $LOW "${line[2]}")
-		if [[ ! $low_syscall =~ ^[0-9]+$ ]]; then
+		if [[ ! $low_syscall =~ ^\-?[0-9]+$ ]]; then
 			low_syscall=$($GLBL_SYS_RESOLVER -a $simarch -t \
 				      $low_syscall)
 			if [[ $? -ne 0 ]]; then
@@ -481,7 +486,7 @@ function run_test_bpf_sim() {
 			fi
 		fi
 		high_syscall=$(get_range $HIGH "${line[2]}")
-		if [[ ! $high_syscall =~ ^[0-9]+$ ]]; then
+		if [[ ! $high_syscall =~ ^\-?[0-9]+$ ]]; then
 			high_syscall=$($GLBL_SYS_RESOLVER -a $simarch -t \
 				       $high_syscall)
 			if [[ $? -ne 0 ]]; then
@@ -960,6 +965,9 @@ if [[ -n $runall ]]; then
 	batch_list=()
 	single_list=()
 fi
+
+# check for configuration via environment variables
+[[ -z $type && -n $LIBSECCOMP_TSTCFG_TYPE ]] && type=$LIBSECCOMP_TSTCFG_TYPE
 
 # open log file for append (default to stdout)
 if [[ -n $logfile ]]; then

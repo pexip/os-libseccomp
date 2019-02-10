@@ -3,35 +3,33 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
-DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
-
-LIBPKG := libseccomp2
-DEVPKG := libseccomp-dev
 
 # Enable verbose build details.
 export V=1
 
+include /usr/share/dpkg/architecture.mk
+
 %:
-	dh $@ --parallel --with autoreconf
+ifeq ($(filter nopython,$(DEB_BUILD_PROFILES)),)
+	dh $@ --with python2,python3
+else
+	dh $@
+endif
+
+ifeq ($(filter nopython,$(DEB_BUILD_PROFILES)),)
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-python
+
+override_dh_auto_build:
+	PYTHONPATH="/usr/lib/python2.7/plat-${DEB_HOST_GNU_TYPE}$${PYTHONPATH:+:$$PYTHONPATH}" dh_auto_build
+
+override_dh_auto_install:
+	dh_auto_install
+	set -e && for pyver in `py3versions -s`; do \
+		_PYTHON_SYSCONFIGDATA_NAME='_sysconfigdata_m_${DEB_HOST_ARCH_OS}_${DEB_HOST_MULTIARCH}' dh_auto_install --sourcedirectory=src/python -- PYTHON=$$pyver; \
+	done
+endif
 
 override_dh_auto_clean:
 	dh_auto_clean
 	rm -f regression.out
-
-override_dh_link:
-	dh_link -p$(DEVPKG) \
-		lib/$(DEB_HOST_MULTIARCH)/$$(basename $$(readlink debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/libseccomp.so)) \
-		usr/lib/$(DEB_HOST_MULTIARCH)/libseccomp.so
-	dh_link --remaining-packages
-
-override_dh_install:
-	dh_install -p$(LIBPKG) \
-		"usr/lib/$(DEB_HOST_MULTIARCH)/libseccomp.so.*" \
-		lib/$(DEB_HOST_MULTIARCH)
-	dh_install --remaining-packages --list-missing
-
-override_dh_auto_test:
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	make check 2>&1 | tee regression.out && \
-	  grep -q "^ tests failed: 0" regression.out || true
-endif

@@ -1,10 +1,47 @@
-libseccomp (2.3.1-2.1+deb9u1) stretch; urgency=medium
+libseccomp (2.3.3-4) unstable; urgency=medium
 
-  * Add support for Linux 4.9 syscalls:
-    preadv2, pwritev2, pkey_mprotect, pkey_alloc and pkey_free
-  * Add support for the statx syscall.
+  [ Ondřej Nový ]
+  * d/copyright: Change Format URL to correct one
 
- -- Felix Geyer <fgeyer@debian.org>  Sat, 08 Sep 2018 21:34:13 +0200
+  [ Helmut Grohne ]
+  * Fix FTCBFS: (Closes: #903556)
+    + Multiarchify python Build-Depends.
+    + Annotate cython dependencies with :native for now.
+    + Drop noop dh_auto_build invocations.
+    + Pass a suitable PYTHONPATH for python2.
+    + Pass _PYTHON_SYSCONFIGDATA_NAME for python3.
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 10 Feb 2019 12:25:44 +0100
+
+libseccomp (2.3.3-3) unstable; urgency=medium
+
+  * Fix FTBFS: Adapt to renamed README file. (Closes: #902767)
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 01 Jul 2018 20:32:03 +0200
+
+libseccomp (2.3.3-2) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Support the nopython build profile. (Closes: #897057)
+
+  [ Felix Geyer ]
+  * Run upstream "live" tests in an autopkgtest.
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 13 May 2018 09:53:08 +0200
+
+libseccomp (2.3.3-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #895417)
+    - Adds pkey_mprotect syscall. (Closes: #893722)
+  * Refresh parisc patch.
+  * Move libseccomp2 back to /usr/lib. (Closes: #894988)
+  * Make test failures cause the build to fail. (Closes: 877901)
+  * Build python bindings. (Closes: #810712)
+  * Switch to debhelper compat level 10.
+  * Move git repo to salsa.debian.org
+  * Add myself to Uploaders.
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 22 Apr 2018 23:55:03 +0200
 
 libseccomp (2.3.1-2.1) unstable; urgency=medium
 

@@ -1,0 +1,3 @@
+Tests: testsuite-live
+Depends: libseccomp-dev, build-essential
+Restrictions: isolation-machine

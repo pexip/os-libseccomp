@@ -2,12 +2,20 @@ Source: libseccomp
 Section: libs
 Priority: optional
 Maintainer: Kees Cook <kees@debian.org>
-Uploaders: Luca Bruno <lucab@debian.org>
-Build-Depends: debhelper (>= 9), dh-autoreconf, linux-libc-dev
+Uploaders: Luca Bruno <lucab@debian.org>, Felix Geyer <fgeyer@debian.org>
+Build-Depends: debhelper (>= 10~),
+               linux-libc-dev,
+               dh-python <!nopython>,
+               python-all-dev:any <!nopython>,
+               libpython-all-dev <!nopython>,
+               python3-all-dev:any <!nopython>,
+               libpython3-all-dev <!nopython>,
+               cython:native <!nopython>,
+               cython3:native <!nopython>
 Standards-Version: 3.9.7
 Homepage: https://github.com/seccomp/libseccomp
-Vcs-Git: https://anonscm.debian.org/git/collab-maint/libseccomp.git
-Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/libseccomp.git
+Vcs-Git: https://salsa.debian.org/debian/libseccomp.git
+Vcs-Browser: https://salsa.debian.org/debian/libseccomp
 
 Package: libseccomp-dev
 Section: libdevel
@@ -42,3 +50,25 @@ Description: helper tools for high level interface to Linux seccomp filter
  Provides helper tools for interacting with libseccomp. Currently, only
  a single tool exists, providing a way to easily enumerate syscalls across
  the supported architectures.
+
+Package: python-seccomp
+Build-Profiles: <!nopython>
+Architecture: linux-any
+Multi-Arch: same
+Section: python
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: high level interface to Linux seccomp filter (Python 2 bindings)
+ This library provides a high level interface to constructing, analyzing
+ and installing seccomp filters via a BPF passed to the Linux Kernel's
+ prctl() syscall.
+
+Package: python3-seccomp
+Build-Profiles: <!nopython>
+Architecture: linux-any
+Multi-Arch: same
+Section: python
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Description: high level interface to Linux seccomp filter (Python 3 bindings)
+ This library provides a high level interface to constructing, analyzing
+ and installing seccomp filters via a BPF passed to the Linux Kernel's
+ prctl() syscall.

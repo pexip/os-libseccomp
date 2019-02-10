@@ -16,8 +16,17 @@
 # along with this library; if not, see <http://www.gnu.org/licenses>.
 #
 
-AM_LDFLAGS = -static
-LDADD = util.la ../src/libseccomp.la
+@CODE_COVERAGE_RULES@
+
+if CODE_COVERAGE_ENABLED
+DBG_STATIC =
+else
+DBG_STATIC = -static
+endif
+
+AM_LDFLAGS = ${DBG_STATIC}
+
+LDADD = util.la ../src/libseccomp.la ${CODE_COVERAGE_LIBS}
 
 check_LTLIBRARIES = util.la
 util_la_SOURCES = util.c util.h
@@ -61,7 +70,8 @@ check_PROGRAMS = \
 	30-sim-socket_syscalls \
 	31-basic-version_check \
 	32-live-tsync_allow \
-	33-sim-socket_syscalls_be
+	33-sim-socket_syscalls_be \
+	35-sim-negative_one
 
 EXTRA_DIST_TESTPYTHON = \
 	util.py \
@@ -97,7 +107,8 @@ EXTRA_DIST_TESTPYTHON = \
 	30-sim-socket_syscalls.py \
 	31-basic-version_check.py \
 	32-live-tsync_allow.py \
-	33-sim-socket_syscalls_be.py
+	33-sim-socket_syscalls_be.py \
+	35-sim-negative_one.py
 
 EXTRA_DIST_TESTCFGS = \
 	01-sim-allow.tests \
@@ -132,7 +143,8 @@ EXTRA_DIST_TESTCFGS = \
 	30-sim-socket_syscalls.tests \
 	31-basic-version_check.tests \
 	32-live-tsync_allow.tests \
-	33-sim-socket_syscalls_be.tests
+	33-sim-socket_syscalls_be.tests \
+	35-sim-negative_one.tests
 
 EXTRA_DIST_TESTSCRIPTS = regression testdiff testgen
 
