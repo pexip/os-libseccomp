@@ -3,7 +3,7 @@
 #
 # Seccomp Library test program
 #
-# Copyright (c) 2013 Red Hat <pmoore@redhat.com>
+# Copyright (c) 2017 Red Hat <pmoore@redhat.com>
 # Author: Paul Moore <paul@paul-moore.com>
 #
 
@@ -28,23 +28,19 @@ import util
 
 from seccomp import *
 
-def test():
-    action = util.parse_action(sys.argv[1])
-    if action == TRAP:
-        util.install_trap()
-    f = SyscallFilter(action)
-    f.add_rule(ALLOW, "getpid")
-    f.add_rule(ALLOW, "rt_sigreturn")
-    f.add_rule(ALLOW, "sigreturn")
-    f.add_rule(ALLOW, "exit_group")
-    f.load()
-    try:
-        util.write_file("/dev/null")
-    except OSError as ex:
-        quit(ex.errno)
-    quit(160)
+def test(args):
+    f = SyscallFilter(KILL)
+    f.remove_arch(Arch())
+    f.add_arch(Arch("x86"))
+    f.add_arch(Arch("x86_64"))
+    f.set_attr(Attr.API_TSKIP, 1)
+    f.syscall_priority(-1, 100)
+    f.add_rule(ALLOW, -1)
+    return f
 
-test()
+args = util.get_opt()
+ctx = test(args)
+util.filter_output(args, ctx)
 
 # kate: syntax python;
 # kate: indent-mode python; space-indent on; indent-width 4; mixedindent off;
