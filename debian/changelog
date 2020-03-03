@@ -1,3 +1,9 @@
+libseccomp (2.3.3-4pexip1) pexip; urgency=medium
+
+  * Migrate to Buster
+
+ -- Vincent Sanders <vince@pexip.com>  Tue, 03 Mar 2020 16:57:29 +0000
+
 libseccomp (2.3.3-4) unstable; urgency=medium
 
   [ Ondřej Nový ]
