@@ -594,10 +594,10 @@ Index: libseccomp/src/arch-parisc-syscalls.c
 + * should only ever be used internally by libseccomp.
 + *
 + */
-+const char *parisc_syscall_iterate_name(unsigned int spot)
++const struct arch_syscall_def *parisc_syscall_iterate(unsigned int spot)
 +{
 +	/* XXX - no safety checks here */
-+	return parisc_syscall_table[spot].name;
++	return &parisc_syscall_table[spot];
 +}
 Index: libseccomp/src/arch-parisc.c
 ===================================================================
@@ -666,7 +666,7 @@ Index: libseccomp/src/arch-parisc.h
 +int parisc_syscall_resolve_name(const char *name);
 +const char *parisc_syscall_resolve_num(int num);
 +
-+const char *parisc_syscall_iterate_name(unsigned int spot);
++const struct arch_syscall_def *parisc_syscall_iterate(unsigned int spot);
 +
 +#endif
 Index: libseccomp/src/arch-parisc64.c
@@ -717,23 +717,23 @@ Index: libseccomp/src/arch-syscall-check.c
  	int i_ppc64 = 0;
  	int i_s390 = 0;
 @@ -101,6 +103,8 @@
- 			      mips64_syscall_iterate_name(i_mips64));
+ 			      mips64_syscall_iterate(i_mips64));
  		syscall_check(str_miss, sys_name, "mips64n32",
- 			      mips64n32_syscall_iterate_name(i_mips64n32));
+ 			      mips64n32_syscall_iterate(i_mips64n32));
 +		syscall_check(str_miss, sys_name, "parisc",
-+			      parisc_syscall_iterate_name(i_parisc));
++			      parisc_syscall_iterate(i_parisc));
  		syscall_check(str_miss, sys_name, "ppc",
- 			      ppc_syscall_iterate_name(i_ppc));
+ 			      ppc_syscall_iterate(i_ppc));
  		syscall_check(str_miss, sys_name, "ppc64",
 @@ -135,6 +139,8 @@
  			i_mips64 = -1;
- 		if (!mips64n32_syscall_iterate_name(++i_mips64n32))
+ 		if (!mips64n32_syscall_iterate(++i_mips64n32)->name)
  			i_mips64n32 = -1;
-+		if (!parisc_syscall_iterate_name(++i_parisc))
++		if (!parisc_syscall_iterate(++i_parisc)->name)
 +			i_parisc = -1;
- 		if (!ppc_syscall_iterate_name(++i_ppc))
+ 		if (!ppc_syscall_iterate(++i_ppc)->name)
  			i_ppc = -1;
- 		if (!ppc64_syscall_iterate_name(++i_ppc64))
+ 		if (!ppc64_syscall_iterate(++i_ppc64)->name)
 @@ -146,6 +152,7 @@
  	} while (i_x86_64 >= 0 && i_x32 >= 0 &&
  		 i_arm >= 0 && i_aarch64 >= 0 &&
@@ -743,16 +743,16 @@ Index: libseccomp/src/arch-syscall-check.c
  		 i_s390 >= 0 && i_s390x >= 0);
  
 @@ -190,6 +197,10 @@
- 		       mips64n32_syscall_iterate_name(i_mips64n32));
+ 		printf("ERROR, mips64n32 has additional syscalls\n");
  		return 1;
  	}
 +	if (i_parisc >= 0) {
-+		printf("%s: ERROR, parisc has additional syscalls\n",
-+		       parisc_syscall_iterate_name(i_parisc));
++		printf("ERROR, parisc has additional syscalls\n");
++		return 1;
 +	}
  	if (i_ppc >= 0) {
- 		printf("%s: ERROR, ppc has additional syscalls\n",
- 		       ppc_syscall_iterate_name(i_ppc));
+ 		printf("ERROR, ppc has additional syscalls\n");
+ 		return 1;
 Index: libseccomp/src/arch-syscall-dump.c
 ===================================================================
 --- libseccomp.orig/src/arch-syscall-dump.c	2016-05-28 19:57:02.050592727 +0200
@@ -767,14 +767,14 @@ Index: libseccomp/src/arch-syscall-dump.c
  #include "arch-s390.h"
 @@ -116,6 +117,10 @@
  		case SCMP_ARCH_MIPSEL64N32:
- 			sys_name = mips64n32_syscall_iterate_name(iter);
+ 			sys = mips64n32_syscall_iterate(iter);
  			break;
 +		case SCMP_ARCH_PARISC:
 +		case SCMP_ARCH_PARISC64:
-+			sys_name = parisc_syscall_iterate_name(iter);
++			sys = parisc_syscall_iterate(iter);
 +			break;
  		case SCMP_ARCH_PPC:
- 			sys_name = ppc_syscall_iterate_name(iter);
+ 			sys = ppc_syscall_iterate(iter);
  			break;
 Index: libseccomp/src/arch.c
 ===================================================================

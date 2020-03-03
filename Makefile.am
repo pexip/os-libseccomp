@@ -22,7 +22,7 @@ SUBDIRS = include src tools tests doc
 pkgconfdir = ${libdir}/pkgconfig
 pkgconf_DATA = libseccomp.pc
 
-EXTRA_DIST = CHANGELOG CREDITS LICENSE README SUBMITTING_PATCHES
+EXTRA_DIST = CHANGELOG CREDITS LICENSE README.md SUBMITTING_PATCHES
 
 # support silent builds
 AM_MAKEFLAGS_0 = --quiet --no-print-directory
@@ -36,6 +36,9 @@ check-build: all
 
 check-syntax:
 	@./tools/check-syntax
+
+check-code-coverage: check-build
+	${MAKE} ${AM_MAKEFLAGS} -C tests check-code-coverage
 
 if COVERITY
 coverity-build: clean

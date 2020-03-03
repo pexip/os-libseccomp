@@ -3,12 +3,20 @@ Section: libs
 Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Kees Cook <kees@debian.org>
-XSBC-Pexip-Original-Uploaders: Luca Bruno <lucab@debian.org>
-Build-Depends: debhelper (>= 9), dh-autoreconf, linux-libc-dev, dh-python, python-all-dev, python3-all-dev, cython, cython3
+XSBC-Pexip-Original-Uploaders: Luca Bruno <lucab@debian.org>, Felix Geyer <fgeyer@debian.org>
+Build-Depends: debhelper (>= 10~),
+               linux-libc-dev,
+               dh-python <!nopython>,
+               python-all-dev:any <!nopython>,
+               libpython-all-dev <!nopython>,
+               python3-all-dev:any <!nopython>,
+               libpython3-all-dev <!nopython>,
+               cython:native <!nopython>,
+               cython3:native <!nopython>
 Standards-Version: 3.9.7
 Homepage: https://github.com/seccomp/libseccomp
-Vcs-Git: https://anonscm.debian.org/git/collab-maint/libseccomp.git
-Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/libseccomp.git
+Vcs-Git: https://salsa.debian.org/debian/libseccomp.git
+Vcs-Browser: https://salsa.debian.org/debian/libseccomp
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: libseccomp-dev
@@ -46,6 +54,7 @@ Description: helper tools for high level interface to Linux seccomp filter
  the supported architectures.
 
 Package: python-seccomp
+Build-Profiles: <!nopython>
 Architecture: linux-any
 Multi-Arch: same
 Section: python
@@ -56,6 +65,7 @@ Description: high level interface to Linux seccomp filter (Python 2 bindings)
  prctl() syscall.
 
 Package: python3-seccomp
+Build-Profiles: <!nopython>
 Architecture: linux-any
 Multi-Arch: same
 Section: python

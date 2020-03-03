@@ -1,3 +1,4 @@
 28-parisc_support.patch
-29-syscalls-linux4.9.patch
-30-statx.patch
+29-parisc_syscalls_linux49.patch
+30-parisc_syscalls_linux414.patch
+31-parisc_syscalls_linux415.patch

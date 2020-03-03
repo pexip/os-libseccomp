@@ -53,8 +53,8 @@ functions all add a new filter rule to the current seccomp filter.  The
 and
 .BR seccomp_rule_add_array ()
 functions will make a "best effort" to add the rule as specified, but may alter
-the rule slightly due to architecture specifics, e.g. socket and ipc functions
-on x86.  The
+the rule slightly due to architecture specifics (e.g. internal rewriting of
+multiplexed syscalls, like socket and ipc functions on x86).  The
 .BR seccomp_rule_add_exact ()
 and
 .BR seccomp_rule_add_exact_array ()
@@ -90,6 +90,14 @@ is highly recommended to use the
 .BR SCMP_SYS ()
 macro instead.  See the EXAMPLES section below.
 .P
+Starting with Linux v4.8, there may be a need to create a rule with a syscall
+value of -1 to allow tracing programs to skip a syscall invocation; in order
+to create a rule with a -1 syscall value it is necessary to first set the
+.B SCMP_FLTATR_API_TSKIP
+attribute.  See
+.BR seccomp_attr_set (3)
+for more information.
+.P
 The filter context
 .I ctx
 is the value returned by the call to
@@ -100,18 +108,17 @@ Valid
 values are as follows:
 .TP
 .B SCMP_ACT_KILL
-The thread will be killed by the kernel when it calls a syscall that does not
-match any of the configured seccomp filter rules.
+The thread will be killed by the kernel when it calls a syscall that matches
+the filter rule.
 .TP
 .B SCMP_ACT_TRAP
-The thread will throw a SIGSYS signal when it calls a syscall that does not
-match any of the configured seccomp filter rules.
+The thread will throw a SIGSYS signal when it calls a syscall that matches the
+filter rule.
 .TP
 .B SCMP_ACT_ERRNO(uint16_t errno)
 The thread will receive a return value of
 .I errno
-when it calls a syscall that does not match any of the configured seccomp filter
-rules.
+when it calls a syscall that matches the filter rule.
 .TP
 .B SCMP_ACT_TRACE(uint16_t msg_num)
 If the thread is being traced and the tracing process specified the
@@ -128,7 +135,7 @@ option.
 .TP
 .B SCMP_ACT_ALLOW
 The seccomp filter will have no effect on the thread calling the syscall if it
-does not match any of the configured seccomp filter rules.
+matches the filter rule.
 .P
 Valid comparison
 .I op
@@ -291,5 +298,7 @@ Paul Moore <paul@paul-moore.com>
 .\" //////////////////////////////////////////////////////////////////////////
 .SH SEE ALSO
 .\" //////////////////////////////////////////////////////////////////////////
+.BR seccomp_syscall_resolve_name_rewrite (3),
 .BR seccomp_syscall_priority (3),
-.BR seccomp_load (3)
+.BR seccomp_load (3),
+.BR seccomp_attr_set (3)
