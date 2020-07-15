@@ -1,3 +1,9 @@
+libseccomp (2.3.3-4pexip2) pexip; urgency=medium
+
+  * Rebuild in buster environment
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Wed, 15 Jul 2020 23:26:04 +0000
+
 libseccomp (2.3.3-4pexip1) pexip; urgency=medium
 
   * Migrate to Buster
