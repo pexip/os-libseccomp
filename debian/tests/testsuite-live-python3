@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+. debian/tests/common
+
+# make sure "python" points to python3 as this is not configurable
+# in the regression script
+mkdir python3env
+ln -s /usr/bin/python3 python3env/python
+
+echo "Running test suite ..."
+PATH="$(pwd)/python3env:$PATH" ./regression -T live -m python

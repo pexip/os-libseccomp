@@ -36,11 +36,19 @@ int main(int argc, char *argv[])
 	if (rc < 0)
 		goto out;
 
+	rc = seccomp_api_set(3);
+	if (rc != 0)
+		return EOPNOTSUPP;
+
 	ctx = seccomp_init(SCMP_ACT_KILL);
 	if (ctx == NULL)
 		return ENOMEM;
 
 	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_LOG, SCMP_SYS(rt_sigreturn), 0);
 	if (rc != 0)
 		goto out;
 
@@ -52,7 +60,11 @@ int main(int argc, char *argv[])
 	if (rc != 0)
 		goto out;
 
-	rc = seccomp_rule_add(ctx, SCMP_ACT_TRACE(1234), SCMP_SYS(open), 0);
+	rc = seccomp_rule_add(ctx, SCMP_ACT_TRACE(1234), SCMP_SYS(openat), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_KILL_PROCESS, SCMP_SYS(fstat), 0);
 	if (rc != 0)
 		goto out;
 
