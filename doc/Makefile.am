@@ -38,9 +38,17 @@ dist_man3_MANS = \
 	man/man3/seccomp_rule_add_array.3 \
 	man/man3/seccomp_rule_add_exact.3 \
 	man/man3/seccomp_rule_add_exact_array.3 \
+	man/man3/seccomp_notify_alloc.3 \
+	man/man3/seccomp_notify_fd.3 \
+	man/man3/seccomp_notify_free.3 \
+	man/man3/seccomp_notify_id_valid.3 \
+	man/man3/seccomp_notify_receive.3 \
+	man/man3/seccomp_notify_respond.3 \
 	man/man3/seccomp_syscall_priority.3 \
 	man/man3/seccomp_syscall_resolve_name.3 \
 	man/man3/seccomp_syscall_resolve_name_arch.3 \
 	man/man3/seccomp_syscall_resolve_name_rewrite.3 \
 	man/man3/seccomp_syscall_resolve_num_arch.3 \
-	man/man3/seccomp_version.3
+	man/man3/seccomp_version.3 \
+	man/man3/seccomp_api_get.3 \
+	man/man3/seccomp_api_set.3

@@ -1,3 +1,7 @@
 Tests: testsuite-live
 Depends: libseccomp-dev, build-essential
 Restrictions: isolation-machine
+
+Tests: testsuite-live-python3
+Depends: libseccomp-dev, build-essential, python3-seccomp
+Restrictions: isolation-machine, allow-stderr

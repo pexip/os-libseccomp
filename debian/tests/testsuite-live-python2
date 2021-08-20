@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eu
+
+. debian/tests/common
+
+echo "Running test suite ..."
+./regression -T live -m python

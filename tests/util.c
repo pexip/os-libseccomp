@@ -168,6 +168,8 @@ int util_action_parse(const char *action)
 
 	if (strcasecmp(action, "KILL") == 0)
 		return SCMP_ACT_KILL;
+	if (strcasecmp(action, "KILL_PROCESS") == 0)
+		return SCMP_ACT_KILL_PROCESS;
 	else if (strcasecmp(action, "TRAP") == 0)
 		return SCMP_ACT_TRAP;
 	else if (strcasecmp(action, "ERRNO") == 0)
@@ -176,6 +178,8 @@ int util_action_parse(const char *action)
 		return -1; /* not yet supported */
 	else if (strcasecmp(action, "ALLOW") == 0)
 		return SCMP_ACT_ALLOW;
+	else if (strcasecmp(action, "LOG") == 0)
+		return SCMP_ACT_LOG;
 
 	return -1;
 }
@@ -196,14 +200,14 @@ int util_file_write(const char *path)
 
 	fd = open(path, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
 	if (fd < 0)
-		return errno;
+		return -errno;
 	if (write(fd, buf, buf_len) < buf_len) {
-		int rc = errno;
+		int rc = -errno;
 		close(fd);
 		return rc;
 	}
 	if (close(fd) < 0)
-		return errno;
+		return -errno;
 
 	return 0;
 }

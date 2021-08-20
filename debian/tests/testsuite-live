@@ -2,12 +2,7 @@
 
 set -eu
 
-SRCDIR="$(pwd)"
-
-mkdir "$AUTOPKGTEST_TMP/tests" "$AUTOPKGTEST_TMP/tools"
-cp -a tests/. "$AUTOPKGTEST_TMP/tests/"
-
-cd "$AUTOPKGTEST_TMP/tests"
+. debian/tests/common
 
 # manually build necessary files against the installed libseccomp
 
@@ -15,13 +10,7 @@ cd "$AUTOPKGTEST_TMP/tests"
 for filename in *-live-*.tests; do
   testname=$(echo "$filename" | cut -f 1 -d '.')
   echo "Building $testname ..."
-  gcc -O2 -g "${testname}.c" util.c -lseccomp -o "$testname"
-done
-
-# build tools needed for tests
-for tool in scmp_arch_detect scmp_sys_resolver; do
-  echo "Building $tool ..."
-  gcc -O2 -g "$SRCDIR/tools/$tool.c" "$SRCDIR/tools/util.c" -lseccomp -o ../tools/$tool
+  gcc -O2 -g "${testname}.c" util.c -pthread -lseccomp -o "$testname"
 done
 
 echo "Running test suite ..."

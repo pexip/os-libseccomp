@@ -25,15 +25,35 @@ GLBL_ARCH_LE_SUPPORT=" \
 	x86 x86_64 x32 \
 	arm aarch64 \
 	mipsel mipsel64 mipsel64n32 \
-	ppc64le"
+	ppc64le \
+	riscv64"
 GLBL_ARCH_BE_SUPPORT=" \
 	mips mips64 mips64n32 \
+	parisc parisc64 \
 	ppc ppc64 \
 	s390 s390x"
+
+GLBL_ARCH_32B_SUPPORT=" \
+	x86 x32 \
+	arm \
+	mips mipsel mips64n32 mipsel64n32 \
+	parisc \
+	ppc \
+	s390"
+
+GLBL_ARCH_64B_SUPPORT=" \
+	x86_64 \
+	aarch64 \
+	mips64 \
+	parisc64 \
+	ppc64 \
+	riscv64 \
+	s390x"
 
 GLBL_SYS_ARCH="../tools/scmp_arch_detect"
 GLBL_SYS_RESOLVER="../tools/scmp_sys_resolver"
 GLBL_SYS_SIM="../tools/scmp_bpf_sim"
+GLBL_SYS_API="../tools/scmp_api_level"
 
 ####
 # functions
@@ -76,6 +96,7 @@ libseccomp regression test automation script
 optional arguments:
   -h             show this help message and exit
   -m MODE        specified the test mode [c (default), python]
+                  can also be set via LIBSECCOMP_TSTCFG_MODE_LIST env variable
   -a             specifies all tests are to be run
   -b BATCH_NAME  specifies batch of tests to be run
   -l [LOG]       specifies log file to write test results to
@@ -214,7 +235,12 @@ function run_test_command() {
 	if [[ $mode == "python" ]]; then
 		cmd="PYTHONPATH=$PYTHONPATH"
 		cmd="$cmd:$(cd $(pwd)/../src/python/build/lib.*; pwd)"
-		cmd="$cmd /usr/bin/env python $2.py $3"
+		# check and adjust if we are doing a VPATH build
+		if [[ -e "./$2.py" ]]; then
+			cmd="$cmd /usr/bin/env python $2.py $3"
+		else
+			cmd="$cmd /usr/bin/env python ${srcdir}/$2.py $3"
+		fi
 	else
 		cmd="$2 $3"
 	fi
@@ -246,7 +272,8 @@ function generate_random_data() {
 	else
 		rcount=$[ ($RANDOM % 8) + 1 ]
 	fi
-	rdata=$(echo $(</dev/urandom tr -dc A-Za-z0-9 | head -c"$rcount"))
+	rdata=$(dd if=/dev/urandom bs=64 count=1 status=none | \
+		md5sum | awk '{ print $1 }' | head -c"$rcount")
 	echo "$rdata"
 }
 
@@ -412,6 +439,26 @@ function run_test_bpf_sim() {
 			# add all of the big endian architectures
 			simarch_tmp+=" $GLBL_ARCH_BE_SUPPORT"
 			;;
+		all_32)
+			# add the native arch only if it is 32-bit
+			if echo "$GLBL_ARCH_32B_SUPPORT" | grep -qw "$arch"; then
+				simarch_tmp+=" $arch"
+			fi
+			;;
+		+all_32)
+			# add all of the 32-bit architectures
+			simarch_tmp+=" $GLBL_ARCH_32B_SUPPORT"
+			;;
+		all_64)
+			# add the native arch only if it is 64-bit
+			if echo "$GLBL_ARCH_64B_SUPPORT" | grep -qw "$arch"; then
+				simarch_tmp+=" $arch"
+			fi
+			;;
+		+all_64)
+			# add all of the 64-bit architectures
+			simarch_tmp+=" $GLBL_ARCH_64B_SUPPORT"
+			;;
 		+*)
 			# add the architecture specified
 			simarch_tmp+=" ${arch_i:1}"
@@ -441,8 +488,8 @@ function run_test_bpf_sim() {
 
 	# do we have any architectures remaining in the list?
 	if [[ $simarch_list == "" ]]; then
-		print_result $(generate_test_num "$1" $2 1) "INFO" \
-			"Test skipped due to architecture difference"
+		print_result $(generate_test_num "$1" $2 1) "SKIPPED" \
+			"(architecture difference)"
 		stats_skipped=$(($stats_skipped+1))
 		return
 	fi
@@ -604,12 +651,27 @@ function run_test_bpf_sim() {
 #
 function run_test_basic() {
 	local rc
+	local cmd
+
+	# if the test is a script, only run it in native/c mode
+	if [[ $mode != "c" && "$2" == *.sh ]]; then
+		print_result "$1" "SKIPPED" "(only valid in native/c mode)"
+		stats_skipped=$(($stats_skipped+1))
+		return
+	fi
 
 	# print out the input test data to the log file
 	print_data "$1" "$2"
 
+	# check and adjust if we are doing a VPATH build
+	if [[ -x "./$2" ]]; then
+		cmd="./$2"
+	else
+		cmd="${srcdir}/$2"
+	fi
+
 	# run the command
-	run_test_command "$1" "./$2" "" "" ""
+	run_test_command "$1" "$cmd" "" "" ""
 	rc=$?
 	if [[ $rc -ne 0 ]]; then
 		print_result $1 "FAILURE" "$2 rc=$rc"
@@ -636,6 +698,7 @@ function run_test_bpf_valgrind() {
 
 	# we only support the native/c test mode here
 	if [[ $mode != "c" ]]; then
+		print_result "$1" "SKIPPED" "(only valid in native/c mode)"
 		stats_skipped=$(($stats_skipped+1))
 		return
 	fi
@@ -687,12 +750,23 @@ function run_test_bpf_valgrind() {
 #
 function run_test_live() {
 	local rc
+	local api
 	local line=($2)
 
 	# parse the test line
 	line_cmd=${line[0]}
-	line_act=${line[1]}
-	line_test="$line_cmd $line_act"
+	line_api=${line[1]}
+	line_act=${line[2]}
+	line_test="$line_cmd $line_api $line_act"
+
+	# check the api level
+	api=$($GLBL_SYS_API)
+	if [[ $api -lt $line_api ]]; then
+		# runtime api level is too low
+		print_result "$1" "SKIPPED" "(api level)"
+		stats_skipped=$(($stats_skipped+1))
+		return
+	fi
 
 	# print out the input test data to the log file
 	print_data "$1" "$2"
@@ -706,19 +780,23 @@ function run_test_live() {
 
 	# setup the arch specific return values
 	case "$arch" in
-	x86|x86_64|x32|arm|aarch64|ppc|ppc64|ppc64le|ppc|s390|s390x)
+	x86|x86_64|x32|arm|aarch64|parisc|parisc64|ppc|ppc64|ppc64le|ppc|s390|s390x|riscv64)
+		rc_kill_process=159
 		rc_kill=159
 		rc_allow=160
 		rc_trap=161
 		rc_trace=162
 		rc_errno=163
+		rc_log=164
 		;;
 	mips|mipsel|mips64|mips64n32|mipsel64|mipsel64n32)
+		rc_kill_process=140
 		rc_kill=140
 		rc_allow=160
 		rc_trap=161
 		rc_trace=162
 		rc_errno=163
+		rc_log=164
 		;;
 	*)
 		print_result $testnumstr "ERROR" "arch $arch not supported"
@@ -728,7 +806,10 @@ function run_test_live() {
 	esac
 
 	# verify the results
-	if [[ $line_act == "KILL" && $rc -eq $rc_kill ]]; then
+	if [[ $line_act == "KILL_PROCESS" && $rc -eq $rc_kill_process ]]; then
+		print_result $1 "SUCCESS" ""
+		stats_success=$(($stats_success+1))
+	elif [[ $line_act == "KILL" && $rc -eq $rc_kill ]]; then
 		print_result $1 "SUCCESS" ""
 		stats_success=$(($stats_success+1))
 	elif [[ $line_act == "ALLOW" && $rc -eq $rc_allow ]]; then
@@ -741,6 +822,9 @@ function run_test_live() {
 		print_result $1 "ERROR" "unsupported action \"$line_act\""
 		stats_error=$(($stats_error+1))
 	elif [[ $line_act == "ERRNO" && $rc -eq $rc_errno ]]; then
+		print_result $1 "SUCCESS" ""
+		stats_success=$(($stats_success+1))
+	elif [[ $line_act == "LOG" && $rc -eq $rc_log ]]; then
 		print_result $1 "SUCCESS" ""
 		stats_success=$(($stats_success+1))
 	else
@@ -777,6 +861,8 @@ function run_test() {
 		if check_deps valgrind; then
 			run_test_bpf_valgrind "$testnumstr" "$3"
 		else
+			print_result $testnumstr "SKIPPED" \
+				"(valgrind not installed)"
 			stats_skipped=$(($stats_skipped+1))
 		fi
 	elif [[ "$4" == "live" ]]; then
@@ -784,6 +870,8 @@ function run_test() {
 		if [[ -n $type ]]; then
 			run_test_live "$testnumstr" "$3"
 		else
+			print_result $testnumstr "SKIPPED" \
+				"(must specify live tests)"
 			stats_skipped=$(($stats_skipped+1))
 		fi
 	else
@@ -940,6 +1028,9 @@ while getopts "ab:gl:m:s:t:T:vh" opt; do
 		;;
 	esac
 done
+
+# use mode list from environment if provided
+[[ -z $mode_list && -n $LIBSECCOMP_TSTCFG_MODE_LIST ]] && mode_list=$LIBSECCOMP_TSTCFG_MODE_LIST
 
 # determine the mode test automatically
 if [[ -z $mode_list ]]; then

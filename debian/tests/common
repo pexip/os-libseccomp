@@ -1,0 +1,12 @@
+SRCDIR="$(pwd)"
+
+mkdir "$AUTOPKGTEST_TMP/tests" "$AUTOPKGTEST_TMP/tools"
+cp -a tests/. "$AUTOPKGTEST_TMP/tests/"
+
+cd "$AUTOPKGTEST_TMP/tests"
+
+# build tools needed for tests
+for tool in scmp_api_level scmp_arch_detect scmp_sys_resolver; do
+  echo "Building $tool ..."
+  gcc -O2 -g "$SRCDIR/tools/$tool.c" "$SRCDIR/tools/util.c" -lseccomp -o ../tools/$tool
+done

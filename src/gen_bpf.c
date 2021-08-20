@@ -21,6 +21,7 @@
 
 #include <errno.h>
 #include <inttypes.h>
+#include <limits.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -39,10 +40,16 @@
 #include "db.h"
 #include "hash.h"
 #include "system.h"
+#include "helper.h"
 
 /* allocation increments */
 #define AINC_BLK			2
 #define AINC_PROG			64
+
+/* binary tree definitions */
+#define SYSCALLS_PER_NODE		(4)
+#define BTREE_HSH_INVALID		(UINT64_MAX)
+#define BTREE_SYSCALL_INVALID		(UINT_MAX)
 
 struct acc_state {
 	int32_t offset;
@@ -158,11 +165,14 @@ struct bpf_state {
 	/* default action */
 	uint64_t def_hsh;
 
-	/* target arch - NOTE: be careful, temporary use only! */
-	const struct arch_def *arch;
-
 	/* bpf program */
 	struct bpf_program *bpf;
+
+	/* WARNING - the following variables are temporary use only */
+	const struct arch_def *arch;
+	struct bpf_blk *b_head;
+	struct bpf_blk *b_tail;
+	struct bpf_blk *b_new;
 };
 
 /**
@@ -202,7 +212,7 @@ static struct bpf_blk *_hsh_find(const struct bpf_state *state, uint64_t h_val);
  * Convert the endianess of the supplied value and return it to the caller.
  *
  */
-uint16_t _htot16(const struct arch_def *arch, uint16_t val)
+static uint16_t _htot16(const struct arch_def *arch, uint16_t val)
 {
 	if (arch->endian == ARCH_ENDIAN_LITTLE)
 		return htole16(val);
@@ -218,7 +228,7 @@ uint16_t _htot16(const struct arch_def *arch, uint16_t val)
  * Convert the endianess of the supplied value and return it to the caller.
  *
  */
-uint32_t _htot32(const struct arch_def *arch, uint32_t val)
+static uint32_t _htot32(const struct arch_def *arch, uint32_t val)
 {
 	if (arch->endian == ARCH_ENDIAN_LITTLE)
 		return htole32(val);
@@ -314,11 +324,9 @@ static struct bpf_blk *_blk_alloc(void)
 {
 	struct bpf_blk *blk;
 
-	blk = malloc(sizeof(*blk));
+	blk = zmalloc(sizeof(*blk));
 	if (blk == NULL)
 		return NULL;
-
-	memset(blk, 0, sizeof(*blk));
 	blk->flag_unique = true;
 	blk->acc_start = _ACC_STATE_UNDEF;
 	blk->acc_end = _ACC_STATE_UNDEF;
@@ -477,9 +485,6 @@ static int _bpf_append_blk(struct bpf_program *prg, const struct bpf_blk *blk)
 			goto bpf_append_blk_failure;
 		}
 		switch (blk->blks[iter].k.type) {
-		case TGT_NONE:
-			i_iter->k = 0;
-			break;
 		case TGT_K:
 			i_iter->k = blk->blks[iter].k.tgt.imm_k;
 			break;
@@ -560,7 +565,7 @@ static void _state_release(struct bpf_state *state)
 static int _hsh_add(struct bpf_state *state, struct bpf_blk **blk_p,
 		    unsigned int found)
 {
-	uint64_t h_val;
+	uint64_t h_val, h_val_tmp[3];
 	struct bpf_hash_bkt *h_new, *h_iter, *h_prev = NULL;
 	struct bpf_blk *blk = *blk_p;
 	struct bpf_blk *b_iter;
@@ -568,13 +573,15 @@ static int _hsh_add(struct bpf_state *state, struct bpf_blk **blk_p,
 	if (blk->flag_hash)
 		return 0;
 
-	h_new = malloc(sizeof(*h_new));
+	h_new = zmalloc(sizeof(*h_new));
 	if (h_new == NULL)
 		return -ENOMEM;
-	memset(h_new, 0, sizeof(*h_new));
 
 	/* generate the hash */
-	h_val = jhash(blk->blks, _BLK_MSZE(blk), 0);
+	h_val_tmp[0] = hash(blk->blks, _BLK_MSZE(blk));
+	h_val_tmp[1] = hash(&blk->acc_start, sizeof(blk->acc_start));
+	h_val_tmp[2] = hash(&blk->acc_end, sizeof(blk->acc_end));
+	h_val = hash(h_val_tmp, sizeof(h_val_tmp));
 	blk->hash = h_val;
 	blk->flag_hash = true;
 	blk->node = NULL;
@@ -589,7 +596,11 @@ hsh_add_restart:
 			if ((h_iter->blk->hash == h_val) &&
 			    (_BLK_MSZE(h_iter->blk) == _BLK_MSZE(blk)) &&
 			    (memcmp(h_iter->blk->blks, blk->blks,
-				    _BLK_MSZE(blk)) == 0)) {
+				    _BLK_MSZE(blk)) == 0) &&
+			    _ACC_CMP_EQ(h_iter->blk->acc_start,
+					blk->acc_start) &&
+			    _ACC_CMP_EQ(h_iter->blk->acc_end,
+					blk->acc_end)) {
 				/* duplicate block */
 				free(h_new);
 
@@ -859,6 +870,13 @@ static struct bpf_blk *_gen_bpf_node(struct bpf_state *state,
 			goto node_failure;
 	}
 
+	/* set the accumulator state at the end of the block */
+	/* NOTE: the accumulator end state is very critical when we are
+	 *       assembling the final state; we assume that however we leave
+	 *       this instruction block the accumulator state is represented
+	 *       by blk->acc_end, it must be kept correct */
+	blk->acc_end = *a_state;
+
 	/* check the accumulator against the datum */
 	switch (node->op) {
 	case SCMP_CMP_MASKED_EQ:
@@ -903,7 +921,6 @@ static struct bpf_blk *_gen_bpf_node(struct bpf_state *state,
 		goto node_failure;
 
 	blk->node = node;
-	blk->acc_end = *a_state;
 	return blk;
 
 node_failure:
@@ -958,7 +975,7 @@ static struct bpf_blk *_gen_bpf_chain_lvl_res(struct bpf_state *state,
 		case TGT_PTR_DB:
 			node = (struct db_arg_chain_tree *)i_iter->jt.tgt.db;
 			b_new = _gen_bpf_chain(state, sys, node,
-					       nxt_jump, &blk->acc_start);
+					       nxt_jump, &blk->acc_end);
 			if (b_new == NULL)
 				return NULL;
 			i_iter->jt = _BPF_JMP_HSH(b_new->hash);
@@ -984,7 +1001,7 @@ static struct bpf_blk *_gen_bpf_chain_lvl_res(struct bpf_state *state,
 		case TGT_PTR_DB:
 			node = (struct db_arg_chain_tree *)i_iter->jf.tgt.db;
 			b_new = _gen_bpf_chain(state, sys, node,
-					       nxt_jump, &blk->acc_start);
+					       nxt_jump, &blk->acc_end);
 			if (b_new == NULL)
 				return NULL;
 			i_iter->jf = _BPF_JMP_HSH(b_new->hash);
@@ -1136,6 +1153,318 @@ chain_failure:
 }
 
 /**
+ * Sort the syscalls by syscall number
+ * @param syscalls the linked list of syscalls to be sorted
+ * @param s_head the head of the linked list to be returned to the caller
+ * @param s_tail the tail of the linked list to be returned to the caller
+ */
+static void _sys_num_sort(struct db_sys_list *syscalls,
+			  struct db_sys_list **s_head,
+			  struct db_sys_list **s_tail)
+{
+	struct db_sys_list *s_iter, *s_iter_b;
+
+	db_list_foreach(s_iter, syscalls) {
+		if (*s_head != NULL) {
+			s_iter_b = *s_head;
+			while ((s_iter_b->pri_nxt != NULL) &&
+			       (s_iter->num <= s_iter_b->num))
+				s_iter_b = s_iter_b->pri_nxt;
+
+			if (s_iter->num > s_iter_b->num) {
+				s_iter->pri_prv = s_iter_b->pri_prv;
+				s_iter->pri_nxt = s_iter_b;
+				if (s_iter_b == *s_head) {
+					(*s_head)->pri_prv = s_iter;
+					*s_head = s_iter;
+				} else {
+					s_iter->pri_prv->pri_nxt = s_iter;
+					s_iter->pri_nxt->pri_prv = s_iter;
+				}
+			} else {
+				s_iter->pri_prv = *s_tail;
+				s_iter->pri_nxt = NULL;
+				s_iter->pri_prv->pri_nxt = s_iter;
+				*s_tail = s_iter;
+			}
+		} else {
+			*s_head = s_iter;
+			*s_tail = s_iter;
+			(*s_head)->pri_prv = NULL;
+			(*s_head)->pri_nxt = NULL;
+		}
+	}
+}
+
+/**
+ * Sort the syscalls by priority
+ * @param syscalls the linked list of syscalls to be sorted
+ * @param s_head the head of the linked list to be returned to the caller
+ * @param s_tail the tail of the linked list to be returned to the caller
+ */
+static void _sys_priority_sort(struct db_sys_list *syscalls,
+			       struct db_sys_list **s_head,
+			       struct db_sys_list **s_tail)
+{
+	struct db_sys_list *s_iter, *s_iter_b;
+
+	db_list_foreach(s_iter, syscalls) {
+		if (*s_head != NULL) {
+			s_iter_b = *s_head;
+			while ((s_iter_b->pri_nxt != NULL) &&
+			       (s_iter->priority <= s_iter_b->priority))
+				s_iter_b = s_iter_b->pri_nxt;
+
+			if (s_iter->priority > s_iter_b->priority) {
+				s_iter->pri_prv = s_iter_b->pri_prv;
+				s_iter->pri_nxt = s_iter_b;
+				if (s_iter_b == *s_head) {
+					(*s_head)->pri_prv = s_iter;
+					*s_head = s_iter;
+				} else {
+					s_iter->pri_prv->pri_nxt = s_iter;
+					s_iter->pri_nxt->pri_prv = s_iter;
+				}
+			} else {
+				s_iter->pri_prv = *s_tail;
+				s_iter->pri_nxt = NULL;
+				s_iter->pri_prv->pri_nxt = s_iter;
+				*s_tail = s_iter;
+			}
+		} else {
+			*s_head = s_iter;
+			*s_tail = s_iter;
+			(*s_head)->pri_prv = NULL;
+			(*s_head)->pri_nxt = NULL;
+		}
+	}
+}
+
+/**
+ * Sort the syscalls
+ * @param syscalls the linked list of syscalls to be sorted
+ * @param s_head the head of the linked list to be returned to the caller
+ * @param s_tail the tail of the linked list to be returned to the caller
+ *
+ * Wrapper function for sorting syscalls
+ *
+ */
+static void _sys_sort(struct db_sys_list *syscalls,
+		      struct db_sys_list **s_head,
+		      struct db_sys_list **s_tail,
+		      uint32_t optimize)
+{
+	if (optimize != 2)
+		_sys_priority_sort(syscalls, s_head, s_tail);
+	else
+		/* sort by number for the binary tree */
+		_sys_num_sort(syscalls, s_head, s_tail);
+}
+
+/**
+ * Insert an instruction into the BPF state and connect the linked list
+ * @param state the BPF state
+ * @param instr the instruction to insert
+ * @param insert the BPF blk that represents the instruction
+ * @param next the next BPF instruction in the linked list
+ * @param existing_blk insert will be added to the end of this blk if non-NULL
+ *
+ * Insert a set of instructions into the BPF state and associate those
+ * instructions with the bpf_blk called insert.  The "next" field in the
+ * newly inserted block will be linked with the "next" bpf_blk parameter.
+ */
+static int _gen_bpf_insert(struct bpf_state *state, struct bpf_instr *instr,
+			   struct bpf_blk **insert, struct bpf_blk **next,
+			   struct bpf_blk *existing_blk)
+{
+	int rc;
+
+	*insert = _blk_append(state, existing_blk, instr);
+	if (*insert == NULL)
+		return -ENOMEM;
+	(*insert)->next = (*next);
+	if (*next != NULL)
+		(*next)->prev = (*insert);
+	*next = *insert;
+
+	rc = _hsh_add(state, insert, 1);
+	return rc;
+}
+
+/**
+ * Decide if we need to omit the syscall from the BPF filter
+ * @param state the BPF state
+ * @param syscall syscall being tested
+ * @return true if syscall is to be skipped, false otherwise
+ */
+static inline bool _skip_syscall(struct bpf_state *state,
+				 struct db_sys_list *syscall)
+{
+	if (!syscall->valid)
+		return true;
+
+	/* psuedo-syscalls should not be added to the filter unless explicity
+	 * requested via SCMP_FLTATR_API_TSKIP
+	 */
+	if (((int)syscall->num < 0) &&
+	    (state->attr->api_tskip == 0 || syscall->num != -1))
+		return true;
+
+	return false;
+}
+
+/**
+ * Calculate the number of syscalls that will be in the BPF filter
+ * @param state the BPF state
+ * @param s_tail the last syscall in the syscall linked list
+ */
+static unsigned int _get_syscall_cnt(struct bpf_state *state,
+				     struct db_sys_list *s_tail)
+{
+	struct db_sys_list *s_iter;
+	unsigned int syscall_cnt = 0;
+
+	for (s_iter = s_tail; s_iter != NULL; s_iter = s_iter->pri_prv) {
+		if (_skip_syscall(state, s_iter))
+			continue;
+
+		syscall_cnt++;
+	}
+
+	return syscall_cnt;
+}
+
+/**
+ * Calculate the number of levels in the binary tree
+ * @param syscall_cnt the number of syscalls in this seccomp filter
+ */
+static int _get_bintree_levels(unsigned int syscall_cnt)
+{
+	unsigned int i = 2, max_level = SYSCALLS_PER_NODE * 2;
+
+	while (max_level < syscall_cnt) {
+		max_level <<= 1;
+		i++;
+	}
+
+	return i;
+}
+
+/**
+ * Initialize the binary tree
+ * @param bintree_hashes Array of hashes that store binary tree jump dests
+ * @param bintree_syscalls Array of syscalls for the binary tree "if > " logic
+ * @param bintree_levels Number of levels in the binary tree
+ * @param syscall_cnt Number of syscalls in this filter
+ * @param empty_cnt Number of empty slots needed to balance the tree
+ *
+ */
+static int _gen_bpf_init_bintree(uint64_t **bintree_hashes,
+				 unsigned int **bintree_syscalls,
+				 unsigned int *bintree_levels,
+				 unsigned int syscall_cnt,
+				 unsigned int *empty_cnt)
+{
+	int i;
+
+	*bintree_levels = _get_bintree_levels(syscall_cnt);
+
+	if (*bintree_levels > 0) {
+		*empty_cnt = ((unsigned int)(SYSCALLS_PER_NODE * 2) <<
+			      ((*bintree_levels) - 1)) - syscall_cnt;
+		*bintree_hashes = zmalloc(sizeof(uint64_t) *
+					  (*bintree_levels));
+		if (*bintree_hashes == NULL)
+			return -ENOMEM;
+
+		*bintree_syscalls = zmalloc(sizeof(unsigned int) *
+					    (*bintree_levels));
+		if (*bintree_syscalls == NULL)
+			return -ENOMEM;
+
+		for (i = 0; i < *bintree_levels; i++) {
+			(*bintree_syscalls)[i] = BTREE_SYSCALL_INVALID;
+			(*bintree_hashes)[i] = BTREE_HSH_INVALID;
+		}
+	}
+
+	return 0;
+}
+
+/**
+ * Generate the binary tree
+ * @param state the BPF state
+ * @param bintree_hashes Array of hashes that store binary tree jump dests
+ * @param bintree_syscalls Array of syscalls for the binary tree "if > " logic
+ * @param bintree_levels Number of levels in the binary tree
+ * @param total_cnt Total number of syscalls and empty slots in the bintree
+ * @param cur_syscall Current syscall being processed
+ * @param blks_added Number of BPF blocks added by this function
+ *
+ * Generate the BPF instruction blocks for the binary tree for cur_syscall.
+ * If this syscall is at the end of the node, then this function will
+ * create the requisite ifs and elses for the tree.
+ */
+static int _gen_bpf_bintree(struct bpf_state *state, uint64_t *bintree_hashes,
+			    unsigned int *bintree_syscalls,
+			    unsigned int bintree_levels,
+			    unsigned int total_cnt, unsigned int cur_syscall,
+			    unsigned int *blks_added)
+{
+	struct bpf_blk *b_bintree = NULL;
+	struct bpf_instr instr;
+	unsigned int level;
+	int rc = 0, i, j;
+
+	for (i = bintree_levels - 1; i >= 0; i--) {
+		level = SYSCALLS_PER_NODE << i;
+
+		if ((total_cnt % level) == 0) {
+			/* save the "if greater than" syscall num */
+			bintree_syscalls[i] = cur_syscall;
+			/* save the hash for the jf case */
+			bintree_hashes[i] = state->b_new->hash;
+
+			for (j = 0; j < i; j++) {
+				if (bintree_syscalls[j] == BTREE_SYSCALL_INVALID ||
+				    bintree_hashes[j] == BTREE_HSH_INVALID)
+					/* we are near the end of the binary
+					 * tree and the jump-to location is
+					 * not valid.  skip this if-else
+					 */
+					continue;
+
+				_BPF_INSTR(instr,
+					   _BPF_OP(state->arch, BPF_JMP + BPF_JGT),
+					   _BPF_JMP_NO,
+					   _BPF_JMP_NO,
+					   _BPF_K(state->arch, bintree_syscalls[j]));
+				instr.jt = _BPF_JMP_HSH(b_bintree == NULL ?
+							state->b_new->hash : b_bintree->hash);
+				instr.jf = _BPF_JMP_HSH(bintree_hashes[j]);
+				(*blks_added)++;
+
+				rc = _gen_bpf_insert(state, &instr,
+						     &b_bintree, &state->b_head, NULL);
+				if (rc < 0)
+					goto out;
+			}
+
+			if (b_bintree != NULL)
+				/* this is the last if in this "block".
+				 * save it off so the next binary tree
+				 * if can "else" to it.
+				 */
+				bintree_hashes[j] = b_bintree->hash;
+			break;
+		}
+	}
+
+out:
+	return rc;
+}
+
+/**
  * Generate the BPF instruction blocks for a given syscall
  * @param state the BPF state
  * @param sys the syscall filter DB entry
@@ -1214,6 +1543,119 @@ static struct bpf_blk *_gen_bpf_syscall(struct bpf_state *state,
 }
 
 /**
+ * Loop through the syscalls in the db_filter and generate their bpf
+ * @param state the BPF state
+ * @param db the filter DB
+ * @param db_secondary the secondary DB
+ * @param Number of blocks added by this function
+ */
+static int _gen_bpf_syscalls(struct bpf_state *state,
+			     const struct db_filter *db,
+			     const struct db_filter *db_secondary,
+			     unsigned int *blks_added, uint32_t optimize,
+			     unsigned int *bintree_levels)
+{
+	struct db_sys_list *s_head = NULL, *s_tail = NULL, *s_iter;
+	unsigned int syscall_cnt, empty_cnt = 0;
+	uint64_t *bintree_hashes = NULL, nxt_hsh;
+	unsigned int *bintree_syscalls = NULL;
+	bool acc_reset;
+	int rc = 0;
+
+	state->arch = db->arch;
+	state->b_head = NULL;
+	state->b_tail = NULL;
+	state->b_new = NULL;
+
+	*blks_added = 0;
+
+	/* sort the syscall list */
+	_sys_sort(db->syscalls, &s_head, &s_tail, optimize);
+	if (db_secondary != NULL)
+		_sys_sort(db_secondary->syscalls, &s_head, &s_tail, optimize);
+
+	if (optimize == 2) {
+		syscall_cnt = _get_syscall_cnt(state, s_tail);
+		rc = _gen_bpf_init_bintree(&bintree_hashes, &bintree_syscalls,
+					   bintree_levels, syscall_cnt,
+					   &empty_cnt);
+		if (rc < 0)
+			goto out;
+	}
+
+	if ((state->arch->token == SCMP_ARCH_X86_64 ||
+	     state->arch->token == SCMP_ARCH_X32) && (db_secondary == NULL))
+		acc_reset = false;
+	else
+		acc_reset = true;
+
+	if (*bintree_levels > 0)
+		/* The accumulator is reset when the first bintree "if" is
+		 * generated.
+		 */
+		acc_reset = false;
+
+	syscall_cnt = 0;
+
+	/* create the syscall filters and add them to block list group */
+	for (s_iter = s_tail; s_iter != NULL; s_iter = s_iter->pri_prv) {
+		if (_skip_syscall(state, s_iter))
+			continue;
+
+		if (*bintree_levels > 0 &&
+		    ((syscall_cnt + empty_cnt) % SYSCALLS_PER_NODE) == 0)
+			/* This is the last syscall in the node.  go to the
+			 * default hash */
+			nxt_hsh = state->def_hsh;
+		else
+			nxt_hsh = state->b_head == NULL ?
+				  state->def_hsh : state->b_head->hash;
+
+		/* build the syscall filter */
+		state->b_new = _gen_bpf_syscall(state, s_iter, nxt_hsh,
+						(s_iter == s_head ?
+						 acc_reset : false));
+		if (state->b_new == NULL)
+			goto out;
+
+		/* add the filter to the list head */
+		state->b_new->prev = NULL;
+		state->b_new->next = state->b_head;
+		if (state->b_tail != NULL) {
+			state->b_head->prev = state->b_new;
+			state->b_head = state->b_new;
+		} else {
+			state->b_head = state->b_new;
+			state->b_tail = state->b_head;
+		}
+
+		if (state->b_tail->next != NULL)
+			state->b_tail = state->b_tail->next;
+		(*blks_added)++;
+		syscall_cnt++;
+
+		/* build the binary tree if and else logic */
+		if (*bintree_levels > 0) {
+			rc = _gen_bpf_bintree(state, bintree_hashes,
+					      bintree_syscalls,
+					      *bintree_levels,
+					      syscall_cnt + empty_cnt,
+					      s_iter->num, blks_added);
+			if (rc < 0)
+				goto out;
+		}
+	}
+
+out:
+	if (bintree_hashes != NULL)
+		free(bintree_hashes);
+	if (bintree_syscalls != NULL)
+		free(bintree_syscalls);
+
+	return rc;
+}
+
+/**
  * Generate the BPF instruction blocks for a given filter/architecture
  * @param state the BPF state
  * @param db the filter DB
@@ -1227,117 +1669,35 @@ static struct bpf_blk *_gen_bpf_syscall(struct bpf_state *state,
  */
 static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 				     const struct db_filter *db,
-				     const struct db_filter *db_secondary)
+				     const struct db_filter *db_secondary,
+				     uint32_t optimize)
 {
 	int rc;
-	unsigned int blk_cnt = 0;
-	bool acc_reset;
+	unsigned int blk_cnt = 0, blks_added = 0, bintree_levels = 0;
 	struct bpf_instr instr;
-	struct db_sys_list *s_head = NULL, *s_tail = NULL, *s_iter, *s_iter_b;
-	struct bpf_blk *b_head = NULL, *b_tail = NULL, *b_iter, *b_new;
+	struct bpf_blk *b_iter, *b_bintree;
 
 	state->arch = db->arch;
 
-	/* sort the syscall list */
-	db_list_foreach(s_iter, db->syscalls) {
-		if (s_head != NULL) {
-			s_iter_b = s_head;
-			while ((s_iter_b->pri_nxt != NULL) &&
-			       (s_iter->priority <= s_iter_b->priority))
-				s_iter_b = s_iter_b->pri_nxt;
-
-			if (s_iter->priority > s_iter_b->priority) {
-				s_iter->pri_prv = s_iter_b->pri_prv;
-				s_iter->pri_nxt = s_iter_b;
-				if (s_iter_b == s_head) {
-					s_head->pri_prv = s_iter;
-					s_head = s_iter;
-				} else {
-					s_iter->pri_prv->pri_nxt = s_iter;
-					s_iter->pri_nxt->pri_prv = s_iter;
-				}
-			} else {
-				s_iter->pri_prv = s_tail;
-				s_iter->pri_nxt = NULL;
-				s_iter->pri_prv->pri_nxt = s_iter;
-				s_tail = s_iter;
-			}
-		} else {
-			s_head = s_iter;
-			s_tail = s_iter;
-			s_head->pri_prv = NULL;
-			s_head->pri_nxt = NULL;
-		}
-	}
-	if (db_secondary != NULL) {
-		db_list_foreach(s_iter, db_secondary->syscalls) {
-			if (s_head != NULL) {
-				s_iter_b = s_head;
-				while ((s_iter_b->pri_nxt != NULL) &&
-				       (s_iter->priority <= s_iter_b->priority))
-					s_iter_b = s_iter_b->pri_nxt;
-
-				if (s_iter->priority > s_iter_b->priority) {
-					s_iter->pri_prv = s_iter_b->pri_prv;
-					s_iter->pri_nxt = s_iter_b;
-					if (s_iter_b == s_head) {
-						s_head->pri_prv = s_iter;
-						s_head = s_iter;
-					} else {
-						s_iter->pri_prv->pri_nxt =
-							s_iter;
-						s_iter->pri_nxt->pri_prv =
-							s_iter;
-					}
-				} else {
-					s_iter->pri_prv = s_tail;
-					s_iter->pri_nxt = NULL;
-					s_iter->pri_prv->pri_nxt = s_iter;
-					s_tail = s_iter;
-				}
-			} else {
-				s_head = s_iter;
-				s_tail = s_iter;
-				s_head->pri_prv = NULL;
-				s_head->pri_nxt = NULL;
-			}
-		}
-	}
-
-	if ((state->arch->token == SCMP_ARCH_X86_64 ||
-	     state->arch->token == SCMP_ARCH_X32) && (db_secondary == NULL))
-		acc_reset = false;
-	else
-		acc_reset = true;
-
 	/* create the syscall filters and add them to block list group */
-	for (s_iter = s_tail; s_iter != NULL; s_iter = s_iter->pri_prv) {
-		if (!s_iter->valid)
-			continue;
+	rc = _gen_bpf_syscalls(state, db, db_secondary, &blks_added, optimize,
+			       &bintree_levels);
+	if (rc < 0)
+		goto arch_failure;
+	blk_cnt += blks_added;
 
-		/* build the syscall filter */
-		b_new = _gen_bpf_syscall(state, s_iter,
-					 (b_head == NULL ?
-					  state->def_hsh : b_head->hash),
-					 (s_iter == s_head ?
-					  acc_reset : false));
-		if (b_new == NULL)
-			goto arch_failure;
-
-		/* add the filter to the list head */
-		b_new->prev = NULL;
-		b_new->next = b_head;
-		if (b_tail != NULL) {
-			b_head->prev = b_new;
-			b_head = b_new;
-		} else {
-			b_head = b_new;
-			b_tail = b_head;
-		}
-
-		if (b_tail->next != NULL)
-			b_tail = b_tail->next;
+	if (bintree_levels > 0) {
+		_BPF_INSTR(instr, _BPF_OP(state->arch, BPF_LD + BPF_ABS),
+			   _BPF_JMP_NO, _BPF_JMP_NO,
+			   _BPF_SYSCALL(state->arch));
 		blk_cnt++;
+
+		rc = _gen_bpf_insert(state, &instr, &b_bintree,
+				     &state->b_head, NULL);
+		if (rc < 0)
+			goto arch_failure;
+		b_bintree->acc_start = _ACC_STATE_UNDEF;
+		b_bintree->acc_end = _ACC_STATE_OFFSET(_BPF_OFFSET_SYSCALL);
 	}
 
 	/* additional ABI filtering */
@@ -1345,10 +1705,10 @@ static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 	     state->arch->token == SCMP_ARCH_X32) && (db_secondary == NULL)) {
 		_BPF_INSTR(instr, _BPF_OP(state->arch, BPF_LD + BPF_ABS),
 			   _BPF_JMP_NO, _BPF_JMP_NO, _BPF_SYSCALL(state->arch));
-		b_new = _blk_append(state, NULL, &instr);
-		if (b_new == NULL)
+		state->b_new = _blk_append(state, NULL, &instr);
+		if (state->b_new == NULL)
 			goto arch_failure;
-		b_new->acc_end = _ACC_STATE_OFFSET(_BPF_OFFSET_SYSCALL);
+		state->b_new->acc_end = _ACC_STATE_OFFSET(_BPF_OFFSET_SYSCALL);
 		if (state->arch->token == SCMP_ARCH_X86_64) {
 			/* filter out x32 */
 			_BPF_INSTR(instr,
@@ -1356,12 +1716,12 @@ static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 				   _BPF_JMP_NO,
 				   _BPF_JMP_NO,
 				   _BPF_K(state->arch, X32_SYSCALL_BIT));
-			if (b_head != NULL)
-				instr.jf = _BPF_JMP_HSH(b_head->hash);
+			if (state->b_head != NULL)
+				instr.jf = _BPF_JMP_HSH(state->b_head->hash);
 			else
 				instr.jf = _BPF_JMP_HSH(state->def_hsh);
-			b_new = _blk_append(state, b_new, &instr);
-			if (b_new == NULL)
+			state->b_new = _blk_append(state, state->b_new, &instr);
+			if (state->b_new == NULL)
 				goto arch_failure;
 			/* NOTE: starting with Linux v4.8 the seccomp filters
 			 *	 are processed both when the syscall is
@@ -1375,8 +1735,8 @@ static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 				   _BPF_JMP_NO,
 				   _BPF_JMP_HSH(state->bad_arch_hsh),
 				   _BPF_K(state->arch, -1));
-			if (b_head != NULL)
-				instr.jt = _BPF_JMP_HSH(b_head->hash);
+			if (state->b_head != NULL)
+				instr.jt = _BPF_JMP_HSH(state->b_head->hash);
 			else
 				instr.jt = _BPF_JMP_HSH(state->def_hsh);
 			blk_cnt++;
@@ -1387,22 +1747,17 @@ static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 				   _BPF_JMP_NO,
 				   _BPF_JMP_HSH(state->bad_arch_hsh),
 				   _BPF_K(state->arch, X32_SYSCALL_BIT));
-			if (b_head != NULL)
-				instr.jt = _BPF_JMP_HSH(b_head->hash);
+			if (state->b_head != NULL)
+				instr.jt = _BPF_JMP_HSH(state->b_head->hash);
 			else
 				instr.jt = _BPF_JMP_HSH(state->def_hsh);
 			blk_cnt++;
 		} else
 			/* we should never get here */
 			goto arch_failure;
-		b_new = _blk_append(state, b_new, &instr);
-		if (b_new == NULL)
-			goto arch_failure;
-		b_new->next = b_head;
-		if (b_head != NULL)
-			b_head->prev = b_new;
-		b_head = b_new;
-		rc = _hsh_add(state, &b_head, 1);
+
+		rc = _gen_bpf_insert(state, &instr, &state->b_new,
+				     &state->b_head, state->b_new);
 		if (rc < 0)
 			goto arch_failure;
 	}
@@ -1411,34 +1766,29 @@ static struct bpf_blk *_gen_bpf_arch(struct bpf_state *state,
 	_BPF_INSTR(instr, _BPF_OP(state->arch, BPF_JMP + BPF_JEQ),
 		   _BPF_JMP_NO, _BPF_JMP_NXT(blk_cnt++),
 		   _BPF_K(state->arch, state->arch->token_bpf));
-	if (b_head != NULL)
-		instr.jt = _BPF_JMP_HSH(b_head->hash);
+	if (state->b_head != NULL)
+		instr.jt = _BPF_JMP_HSH(state->b_head->hash);
 	else
 		instr.jt = _BPF_JMP_HSH(state->def_hsh);
-	b_new = _blk_append(state, NULL, &instr);
-	if (b_new == NULL)
-		goto arch_failure;
-	b_new->next = b_head;
-	if (b_head != NULL)
-		b_head->prev = b_new;
-	b_head = b_new;
-	rc = _hsh_add(state, &b_head, 1);
+
+	rc = _gen_bpf_insert(state, &instr, &state->b_new, &state->b_head,
+			     NULL);
 	if (rc < 0)
 		goto arch_failure;
 
 	state->arch = NULL;
-	return b_head;
+	return state->b_head;
 
 arch_failure:
 	/* NOTE: we do the cleanup here and not just return an error as all of
 	 * the instruction blocks may not be added to the hash table when we
 	 * hit an error */
 	state->arch = NULL;
-	b_iter = b_head;
+	b_iter = state->b_head;
 	while (b_iter != NULL) {
-		b_new = b_iter->next;
+		state->b_new = b_iter->next;
 		_blk_free(state, b_iter);
-		b_iter = b_new;
+		b_iter = state->b_new;
 	}
 	return NULL;
 }
@@ -1645,9 +1995,6 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 	struct db_filter *db_secondary = NULL;
 	struct arch_def pseudo_arch;
 
-	if (col->filter_cnt == 0)
-		return -EINVAL;
-
 	/* create a fake architecture definition for use in the early stages */
 	memset(&pseudo_arch, 0, sizeof(pseudo_arch));
 	pseudo_arch.endian = col->endian;
@@ -1706,7 +2053,8 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 			db_secondary = NULL;
 
 		/* create the filter for the architecture(s) */
-		b_new = _gen_bpf_arch(state, col->filters[iter], db_secondary);
+		b_new = _gen_bpf_arch(state, col->filters[iter], db_secondary,
+				      col->attr.optimize);
 		if (b_new == NULL)
 			return -ENOMEM;
 		b_new->prev = b_tail;
@@ -1842,6 +2190,7 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 				break;
 			default:
 				/* fatal error */
+				rc = -EFAULT;
 				goto build_bpf_free_blks;
 			}
 			switch (i_iter->jf.type) {
@@ -1859,6 +2208,7 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 				break;
 			default:
 				/* fatal error */
+				rc = -EFAULT;
 				goto build_bpf_free_blks;
 			}
 		}
@@ -1880,8 +2230,10 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 					jmp_len += b_jmp->blk_cnt;
 					b_jmp = b_jmp->next;
 				}
-				if (b_jmp == NULL || jmp_len > _BPF_JMP_MAX)
+				if (b_jmp == NULL || jmp_len > _BPF_JMP_MAX) {
+					rc = -EFAULT;
 					goto build_bpf_free_blks;
+				}
 				i_iter->jt = _BPF_JMP_IMM(jmp_len);
 			}
 			if (i_iter->jf.type == TGT_PTR_HSH) {
@@ -1892,8 +2244,10 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 					jmp_len += b_jmp->blk_cnt;
 					b_jmp = b_jmp->next;
 				}
-				if (b_jmp == NULL || jmp_len > _BPF_JMP_MAX)
+				if (b_jmp == NULL || jmp_len > _BPF_JMP_MAX) {
+					rc = -EFAULT;
 					goto build_bpf_free_blks;
+				}
 				i_iter->jf = _BPF_JMP_IMM(jmp_len);
 			}
 			if (i_iter->k.type == TGT_PTR_HSH) {
@@ -1907,14 +2261,17 @@ static int _gen_bpf_build_bpf(struct bpf_state *state,
 					jmp_len += b_jmp->blk_cnt;
 					b_jmp = b_jmp->prev;
 				}
-				if (b_jmp == NULL)
+				if (b_jmp == NULL) {
+					rc = -EFAULT;
 					goto build_bpf_free_blks;
+				}
 				i_iter->k = _BPF_K(state->arch, jmp_len);
 			}
 		}
 
 		/* build the bpf program */
-		if (_bpf_append_blk(state->bpf, b_iter) < 0)
+		rc = _bpf_append_blk(state->bpf, b_iter);
+		if (rc < 0)
 			goto build_bpf_free_blks;
 
 		/* we're done with the block, free it */
@@ -1932,38 +2289,43 @@ build_bpf_free_blks:
 		__blk_free(state, b_iter);
 		b_iter = b_jmp;
 	}
-	return -EFAULT;
+	return rc;
 }
 
 /**
  * Generate a BPF representation of the filter DB
  * @param col the seccomp filter collection
+ * @param prgm_ptr the bpf program pointer
  *
  * This function generates a BPF representation of the given filter collection.
- * Returns a pointer to a valid bpf_program on success, NULL on failure.
+ * Returns zero on success, negative values on failure.
  *
  */
-struct bpf_program *gen_bpf_generate(const struct db_filter_col *col)
+int gen_bpf_generate(const struct db_filter_col *col,
+		     struct bpf_program **prgm_ptr)
 {
 	int rc;
 	struct bpf_state state;
+	struct bpf_program *prgm;
+
+	if (col->filter_cnt == 0)
+		return -EINVAL;
 
 	memset(&state, 0, sizeof(state));
 	state.attr = &col->attr;
 
-	state.bpf = malloc(sizeof(*(state.bpf)));
+	state.bpf = zmalloc(sizeof(*(prgm)));
 	if (state.bpf == NULL)
-		return NULL;
-	memset(state.bpf, 0, sizeof(*(state.bpf)));
+		return -ENOMEM;
 
 	rc = _gen_bpf_build_bpf(&state, col);
-	if (rc < 0)
-		goto bpf_generate_end;
+	if (rc == 0) {
+		*prgm_ptr = state.bpf;
+		state.bpf = NULL;
+	}
+	_state_release(&state);
 
-bpf_generate_end:
-	if (rc < 0)
-		_state_release(&state);
-	return state.bpf;
+	return rc;
 }
 
 /**

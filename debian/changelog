@@ -1,3 +1,124 @@
+libseccomp (2.5.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop all patches as they have been applied upstream.
+
+ -- Felix Geyer <fgeyer@debian.org>  Mon, 21 Dec 2020 10:50:30 +0100
+
+libseccomp (2.5.0-3) unstable; urgency=medium
+
+  * Cherry-pick patch from the 2.5 branch to fix test error on mips:
+    - arch_ensure_we_dont_munge_pseudo_syscall_numbers.patch
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 08 Nov 2020 19:59:21 +0100
+
+libseccomp (2.5.0-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Cherry-pick patches from the 2.5 branch to fix build and test errors:
+    - build_undefine_mips_to_prevent_build_problems.patch
+    - tests_use_openat_and_fstat_instead_of_open_and_stat_syscalls.patch
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 08 Nov 2020 15:49:41 +0100
+
+libseccomp (2.5.0-1) experimental; urgency=medium
+
+  * New upstream release.
+    - Build-depend on gperf.
+    - Update symbols file.
+  * Remove patches that have been applied upstream:
+    - cython3.patch
+    - riscv64_support.patch
+  * Cherry-pick patches from the 2.5 branch:
+    - all_only_request_the_userspace_notification_fd_once.patch
+    - system_change_our_notification_fd_handling.patch
+
+ -- Felix Geyer <fgeyer@debian.org>  Sat, 24 Oct 2020 13:58:28 +0200
+
+libseccomp (2.4.4-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Repository, Repository-Browse.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository.
+
+  [ Felix Geyer ]
+  * New upstream release.
+  * Download and verify orig gpg signature.
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 20 Sep 2020 19:03:41 +0200
+
+libseccomp (2.4.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patches that have been applied upstream:
+    - tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
+    - api_define__SNR_ppoll_again.patch
+  * Cherry-pick support for the riscv64 architecture. (Closes: #952386)
+    - Add riscv64_support.patch
+
+ -- Felix Geyer <fgeyer@debian.org>  Thu, 12 Mar 2020 23:35:13 +0100
+
+libseccomp (2.4.2-2) unstable; urgency=medium
+
+  [ Christian Ehrhardt ]
+  * d/rules: fix potential FTFBS after full python3 switch
+  * d/t/control: drop python2 test following the removal of the package
+
+  [ Felix Geyer ]
+  * Remove build-dependency on valgrind for mips64el as it's broken there.
+  * Backport patch to define __SNR_ppoll again.
+    - Add api_define__SNR_ppoll_again.patch
+  * Replace custom patch for cython3 with the upstream fix.
+
+ -- Felix Geyer <fgeyer@debian.org>  Fri, 15 Nov 2019 18:12:53 +0100
+
+libseccomp (2.4.2-1) unstable; urgency=medium
+
+  [ Christian Ehrhardt ]
+  * New upstream release 2.4.2 for compatibility with newer kernels and
+    fixing FTBFS (LP: #1849785).
+    - drop d/p/python_install_dir.patch (now upstream)
+    - d/rules: adapt to python 3.8 lacking the m modifier on includes
+      see https://wiki.debian.org/Python/Python3.8
+    - d/p/tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch: fix
+      build time test on arm64
+
+  [ Felix Geyer ]
+  * Drop Python 2 bindings. (Closes: #936917)
+    - Add cython3.patch to use the Python 3 cython variant.
+
+ -- Felix Geyer <fgeyer@debian.org>  Wed, 13 Nov 2019 00:00:49 +0100
+
+libseccomp (2.4.1-2) unstable; urgency=medium
+
+  * Remove build-dependency on valgrind for mipsel and x32 as it's broken
+    on those archs.
+  * Set Rules-Requires-Root: no.
+
+ -- Felix Geyer <fgeyer@debian.org>  Fri, 19 Jul 2019 00:03:34 +0200
+
+libseccomp (2.4.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Addresses CVE-2019-9893 (Closes: #924646)
+  * Drop all patches for parisc arch support, merged upstream.
+  * Build-depend on valgrind to run more unit tests.
+  * Run dh_auto_configure for every python 3 version to install the extension
+    in the correct path.
+  * Update the symbols file.
+  * Adapt autopkgtest to new upstream version:
+    - Build against pthread
+    - Build scmp_api_level tool
+  * Upgrade to debhelper compat level 12.
+    - Add d/not-installed file
+  * Fix install path of the python module.
+    - Add python_install_dir.patch
+  * Add autopkgtest for python packages.
+
+ -- Felix Geyer <fgeyer@debian.org>  Wed, 17 Jul 2019 23:23:28 +0200
+
 libseccomp (2.3.3-4pexip2) pexip; urgency=medium
 
   * Rebuild in buster environment

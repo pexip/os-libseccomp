@@ -1,0 +1,3 @@
+usr/lib/python*/*-packages/install_files.txt
+usr/lib/python*/*-packages/seccomp-*.egg-info
+usr/lib/*/libseccomp.la
