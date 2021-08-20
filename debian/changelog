@@ -1,3 +1,9 @@
+libseccomp (2.5.1-1pexip1) pexip; urgency=medium
+
+  * Backport bullseye release to PexOS.
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Fri, 20 Aug 2021 11:42:48 +0100
+
 libseccomp (2.5.1-1) unstable; urgency=medium
 
   * New upstream release.
