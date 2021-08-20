@@ -38,8 +38,11 @@
 #include "arch-mips64.h"
 #include "arch-mips64n32.h"
 #include "arch-aarch64.h"
+#include "arch-parisc.h"
+#include "arch-parisc64.h"
 #include "arch-ppc.h"
 #include "arch-ppc64.h"
+#include "arch-riscv64.h"
 #include "arch-s390.h"
 #include "arch-s390x.h"
 
@@ -115,12 +118,21 @@ int main(int argc, char *argv[])
 		case SCMP_ARCH_MIPSEL64N32:
 			sys = mips64n32_syscall_iterate(iter);
 			break;
+		case SCMP_ARCH_PARISC:
+			sys = parisc_syscall_iterate(iter);
+			break;
+		case SCMP_ARCH_PARISC64:
+			sys = parisc64_syscall_iterate(iter);
+			break;
 		case SCMP_ARCH_PPC:
 			sys = ppc_syscall_iterate(iter);
 			break;
 		case SCMP_ARCH_PPC64:
 		case SCMP_ARCH_PPC64LE:
 			sys = ppc64_syscall_iterate(iter);
+			break;
+		case SCMP_ARCH_RISCV64:
+			sys = riscv64_syscall_iterate(iter);
 			break;
 		case SCMP_ARCH_S390:
 			sys = s390_syscall_iterate(iter);

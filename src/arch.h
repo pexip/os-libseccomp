@@ -53,12 +53,18 @@ struct arch_def {
 	int (*syscall_resolve_name)(const char *name);
 	const char *(*syscall_resolve_num)(int num);
 	int (*syscall_rewrite)(int *syscall);
-	int (*rule_add)(struct db_filter_col *col, struct db_filter *db,
-			bool strict, struct db_api_rule_list *rule);
+	int (*rule_add)(struct db_filter *db, struct db_api_rule_list *rule);
 };
 
 /* arch_def for the current architecture */
 extern const struct arch_def *arch_def_native;
+
+/* macro to declare the arch specific structures and functions */
+#define ARCH_DECL(NAME) \
+	extern const struct arch_def arch_def_##NAME; \
+	int NAME##_syscall_resolve_name(const char *name); \
+	const char *NAME##_syscall_resolve_num(int num); \
+	const struct arch_syscall_def *NAME##_syscall_iterate(unsigned int spot);
 
 /* syscall name/num mapping */
 struct arch_syscall_def {
@@ -87,8 +93,7 @@ const char *arch_syscall_resolve_num(const struct arch_def *arch, int num);
 int arch_syscall_translate(const struct arch_def *arch, int *syscall);
 int arch_syscall_rewrite(const struct arch_def *arch, int *syscall);
 
-int arch_filter_rule_add(struct db_filter_col *col, struct db_filter *db,
-			 bool strict, uint32_t action, int syscall,
-			 struct db_api_arg *chain);
+int arch_filter_rule_add(struct db_filter *db,
+			 const struct db_api_rule_list *rule);
 
 #endif
