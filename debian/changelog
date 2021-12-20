@@ -1,3 +1,15 @@
+libseccomp (2.5.1-1+deb11u1pexip1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Mon, 20 Dec 2021 11:02:18 +0000
+
+libseccomp (2.5.1-1+deb11u1) bullseye; urgency=medium
+
+  * Add support for syscalls up to Linux 5.15.
+
+ -- Felix Geyer <fgeyer@debian.org>  Thu, 25 Nov 2021 19:18:20 +0100
+
 libseccomp (2.5.1-1pexip1) pexip; urgency=medium
 
   * Backport bullseye release to PexOS.
