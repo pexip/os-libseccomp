@@ -25,14 +25,17 @@
 
 #include "arch.h"
 #include "arch-aarch64.h"
+#include "syscalls.h"
+
+ARCH_DEF(aarch64)
 
 const struct arch_def arch_def_aarch64 = {
 	.token = SCMP_ARCH_AARCH64,
 	.token_bpf = AUDIT_ARCH_AARCH64,
 	.size = ARCH_SIZE_64,
 	.endian = ARCH_ENDIAN_LITTLE,
-	.syscall_resolve_name = aarch64_syscall_resolve_name,
-	.syscall_resolve_num = aarch64_syscall_resolve_num,
+	.syscall_resolve_name_raw = aarch64_syscall_resolve_name,
+	.syscall_resolve_num_raw = aarch64_syscall_resolve_num,
 	.syscall_rewrite = NULL,
 	.rule_add = NULL,
 };

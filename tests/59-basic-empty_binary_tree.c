@@ -1,8 +1,8 @@
 /**
- * Enhanced Seccomp x86_64 Specific Code
+ * Seccomp Library test program
  *
- * Copyright (c) 2012 Red Hat <pmoore@redhat.com>
- * Author: Paul Moore <paul@paul-moore.com>
+ * Copyright (c) 2018-2020 Oracle and/or its affiliates.
+ * Author: Tom Hromatka <tom.hromatka@oracle.com>
  */
 
 /*
@@ -19,23 +19,36 @@
  * along with this library; if not, see <http://www.gnu.org/licenses>.
  */
 
-#include <stdlib.h>
 #include <errno.h>
-#include <linux/audit.h>
+#include <unistd.h>
 
-#include "arch.h"
-#include "arch-x86_64.h"
-#include "syscalls.h"
+#include <seccomp.h>
 
-ARCH_DEF(x86_64)
+#include "util.h"
 
-const struct arch_def arch_def_x86_64 = {
-	.token = SCMP_ARCH_X86_64,
-	.token_bpf = AUDIT_ARCH_X86_64,
-	.size = ARCH_SIZE_64,
-	.endian = ARCH_ENDIAN_LITTLE,
-	.syscall_resolve_name_raw = x86_64_syscall_resolve_name,
-	.syscall_resolve_num_raw = x86_64_syscall_resolve_num,
-	.syscall_rewrite = NULL,
-	.rule_add = NULL,
-};
+int main(int argc, char *argv[])
+{
+	int rc;
+	struct util_options opts;
+	scmp_filter_ctx ctx = NULL;
+
+	rc = util_getopt(argc, argv, &opts);
+	if (rc < 0)
+		goto out;
+
+	ctx = seccomp_init(SCMP_ACT_ALLOW);
+	if (ctx == NULL)
+		return ENOMEM;
+
+	rc = seccomp_attr_set(ctx, SCMP_FLTATR_CTL_OPTIMIZE, 2);
+	if (rc < 0)
+		goto out;
+
+	rc = util_filter_output(&opts, ctx);
+	if (rc)
+		goto out;
+
+out:
+	seccomp_release(ctx);
+	return (rc < 0 ? -rc : rc);
+}

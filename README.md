@@ -3,8 +3,8 @@
 https://github.com/seccomp/libseccomp
 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/608/badge)](https://bestpractices.coreinfrastructure.org/projects/608)
-[![Build Status](https://img.shields.io/travis/seccomp/libseccomp/master.svg)](https://travis-ci.org/seccomp/libseccomp)
-[![Coverage Status](https://img.shields.io/coveralls/github/seccomp/libseccomp/master.svg)](https://coveralls.io/github/seccomp/libseccomp?branch=master)
+[![Build Status](https://github.com/seccomp/libseccomp/workflows/Continuous%20Integration/badge.svg?branch=main)](https://github.com/seccomp/libseccomp/actions)
+[![Coverage Status](https://img.shields.io/coveralls/github/seccomp/libseccomp/main.svg)](https://coveralls.io/github/seccomp/libseccomp?branch=main)
 [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/seccomp/libseccomp.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/seccomp/libseccomp/context:cpp)
 
 The libseccomp library provides an easy to use, platform independent, interface
@@ -23,13 +23,6 @@ The Go language bindings repository currently lives on GitHub at the following
 URL:
 
 * https://github.com/seccomp/libseccomp-golang
-
-The project mailing list is currently hosted on Google Groups at the URL below,
-please note that a Google account is not required to subscribe to the mailing
-list.
-
-* https://groups.google.com/forum/#!forum/libseccomp
-* https://groups.google.com/forum/#!forum/libseccomp/join
 
 ## Supported Architectures
 
@@ -131,5 +124,5 @@ these tools are installed by default.
 ## Bug and Vulnerability Reporting
 
 Problems with the libseccomp library can be reported using the GitHub issue
-tracking system or the mailing list.  Those who wish to privately report
-potential vulnerabilities should follow the directions in SECURITY.md.
+tracking system.  Those who wish to privately report potential vulnerabilities
+should follow the directions in SECURITY.md.

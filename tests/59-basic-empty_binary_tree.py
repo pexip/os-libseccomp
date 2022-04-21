@@ -3,8 +3,8 @@
 #
 # Seccomp Library test program
 #
-# Copyright (c) 2017 Red Hat <pmoore@redhat.com>
-# Author: Paul Moore <paul@paul-moore.com>
+# Copyright (c) 2022 Oracle and/or its affiliates.
+# Author: Tom Hromatka <tom.hromatka@oracle.com>
 #
 
 #
@@ -29,23 +29,8 @@ import util
 from seccomp import *
 
 def test(args):
-    f = SyscallFilter(KILL)
-    f.remove_arch(Arch())
-    f.add_arch(Arch("s390"))
-    f.add_arch(Arch("s390x"))
-    f.add_arch(Arch("ppc"))
-    f.add_rule(ALLOW, "semop")
-    f.add_rule(ALLOW, "semtimedop")
-    f.add_rule(ALLOW, "semget")
-    f.add_rule(ALLOW, "semctl")
-    f.add_rule(ALLOW, "msgsnd")
-    f.add_rule(ALLOW, "msgrcv")
-    f.add_rule(ALLOW, "msgget")
-    f.add_rule(ALLOW, "msgctl")
-    f.add_rule(ALLOW, "shmat")
-    f.add_rule(ALLOW, "shmdt")
-    f.add_rule(ALLOW, "shmget")
-    f.add_rule(ALLOW, "shmctl")
+    f = SyscallFilter(ALLOW)
+    f.set_attr(Attr.CTL_OPTIMIZE, 2)
     return f
 
 args = util.get_opt()
