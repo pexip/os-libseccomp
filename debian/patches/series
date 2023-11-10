@@ -1,5 +1,0 @@
-syscalls_update_the_syscall_table_to_v5.12-rc7.patch
-syscalls_add_close_range_syscall.patch
-syscalls_update_to_Linux_v5.14-rc7.patch
-api_update_seccomp-syscalls.h.patch
-syscalls_update_the_syscall_table_to_Linux_v5.15.patch

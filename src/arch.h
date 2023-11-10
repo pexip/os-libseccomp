@@ -49,10 +49,18 @@ struct arch_def {
 		ARCH_ENDIAN_BIG,
 	} endian;
 
+	/* arch specific constants */
+	int sys_socketcall;
+	int sys_ipc;
+
 	/* arch specific functions */
-	int (*syscall_resolve_name)(const char *name);
-	const char *(*syscall_resolve_num)(int num);
-	int (*syscall_rewrite)(int *syscall);
+	int (*syscall_resolve_name)(const struct arch_def *arch,
+				    const char *name);
+	int (*syscall_resolve_name_raw)(const char *name);
+	const char *(*syscall_resolve_num)(const struct arch_def *arch,
+					   int num);
+	const char *(*syscall_resolve_num_raw)(int num);
+	int (*syscall_rewrite)(const struct arch_def *arch, int *syscall);
 	int (*rule_add)(struct db_filter *db, struct db_api_rule_list *rule);
 };
 
@@ -65,6 +73,21 @@ extern const struct arch_def *arch_def_native;
 	int NAME##_syscall_resolve_name(const char *name); \
 	const char *NAME##_syscall_resolve_num(int num); \
 	const struct arch_syscall_def *NAME##_syscall_iterate(unsigned int spot);
+
+/* macro to define the arch specific structures and functions */
+#define ARCH_DEF(NAME) \
+	int NAME##_syscall_resolve_name(const char *name) \
+	{ \
+		return syscall_resolve_name(name, OFFSET_ARCH(NAME)); \
+	} \
+	const char *NAME##_syscall_resolve_num(int num) \
+	{ \
+		return syscall_resolve_num(num, OFFSET_ARCH(NAME)); \
+	} \
+	const struct arch_syscall_def *NAME##_syscall_iterate(unsigned int spot) \
+	{ \
+		return syscall_iterate(spot, OFFSET_ARCH(NAME)); \
+	}
 
 /* syscall name/num mapping */
 struct arch_syscall_def {

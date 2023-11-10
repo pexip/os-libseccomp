@@ -56,8 +56,15 @@ int main(int argc, char *argv[])
 	rc = seccomp_arch_add(ctx, SCMP_ARCH_PPC64LE);
 	if (rc != 0)
 		goto out;
+	rc = seccomp_arch_add(ctx, SCMP_ARCH_MIPSEL);
+	if (rc != 0)
+		goto out;
 
 	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(socket), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(bind), 0);
 	if (rc != 0)
 		goto out;
 
@@ -65,7 +72,59 @@ int main(int argc, char *argv[])
 	if (rc != 0)
 		goto out;
 
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(listen), 0);
+	if (rc != 0)
+		goto out;
+
 	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(accept), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(getsockname), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(getpeername), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(socketpair), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(send), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recv), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendto), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvfrom), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(shutdown), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(setsockopt), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(getsockopt), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendmsg), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvmsg), 0);
 	if (rc != 0)
 		goto out;
 
@@ -73,7 +132,11 @@ int main(int argc, char *argv[])
 	if (rc != 0)
 		goto out;
 
-	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(shutdown), 0);
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendmmsg), 0);
+	if (rc != 0)
+		goto out;
+
+	rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvmmsg), 0);
 	if (rc != 0)
 		goto out;
 

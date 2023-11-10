@@ -1,6 +1,4 @@
-# See uscan(1) for format
 version=4
 opts="dversionmangle=s/\+dfsg//,pgpsigurlmangle=s/$/.asc/" \
 https://github.com/seccomp/libseccomp/releases \
-    /download/v.*/libseccomp-(.*)\.tar\.gz \
-    debian uupdate
+    .*/libseccomp-(.*)\.tar\.gz

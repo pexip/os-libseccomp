@@ -432,7 +432,7 @@ static struct bpf_blk *_blk_prepend(struct bpf_state *state,
  * @param blk the BPF instruction block
  *
  * Add the BPF instruction block to the end of the BPF program and perform the
- * necssary translation.  Returns zero on success, negative values on failure
+ * necessary translation.  Returns zero on success, negative values on failure
  * and in the case of failure the BPF program is free'd.
  *
  */
@@ -1341,6 +1341,9 @@ static unsigned int _get_syscall_cnt(struct bpf_state *state,
 static int _get_bintree_levels(unsigned int syscall_cnt)
 {
 	unsigned int i = 2, max_level = SYSCALLS_PER_NODE * 2;
+
+	if (syscall_cnt == 0)
+		return 0;
 
 	while (max_level < syscall_cnt) {
 		max_level <<= 1;

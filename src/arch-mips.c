@@ -22,13 +22,20 @@
 
 #include <stdlib.h>
 #include <errno.h>
+#include <string.h>
 #include <linux/audit.h>
 
+#include "db.h"
+#include "syscalls.h"
 #include "arch.h"
 #include "arch-mips.h"
 
 /* O32 ABI */
 #define __SCMP_NR_BASE			4000
+
+/* mips syscall numbers */
+#define __mips_NR_socketcall		(__SCMP_NR_BASE + 102)
+#define __mips_NR_ipc			(__SCMP_NR_BASE + 117)
 
 /**
  * Resolve a syscall name to a number
@@ -39,7 +46,7 @@
  * numbers; returns __NR_SCMP_ERROR on failure.
  *
  */
-int mips_syscall_resolve_name_munge(const char *name)
+int mips_syscall_resolve_name_raw(const char *name)
 {
 	int sys;
 
@@ -60,7 +67,7 @@ int mips_syscall_resolve_name_munge(const char *name)
  * syscall names; returns NULL on failure.
  *
  */
-const char *mips_syscall_resolve_num_munge(int num)
+const char *mips_syscall_resolve_num_raw(int num)
 {
 	/* NOTE: we don't want to modify the pseudo-syscall numbers */
 	if (num >= __SCMP_NR_BASE)
@@ -68,15 +75,21 @@ const char *mips_syscall_resolve_num_munge(int num)
 	return mips_syscall_resolve_num(num);
 }
 
+ARCH_DEF(mips)
+
 const struct arch_def arch_def_mips = {
 	.token = SCMP_ARCH_MIPS,
 	.token_bpf = AUDIT_ARCH_MIPS,
 	.size = ARCH_SIZE_32,
 	.endian = ARCH_ENDIAN_BIG,
-	.syscall_resolve_name = mips_syscall_resolve_name_munge,
-	.syscall_resolve_num = mips_syscall_resolve_num_munge,
-	.syscall_rewrite = NULL,
-	.rule_add = NULL,
+	.sys_socketcall = __mips_NR_socketcall,
+	.sys_ipc = __mips_NR_ipc,
+	.syscall_resolve_name = abi_syscall_resolve_name_munge,
+	.syscall_resolve_name_raw = mips_syscall_resolve_name_raw,
+	.syscall_resolve_num = abi_syscall_resolve_num_munge,
+	.syscall_resolve_num_raw = mips_syscall_resolve_num_raw,
+	.syscall_rewrite = abi_syscall_rewrite,
+	.rule_add = abi_rule_add,
 };
 
 const struct arch_def arch_def_mipsel = {
@@ -84,8 +97,12 @@ const struct arch_def arch_def_mipsel = {
 	.token_bpf = AUDIT_ARCH_MIPSEL,
 	.size = ARCH_SIZE_32,
 	.endian = ARCH_ENDIAN_LITTLE,
-	.syscall_resolve_name = mips_syscall_resolve_name_munge,
-	.syscall_resolve_num = mips_syscall_resolve_num_munge,
-	.syscall_rewrite = NULL,
-	.rule_add = NULL,
+	.sys_socketcall = __mips_NR_socketcall,
+	.sys_ipc = __mips_NR_ipc,
+	.syscall_resolve_name = abi_syscall_resolve_name_munge,
+	.syscall_resolve_name_raw = mips_syscall_resolve_name_raw,
+	.syscall_resolve_num = abi_syscall_resolve_num_munge,
+	.syscall_resolve_num_raw = mips_syscall_resolve_num_raw,
+	.syscall_rewrite = abi_syscall_rewrite,
+	.rule_add = abi_rule_add,
 };
