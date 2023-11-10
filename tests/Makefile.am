@@ -16,10 +16,6 @@
 # along with this library; if not, see <http://www.gnu.org/licenses>.
 #
 
-@CODE_COVERAGE_RULES@
-
-CODE_COVERAGE_IGNORE_PATTERN = /usr/include/bits/* */arch-syscall-check.c
-
 if CODE_COVERAGE_ENABLED
 DBG_STATIC =
 else
@@ -97,7 +93,8 @@ check_PROGRAMS = \
 	55-basic-pfc_binary_tree \
 	56-basic-iterate_syscalls \
 	57-basic-rawsysrc \
-	58-live-tsync_notify
+	58-live-tsync_notify \
+	59-basic-empty_binary_tree
 
 EXTRA_DIST_TESTPYTHON = \
 	util.py \
@@ -156,7 +153,8 @@ EXTRA_DIST_TESTPYTHON = \
 	54-live-binary_tree.py \
 	56-basic-iterate_syscalls.py \
 	57-basic-rawsysrc.py \
-	58-live-tsync_notify.py
+	58-live-tsync_notify.py \
+	59-basic-empty_binary_tree.py
 
 EXTRA_DIST_TESTCFGS = \
 	01-sim-allow.tests \
@@ -216,7 +214,8 @@ EXTRA_DIST_TESTCFGS = \
 	55-basic-pfc_binary_tree.tests \
 	56-basic-iterate_syscalls.tests \
 	57-basic-rawsysrc.tests \
-	58-live-tsync_notify.tests
+	58-live-tsync_notify.tests \
+	59-basic-empty_binary_tree.tests
 
 EXTRA_DIST_TESTSCRIPTS = \
 	38-basic-pfc_coverage.sh 38-basic-pfc_coverage.pfc \

@@ -214,7 +214,7 @@ matches the filter rule.
 A monitoring process will be notified when a process running the seccomp
 filter calls a syscall that matches the filter rule.  The process that invokes
 the syscall waits in the kernel until the monitoring process has responded via
-.B seccomp_notify_respond(3)
+.B seccomp_notify_respond (3)
 \&.
 
 When a filter utilizing
@@ -222,7 +222,7 @@ When a filter utilizing
 is loaded into the kernel, the kernel generates a notification fd that must be
 used to communicate between the monitoring process and the process(es) being
 filtered.  See
-.B seccomp_notif_fd(3)
+.B seccomp_notif_fd (3)
 for more information.
 
 .P
@@ -331,6 +331,11 @@ Architecture specific failure.
 .B -EEXIST
 The rule already exists.
 .TP
+.B -EACCCES
+The rule conflicts with the filter (for example, the rule
+.I action
+equals the default action of the filter).
+.TP
 .B -EFAULT
 Internal libseccomp failure.
 .TP
@@ -424,6 +429,24 @@ The libseccomp project site, with more information and the source code
 repository, can be found at https://github.com/seccomp/libseccomp.  This tool,
 as well as the libseccomp library, is currently under development, please
 report any bugs at the project site or directly to the author.
+.\" //////////////////////////////////////////////////////////////////////////
+.SH BUGS
+.\" //////////////////////////////////////////////////////////////////////////
+.P
+The runtime behavior of seccomp filters is dependent upon the kernel
+version, the processor architecture, and other libraries including libc.
+This could affect the return code of a seccomp filter.
+
+.TP
+.B *
+PowerPC glibc will not return a negative number when the
+.B getpid()
+syscall is invoked.  If a seccomp filter has been created where
+.B getpid()
+will return a negative number from the kernel, then PowerPC glibc will
+return the absolute value of the errno.  In this case, it is very difficult
+for an application to distinguish between the errno and a valid pid.
+
 .\" //////////////////////////////////////////////////////////////////////////
 .SH AUTHOR
 .\" //////////////////////////////////////////////////////////////////////////
