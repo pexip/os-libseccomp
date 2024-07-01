@@ -4,6 +4,12 @@ libseccomp (2.5.4-1+pexip24u3) pexip-bookworm; urgency=medium
 
  -- Mark Hymers <mark.hymers@pexip.com>  Thu, 01 Feb 2024 16:06:53 +0000
 
+libseccomp (2.5.4-1+deb12u1) bookworm; urgency=medium
+
+  * Add support for syscalls up to Linux 6.7. (Closes: #1071822)
+
+ -- Felix Geyer <fgeyer@debian.org>  Sat, 25 May 2024 20:36:52 +0200
+
 libseccomp (2.5.4-1pexip2) pexip-bookworm; urgency=medium
 
   * Bookworm build for product distribution
