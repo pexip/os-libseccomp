@@ -61,6 +61,10 @@ static const char *_pfc_arch(const struct arch_def *arch)
 		return "arm";
 	case SCMP_ARCH_AARCH64:
 		return "aarch64";
+	case SCMP_ARCH_LOONGARCH64:
+		return "loongarch64";
+	case SCMP_ARCH_M68K:
+		return "m68k";
 	case SCMP_ARCH_MIPS:
 		return "mips";
 	case SCMP_ARCH_MIPSEL:
@@ -89,6 +93,10 @@ static const char *_pfc_arch(const struct arch_def *arch)
 		return "s390";
 	case SCMP_ARCH_RISCV64:
 		return "riscv64";
+	case SCMP_ARCH_SHEB:
+		return "sheb";
+	case SCMP_ARCH_SH:
+		return "sh";
 	default:
 		return "UNKNOWN";
 	}
@@ -238,7 +246,7 @@ static void _gen_pfc_chain(const struct arch_def *arch,
  * @param sys the syscall filter
  * @param fds the file stream to send the output
  *
- * This function generates a pseduo filter code representation of the given
+ * This function generates a pseudo filter code representation of the given
  * syscall filter and writes it to the given output stream.
  *
  */

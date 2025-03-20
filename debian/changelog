@@ -1,8 +1,65 @@
-libseccomp (2.5.4-1+deb12u1) bookworm; urgency=medium
+libseccomp (2.6.0-2) unstable; urgency=medium
 
-  * Add support for syscalls up to Linux 6.7. (Closes: #1071822)
+  * Upload to unstable.
+  * Disable valgrind unit tests, it's not stable enough.
+  * Cherry-pick upstream fixes:
+    - tests_remove_the_fuzzer_from_test_62-sim-arch_transactions.patch
+    - hash_fix_strict_aliasing_UB_in_MurMur_hash_implementation.patch
+    - api_fix_seccomp_export_bpf_mem_out-of-bounds_read.patch
 
- -- Felix Geyer <fgeyer@debian.org>  Sat, 25 May 2024 20:36:52 +0200
+ -- Felix Geyer <fgeyer@debian.org>  Thu, 20 Mar 2025 22:12:14 +0100
+
+libseccomp (2.6.0-1) experimental; urgency=medium
+
+  * New upstream release. (Closes: #1088935)
+  * Drop backported loongarch64 patches, applied upstream.
+  * Drop python_Fix_distutils_DeprecationWarning.patch, applied upstream.
+  * Update symbols file.
+  * Fix watch file.
+  * Refresh upstream signing keys.
+  * Run unit tests in parallel.
+
+ -- Felix Geyer <fgeyer@debian.org>  Fri, 24 Jan 2025 22:10:51 +0100
+
+libseccomp (2.5.5-2) unstable; urgency=medium
+
+  * Revert: Dynamically skip autopkgtests when the test runner already applies
+    seccomp restrictions.
+    - Container based backends usually apply a seccomp filter so it's better
+      to declare the isolation-machine restriction.
+  * Backport support for syscalls up to kernel v6.12-rc5 and loongarch64.
+    (Closes: #1051323)
+    - syscalls_update_to_Linux_v6.0.patch
+    - tests_add_fstatfs_syscall_in_the_06-sim-actions.patch
+    - arch_Add_64-bit_LoongArch_support.patch
+    - tests_Add_64-bit_LoongArch_support.patch
+    - doc_update_README_and_manpage_for_64-bit_LoongArch.patch
+    - tests_Fix_wrong_syscall-error_in_test_29.patch
+    - tests_only_use_bogus_syscall_numbers_in_test_29.patch
+    - arch_unify_handling_of_syscall.tbl_in_arch-syscall-validate.patch
+    - arch_adapt_arch-syscall-validate_to_Linux_6.11.patch
+    - syscalls_Update_the_syscall_table_for_Linux_v6.12-rc5.patch
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 24 Nov 2024 21:54:16 +0100
+
+libseccomp (2.5.5-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Felix Geyer <fgeyer@debian.org>  Thu, 04 Jan 2024 18:29:54 +0100
+
+libseccomp (2.5.4-2) unstable; urgency=medium
+
+  * Fix watch file. (Closes: #1050659)
+  * Dynamically skip autopkgtests when the test runner already applies seccomp
+    restrictions.
+    - Drop isolation-machine restriction.
+  * Fix FTBFS with setuptools. (Closes: #1054788, #1033641)
+    - Add python_Fix_distutils_DeprecationWarning.patch
+    - Add python_single_version_externally_managed.patch
+    - Explicitly build-depend on python3-setuptools
+
+ -- Felix Geyer <fgeyer@debian.org>  Sun, 29 Oct 2023 15:13:08 +0100
 
 libseccomp (2.5.4-1) unstable; urgency=medium
 

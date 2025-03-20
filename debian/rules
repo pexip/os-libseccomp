@@ -8,6 +8,9 @@
 export V=1
 
 include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/buildopts.mk
+
+export LIBSECCOMP_TSTCFG_JOBS=$(DEB_BUILD_OPTION_PARALLEL)
 
 %:
 ifeq ($(filter nopython,$(DEB_BUILD_PROFILES)),)
