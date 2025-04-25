@@ -146,7 +146,7 @@ static bool _abi_syscall_socket_test(const struct arch_def *arch, int sys)
 {
 	const char *name;
 
-	/* multiplexed pseduo-syscalls */
+	/* multiplexed pseudo-syscalls */
 	if (sys <= -100 && sys >= -120)
 		return true;
 
@@ -193,7 +193,7 @@ static bool _abi_syscall_ipc_test(const struct arch_def *arch, int sys)
 {
 	const char *name;
 
-	/* multiplexed pseduo-syscalls */
+	/* multiplexed pseudo-syscalls */
 	if (sys <= -200 && sys >= -224)
 		return true;
 
@@ -289,7 +289,7 @@ case __PNR_##NAME: \
  * @param arch the arch definition
  * @param syscall the direct syscall
  *
- * Return the related multiplexed pseduo syscall number, __NR_SCMP_UNDEF is
+ * Return the related multiplexed pseudo syscall number, __NR_SCMP_UNDEF is
  * there is no related pseudo syscall, or __NR_SCMP_ERROR otherwise.
  *
  */
