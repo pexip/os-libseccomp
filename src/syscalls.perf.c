@@ -34,6 +34,8 @@
 /**
  * Copyright (c) 2012 Red Hat <pmoore@redhat.com>
  * Copyright (c) 2020 Red Hat <gscrivan@redhat.com>
+ * Copyright (c) 2022 Microsoft Corporation. <paulmoore@microsoft.com>
+ *
  * Authors: Paul Moore <paul@paul-moore.com>
  *          Giuseppe Scrivano <gscrivan@redhat.com>
  */
@@ -58,14 +60,14 @@
 
 enum
   {
-    TOTAL_KEYWORDS = 481,
+    TOTAL_KEYWORDS = 502,
     MIN_WORD_LENGTH = 3,
     MAX_WORD_LENGTH = 28,
-    MIN_HASH_VALUE = 13,
-    MAX_HASH_VALUE = 1680
+    MIN_HASH_VALUE = 7,
+    MAX_HASH_VALUE = 1916
   };
 
-/* maximum key range = 1668, duplicates = 0 */
+/* maximum key range = 1910, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
@@ -79,32 +81,32 @@ hash (register const char *str, register size_t len)
 {
   static const unsigned short asso_values[] =
     {
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,    7,
-       110,  492,  323, 1681,   22,    3, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681,    5,   87,  101,  436,   18,
-         3,    4,    4,    2,  420,    5,  587,  222,   91,   20,
-       130,   38,   57,  397,    8,    1,    2,  320,  210,  275,
-       393,  151,   72, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681, 1681,
-      1681, 1681, 1681, 1681, 1681, 1681, 1681
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,   27,
+       424,  101,  306, 1917,  195,    1, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917,    0,  522,   79,  321,    4,
+         5,    2,    5,    1,  479,    5,   64,  282,   61,   39,
+       186,   28,   73,  184,   21,    0,    0,  240,  374,  399,
+       291,  283,    5, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917, 1917,
+      1917, 1917, 1917, 1917, 1917, 1917, 1917
     };
   register unsigned int hval = len;
 
@@ -143,1936 +145,2020 @@ struct stringpool_t
   {
     char stringpool_str0[sizeof("tee")];
     char stringpool_str1[sizeof("send")];
-    char stringpool_str2[sizeof("rtas")];
-    char stringpool_str3[sizeof("times")];
-    char stringpool_str4[sizeof("time")];
+    char stringpool_str2[sizeof("times")];
+    char stringpool_str3[sizeof("time")];
+    char stringpool_str4[sizeof("select")];
     char stringpool_str5[sizeof("idle")];
-    char stringpool_str6[sizeof("read")];
-    char stringpool_str7[sizeof("setsid")];
-    char stringpool_str8[sizeof("getsid")];
+    char stringpool_str6[sizeof("setsid")];
+    char stringpool_str7[sizeof("getsid")];
+    char stringpool_str8[sizeof("rtas")];
     char stringpool_str9[sizeof("setfsgid")];
-    char stringpool_str10[sizeof("getegid")];
-    char stringpool_str11[sizeof("setregid")];
-    char stringpool_str12[sizeof("setresgid")];
-    char stringpool_str13[sizeof("getresgid")];
-    char stringpool_str14[sizeof("timerfd")];
-    char stringpool_str15[sizeof("select")];
-    char stringpool_str16[sizeof("sendmsg")];
-    char stringpool_str17[sizeof("readdir")];
-    char stringpool_str18[sizeof("timer_settime")];
-    char stringpool_str19[sizeof("timer_gettime")];
-    char stringpool_str20[sizeof("setns")];
-    char stringpool_str21[sizeof("timerfd_settime")];
-    char stringpool_str22[sizeof("timerfd_gettime")];
-    char stringpool_str23[sizeof("fchdir")];
-    char stringpool_str24[sizeof("sched_setattr")];
-    char stringpool_str25[sizeof("sched_getattr")];
-    char stringpool_str26[sizeof("sendmmsg")];
-    char stringpool_str27[sizeof("rt_sigtimedwait")];
-    char stringpool_str28[sizeof("sched_setscheduler")];
-    char stringpool_str29[sizeof("sched_getscheduler")];
-    char stringpool_str30[sizeof("timerfd_create")];
-    char stringpool_str31[sizeof("timer_create")];
-    char stringpool_str32[sizeof("memfd_secret")];
-    char stringpool_str33[sizeof("sched_setparam")];
-    char stringpool_str34[sizeof("sched_getparam")];
-    char stringpool_str35[sizeof("pipe")];
-    char stringpool_str36[sizeof("prof")];
-    char stringpool_str37[sizeof("memfd_create")];
-    char stringpool_str38[sizeof("ipc")];
-    char stringpool_str39[sizeof("fsync")];
-    char stringpool_str40[sizeof("mincore")];
-    char stringpool_str41[sizeof("sendto")];
-    char stringpool_str42[sizeof("pidfd_getfd")];
-    char stringpool_str43[sizeof("delete_module")];
-    char stringpool_str44[sizeof("msync")];
-    char stringpool_str45[sizeof("ioperm")];
-    char stringpool_str46[sizeof("mount")];
-    char stringpool_str47[sizeof("ioprio_set")];
-    char stringpool_str48[sizeof("ioprio_get")];
-    char stringpool_str49[sizeof("reboot")];
-    char stringpool_str50[sizeof("process_madvise")];
-    char stringpool_str51[sizeof("process_mrelease")];
-    char stringpool_str52[sizeof("close")];
-    char stringpool_str53[sizeof("sendfile")];
-    char stringpool_str54[sizeof("connect")];
-    char stringpool_str55[sizeof("mount_setattr")];
-    char stringpool_str56[sizeof("access")];
-    char stringpool_str57[sizeof("capset")];
-    char stringpool_str58[sizeof("timer_delete")];
-    char stringpool_str59[sizeof("setrlimit")];
-    char stringpool_str60[sizeof("getrlimit")];
-    char stringpool_str61[sizeof("setresgid32")];
-    char stringpool_str62[sizeof("getresgid32")];
-    char stringpool_str63[sizeof("socket")];
-    char stringpool_str64[sizeof("stime")];
-    char stringpool_str65[sizeof("nice")];
-    char stringpool_str66[sizeof("ftime")];
-    char stringpool_str67[sizeof("pselect6")];
-    char stringpool_str68[sizeof("getdents")];
-    char stringpool_str69[sizeof("iopl")];
-    char stringpool_str70[sizeof("clone")];
-    char stringpool_str71[sizeof("sysfs")];
-    char stringpool_str72[sizeof("sched_rr_get_interval")];
-    char stringpool_str73[sizeof("msgsnd")];
-    char stringpool_str74[sizeof("syncfs")];
-    char stringpool_str75[sizeof("open_tree")];
-    char stringpool_str76[sizeof("mprotect")];
-    char stringpool_str77[sizeof("pause")];
-    char stringpool_str78[sizeof("rt_sigreturn")];
-    char stringpool_str79[sizeof("sync")];
-    char stringpool_str80[sizeof("timer_getoverrun")];
-    char stringpool_str81[sizeof("semop")];
-    char stringpool_str82[sizeof("truncate")];
-    char stringpool_str83[sizeof("membarrier")];
-    char stringpool_str84[sizeof("seccomp")];
-    char stringpool_str85[sizeof("accept")];
-    char stringpool_str86[sizeof("sched_get_priority_min")];
-    char stringpool_str87[sizeof("set_tls")];
-    char stringpool_str88[sizeof("get_tls")];
-    char stringpool_str89[sizeof("semctl")];
-    char stringpool_str90[sizeof("fchmod")];
-    char stringpool_str91[sizeof("sched_yield")];
-    char stringpool_str92[sizeof("sched_setaffinity")];
-    char stringpool_str93[sizeof("sched_getaffinity")];
-    char stringpool_str94[sizeof("migrate_pages")];
-    char stringpool_str95[sizeof("poll")];
-    char stringpool_str96[sizeof("fsconfig")];
-    char stringpool_str97[sizeof("msgctl")];
-    char stringpool_str98[sizeof("_sysctl")];
-    char stringpool_str99[sizeof("syslog")];
-    char stringpool_str100[sizeof("pivot_root")];
-    char stringpool_str101[sizeof("epoll_create")];
-    char stringpool_str102[sizeof("set_tid_address")];
-    char stringpool_str103[sizeof("rt_sigpending")];
-    char stringpool_str104[sizeof("epoll_create1")];
-    char stringpool_str105[sizeof("faccessat")];
-    char stringpool_str106[sizeof("stty")];
-    char stringpool_str107[sizeof("gtty")];
-    char stringpool_str108[sizeof("setuid")];
-    char stringpool_str109[sizeof("getuid")];
-    char stringpool_str110[sizeof("alarm")];
-    char stringpool_str111[sizeof("move_pages")];
-    char stringpool_str112[sizeof("openat")];
-    char stringpool_str113[sizeof("oldstat")];
-    char stringpool_str114[sizeof("oldfstat")];
-    char stringpool_str115[sizeof("signalfd")];
-    char stringpool_str116[sizeof("copy_file_range")];
-    char stringpool_str117[sizeof("set_mempolicy_home_node")];
-    char stringpool_str118[sizeof("vm86")];
-    char stringpool_str119[sizeof("profil")];
-    char stringpool_str120[sizeof("io_destroy")];
-    char stringpool_str121[sizeof("oldlstat")];
-    char stringpool_str122[sizeof("open")];
-    char stringpool_str123[sizeof("eventfd")];
-    char stringpool_str124[sizeof("pciconfig_read")];
-    char stringpool_str125[sizeof("pciconfig_write")];
-    char stringpool_str126[sizeof("pciconfig_iobase")];
-    char stringpool_str127[sizeof("rt_sigaction")];
-    char stringpool_str128[sizeof("sync_file_range")];
-    char stringpool_str129[sizeof("setxattr")];
-    char stringpool_str130[sizeof("getxattr")];
-    char stringpool_str131[sizeof("pipe2")];
-    char stringpool_str132[sizeof("spu_create")];
-    char stringpool_str133[sizeof("getcwd")];
-    char stringpool_str134[sizeof("sethostname")];
-    char stringpool_str135[sizeof("linkat")];
-    char stringpool_str136[sizeof("fallocate")];
-    char stringpool_str137[sizeof("epoll_ctl_old")];
-    char stringpool_str138[sizeof("arch_prctl")];
-    char stringpool_str139[sizeof("fchmodat")];
-    char stringpool_str140[sizeof("mknod")];
-    char stringpool_str141[sizeof("pidfd_open")];
-    char stringpool_str142[sizeof("pidfd_send_signal")];
-    char stringpool_str143[sizeof("socketpair")];
-    char stringpool_str144[sizeof("recvmsg")];
-    char stringpool_str145[sizeof("setdomainname")];
-    char stringpool_str146[sizeof("ppoll")];
-    char stringpool_str147[sizeof("getrandom")];
-    char stringpool_str148[sizeof("stat")];
-    char stringpool_str149[sizeof("signal")];
-    char stringpool_str150[sizeof("statfs")];
-    char stringpool_str151[sizeof("faccessat2")];
-    char stringpool_str152[sizeof("cachectl")];
-    char stringpool_str153[sizeof("recvmmsg")];
-    char stringpool_str154[sizeof("kill")];
-    char stringpool_str155[sizeof("gettid")];
-    char stringpool_str156[sizeof("fanotify_init")];
-    char stringpool_str157[sizeof("setfsuid")];
-    char stringpool_str158[sizeof("geteuid")];
-    char stringpool_str159[sizeof("setreuid")];
-    char stringpool_str160[sizeof("setresuid")];
-    char stringpool_str161[sizeof("getresuid")];
-    char stringpool_str162[sizeof("sysmips")];
-    char stringpool_str163[sizeof("newfstatat")];
-    char stringpool_str164[sizeof("rt_sigsuspend")];
-    char stringpool_str165[sizeof("rt_sigprocmask")];
-    char stringpool_str166[sizeof("fork")];
-    char stringpool_str167[sizeof("clock_getres")];
-    char stringpool_str168[sizeof("clock_settime")];
-    char stringpool_str169[sizeof("clock_gettime")];
-    char stringpool_str170[sizeof("timer_settime64")];
-    char stringpool_str171[sizeof("timer_gettime64")];
-    char stringpool_str172[sizeof("kexec_file_load")];
-    char stringpool_str173[sizeof("timerfd_settime64")];
-    char stringpool_str174[sizeof("timerfd_gettime64")];
-    char stringpool_str175[sizeof("close_range")];
-    char stringpool_str176[sizeof("vm86old")];
-    char stringpool_str177[sizeof("mremap")];
-    char stringpool_str178[sizeof("dup")];
-    char stringpool_str179[sizeof("recvfrom")];
-    char stringpool_str180[sizeof("epoll_ctl")];
-    char stringpool_str181[sizeof("pkey_free")];
-    char stringpool_str182[sizeof("sync_file_range2")];
-    char stringpool_str183[sizeof("rt_sigtimedwait_time64")];
-    char stringpool_str184[sizeof("setsockopt")];
-    char stringpool_str185[sizeof("getsockopt")];
-    char stringpool_str186[sizeof("set_mempolicy")];
-    char stringpool_str187[sizeof("get_mempolicy")];
-    char stringpool_str188[sizeof("sched_rr_get_interval_time64")];
-    char stringpool_str189[sizeof("link")];
-    char stringpool_str190[sizeof("mknodat")];
-    char stringpool_str191[sizeof("madvise")];
-    char stringpool_str192[sizeof("rseq")];
-    char stringpool_str193[sizeof("keyctl")];
-    char stringpool_str194[sizeof("getpid")];
-    char stringpool_str195[sizeof("setpgid")];
-    char stringpool_str196[sizeof("getpgid")];
-    char stringpool_str197[sizeof("io_uring_enter")];
-    char stringpool_str198[sizeof("io_uring_register")];
-    char stringpool_str199[sizeof("tkill")];
-    char stringpool_str200[sizeof("shmdt")];
-    char stringpool_str201[sizeof("getpmsg")];
-    char stringpool_str202[sizeof("semget")];
-    char stringpool_str203[sizeof("readv")];
-    char stringpool_str204[sizeof("setgid")];
-    char stringpool_str205[sizeof("getgid")];
-    char stringpool_str206[sizeof("acct")];
-    char stringpool_str207[sizeof("lock")];
-    char stringpool_str208[sizeof("socketcall")];
-    char stringpool_str209[sizeof("getrusage")];
-    char stringpool_str210[sizeof("vserver")];
-    char stringpool_str211[sizeof("fstat")];
-    char stringpool_str212[sizeof("bind")];
-    char stringpool_str213[sizeof("sched_get_priority_max")];
-    char stringpool_str214[sizeof("msgget")];
-    char stringpool_str215[sizeof("fstatfs")];
-    char stringpool_str216[sizeof("setresuid32")];
-    char stringpool_str217[sizeof("getresuid32")];
-    char stringpool_str218[sizeof("semtimedop")];
-    char stringpool_str219[sizeof("openat2")];
-    char stringpool_str220[sizeof("utimes")];
-    char stringpool_str221[sizeof("utime")];
-    char stringpool_str222[sizeof("msgrcv")];
-    char stringpool_str223[sizeof("pselect6_time64")];
-    char stringpool_str224[sizeof("sendfile64")];
-    char stringpool_str225[sizeof("creat")];
-    char stringpool_str226[sizeof("mpx")];
-    char stringpool_str227[sizeof("io_uring_setup")];
-    char stringpool_str228[sizeof("get_kernel_syms")];
-    char stringpool_str229[sizeof("getppid")];
-    char stringpool_str230[sizeof("nfsservctl")];
-    char stringpool_str231[sizeof("rename")];
-    char stringpool_str232[sizeof("ftruncate")];
-    char stringpool_str233[sizeof("eventfd2")];
-    char stringpool_str234[sizeof("io_cancel")];
-    char stringpool_str235[sizeof("io_setup")];
-    char stringpool_str236[sizeof("pkey_mprotect")];
-    char stringpool_str237[sizeof("kexec_load")];
-    char stringpool_str238[sizeof("mmap")];
-    char stringpool_str239[sizeof("bpf")];
-    char stringpool_str240[sizeof("recv")];
-    char stringpool_str241[sizeof("getdents64")];
-    char stringpool_str242[sizeof("mbind")];
-    char stringpool_str243[sizeof("chmod")];
-    char stringpool_str244[sizeof("nanosleep")];
-    char stringpool_str245[sizeof("process_vm_readv")];
-    char stringpool_str246[sizeof("process_vm_writev")];
-    char stringpool_str247[sizeof("fsmount")];
-    char stringpool_str248[sizeof("arm_sync_file_range")];
-    char stringpool_str249[sizeof("ptrace")];
-    char stringpool_str250[sizeof("truncate64")];
-    char stringpool_str251[sizeof("fcntl")];
-    char stringpool_str252[sizeof("getsockname")];
-    char stringpool_str253[sizeof("sigsuspend")];
-    char stringpool_str254[sizeof("getpgrp")];
-    char stringpool_str255[sizeof("syscall")];
-    char stringpool_str256[sizeof("lstat")];
-    char stringpool_str257[sizeof("security")];
-    char stringpool_str258[sizeof("chroot")];
-    char stringpool_str259[sizeof("lseek")];
-    char stringpool_str260[sizeof("flock")];
-    char stringpool_str261[sizeof("create_module")];
-    char stringpool_str262[sizeof("ioctl")];
-    char stringpool_str263[sizeof("capget")];
-    char stringpool_str264[sizeof("restart_syscall")];
-    char stringpool_str265[sizeof("ulimit")];
-    char stringpool_str266[sizeof("_llseek")];
-    char stringpool_str267[sizeof("settimeofday")];
-    char stringpool_str268[sizeof("gettimeofday")];
-    char stringpool_str269[sizeof("perf_event_open")];
-    char stringpool_str270[sizeof("mlock2")];
-    char stringpool_str271[sizeof("mlock")];
-    char stringpool_str272[sizeof("fanotify_mark")];
-    char stringpool_str273[sizeof("afs_syscall")];
-    char stringpool_str274[sizeof("epoll_wait")];
-    char stringpool_str275[sizeof("prctl")];
-    char stringpool_str276[sizeof("epoll_wait_old")];
-    char stringpool_str277[sizeof("readlinkat")];
-    char stringpool_str278[sizeof("unshare")];
-    char stringpool_str279[sizeof("renameat")];
-    char stringpool_str280[sizeof("move_mount")];
-    char stringpool_str281[sizeof("personality")];
-    char stringpool_str282[sizeof("landlock_add_rule")];
-    char stringpool_str283[sizeof("ppoll_time64")];
-    char stringpool_str284[sizeof("uname")];
-    char stringpool_str285[sizeof("landlock_create_ruleset")];
-    char stringpool_str286[sizeof("landlock_restrict_self")];
-    char stringpool_str287[sizeof("fchownat")];
-    char stringpool_str288[sizeof("olduname")];
-    char stringpool_str289[sizeof("sigreturn")];
-    char stringpool_str290[sizeof("s390_pci_mmio_read")];
-    char stringpool_str291[sizeof("s390_pci_mmio_write")];
-    char stringpool_str292[sizeof("shmctl")];
-    char stringpool_str293[sizeof("flistxattr")];
-    char stringpool_str294[sizeof("write")];
-    char stringpool_str295[sizeof("request_key")];
-    char stringpool_str296[sizeof("fchown")];
-    char stringpool_str297[sizeof("epoll_pwait")];
-    char stringpool_str298[sizeof("execve")];
-    char stringpool_str299[sizeof("remap_file_pages")];
-    char stringpool_str300[sizeof("setpriority")];
-    char stringpool_str301[sizeof("getpriority")];
-    char stringpool_str302[sizeof("setfsgid32")];
-    char stringpool_str303[sizeof("setregid32")];
-    char stringpool_str304[sizeof("rmdir")];
-    char stringpool_str305[sizeof("inotify_init")];
-    char stringpool_str306[sizeof("lookup_dcookie")];
-    char stringpool_str307[sizeof("symlinkat")];
-    char stringpool_str308[sizeof("inotify_init1")];
-    char stringpool_str309[sizeof("setitimer")];
-    char stringpool_str310[sizeof("getitimer")];
-    char stringpool_str311[sizeof("readahead")];
-    char stringpool_str312[sizeof("_newselect")];
-    char stringpool_str313[sizeof("mmap2")];
-    char stringpool_str314[sizeof("vfork")];
-    char stringpool_str315[sizeof("getpeername")];
-    char stringpool_str316[sizeof("riscv_flush_icache")];
-    char stringpool_str317[sizeof("brk")];
-    char stringpool_str318[sizeof("fsopen")];
-    char stringpool_str319[sizeof("recvmmsg_time64")];
-    char stringpool_str320[sizeof("io_pgetevents")];
-    char stringpool_str321[sizeof("splice")];
-    char stringpool_str322[sizeof("finit_module")];
-    char stringpool_str323[sizeof("clock_settime64")];
-    char stringpool_str324[sizeof("clock_gettime64")];
-    char stringpool_str325[sizeof("listen")];
-    char stringpool_str326[sizeof("sigpending")];
-    char stringpool_str327[sizeof("clock_getres_time64")];
-    char stringpool_str328[sizeof("umount")];
-    char stringpool_str329[sizeof("munmap")];
-    char stringpool_str330[sizeof("readlink")];
-    char stringpool_str331[sizeof("kcmp")];
-    char stringpool_str332[sizeof("io_getevents")];
-    char stringpool_str333[sizeof("utimensat")];
-    char stringpool_str334[sizeof("llistxattr")];
-    char stringpool_str335[sizeof("pkey_alloc")];
-    char stringpool_str336[sizeof("tuxcall")];
-    char stringpool_str337[sizeof("lchown")];
-    char stringpool_str338[sizeof("getcpu")];
-    char stringpool_str339[sizeof("waitid")];
-    char stringpool_str340[sizeof("mlockall")];
-    char stringpool_str341[sizeof("exit")];
-    char stringpool_str342[sizeof("name_to_handle_at")];
-    char stringpool_str343[sizeof("add_key")];
-    char stringpool_str344[sizeof("execveat")];
-    char stringpool_str345[sizeof("swapoff")];
-    char stringpool_str346[sizeof("epoll_pwait2")];
-    char stringpool_str347[sizeof("semtimedop_time64")];
-    char stringpool_str348[sizeof("spu_run")];
-    char stringpool_str349[sizeof("getegid32")];
-    char stringpool_str350[sizeof("set_thread_area")];
-    char stringpool_str351[sizeof("get_thread_area")];
-    char stringpool_str352[sizeof("fdatasync")];
-    char stringpool_str353[sizeof("vmsplice")];
-    char stringpool_str354[sizeof("symlink")];
-    char stringpool_str355[sizeof("ustat")];
-    char stringpool_str356[sizeof("waitpid")];
-    char stringpool_str357[sizeof("clock_nanosleep")];
-    char stringpool_str358[sizeof("sigaction")];
-    char stringpool_str359[sizeof("ugetrlimit")];
-    char stringpool_str360[sizeof("mq_timedsend")];
-    char stringpool_str361[sizeof("umask")];
-    char stringpool_str362[sizeof("rt_tgsigqueueinfo")];
-    char stringpool_str363[sizeof("rt_sigqueueinfo")];
-    char stringpool_str364[sizeof("mq_timedreceive")];
-    char stringpool_str365[sizeof("removexattr")];
-    char stringpool_str366[sizeof("mq_open")];
-    char stringpool_str367[sizeof("renameat2")];
-    char stringpool_str368[sizeof("ftruncate64")];
-    char stringpool_str369[sizeof("putpmsg")];
-    char stringpool_str370[sizeof("mq_notify")];
-    char stringpool_str371[sizeof("sigprocmask")];
-    char stringpool_str372[sizeof("accept4")];
-    char stringpool_str373[sizeof("io_submit")];
-    char stringpool_str374[sizeof("oldolduname")];
-    char stringpool_str375[sizeof("fsetxattr")];
-    char stringpool_str376[sizeof("fgetxattr")];
-    char stringpool_str377[sizeof("mkdir")];
-    char stringpool_str378[sizeof("userfaultfd")];
-    char stringpool_str379[sizeof("shmget")];
-    char stringpool_str380[sizeof("init_module")];
-    char stringpool_str381[sizeof("arm_fadvise64_64")];
-    char stringpool_str382[sizeof("setgroups")];
-    char stringpool_str383[sizeof("getgroups")];
-    char stringpool_str384[sizeof("usr26")];
-    char stringpool_str385[sizeof("shmat")];
-    char stringpool_str386[sizeof("munlock")];
-    char stringpool_str387[sizeof("usr32")];
-    char stringpool_str388[sizeof("tgkill")];
-    char stringpool_str389[sizeof("mq_getsetattr")];
-    char stringpool_str390[sizeof("sigaltstack")];
-    char stringpool_str391[sizeof("swapcontext")];
-    char stringpool_str392[sizeof("ssetmask")];
-    char stringpool_str393[sizeof("sgetmask")];
-    char stringpool_str394[sizeof("signalfd4")];
-    char stringpool_str395[sizeof("subpage_prot")];
-    char stringpool_str396[sizeof("fremovexattr")];
-    char stringpool_str397[sizeof("umount2")];
-    char stringpool_str398[sizeof("modify_ldt")];
-    char stringpool_str399[sizeof("set_robust_list")];
-    char stringpool_str400[sizeof("get_robust_list")];
-    char stringpool_str401[sizeof("dup2")];
-    char stringpool_str402[sizeof("preadv")];
-    char stringpool_str403[sizeof("munlockall")];
-    char stringpool_str404[sizeof("lsetxattr")];
-    char stringpool_str405[sizeof("lgetxattr")];
-    char stringpool_str406[sizeof("listxattr")];
-    char stringpool_str407[sizeof("preadv2")];
-    char stringpool_str408[sizeof("setuid32")];
-    char stringpool_str409[sizeof("getuid32")];
-    char stringpool_str410[sizeof("setfsuid32")];
-    char stringpool_str411[sizeof("mkdirat")];
-    char stringpool_str412[sizeof("setreuid32")];
-    char stringpool_str413[sizeof("query_module")];
-    char stringpool_str414[sizeof("sysinfo")];
-    char stringpool_str415[sizeof("s390_guarded_storage")];
-    char stringpool_str416[sizeof("setgroups32")];
-    char stringpool_str417[sizeof("getgroups32")];
-    char stringpool_str418[sizeof("cacheflush")];
-    char stringpool_str419[sizeof("swapon")];
-    char stringpool_str420[sizeof("s390_runtime_instr")];
-    char stringpool_str421[sizeof("lremovexattr")];
-    char stringpool_str422[sizeof("stat64")];
-    char stringpool_str423[sizeof("statfs64")];
-    char stringpool_str424[sizeof("io_pgetevents_time64")];
-    char stringpool_str425[sizeof("sys_debug_setcontext")];
-    char stringpool_str426[sizeof("utimensat_time64")];
-    char stringpool_str427[sizeof("writev")];
-    char stringpool_str428[sizeof("clock_nanosleep_time64")];
-    char stringpool_str429[sizeof("chdir")];
-    char stringpool_str430[sizeof("clock_adjtime")];
-    char stringpool_str431[sizeof("futimesat")];
-    char stringpool_str432[sizeof("geteuid32")];
-    char stringpool_str433[sizeof("fspick")];
-    char stringpool_str434[sizeof("inotify_rm_watch")];
-    char stringpool_str435[sizeof("fadvise64")];
-    char stringpool_str436[sizeof("fadvise64_64")];
-    char stringpool_str437[sizeof("futex_time64")];
-    char stringpool_str438[sizeof("s390_sthyi")];
-    char stringpool_str439[sizeof("chown")];
-    char stringpool_str440[sizeof("fcntl64")];
-    char stringpool_str441[sizeof("vhangup")];
-    char stringpool_str442[sizeof("mq_timedsend_time64")];
-    char stringpool_str443[sizeof("statx")];
-    char stringpool_str444[sizeof("fstat64")];
-    char stringpool_str445[sizeof("futex")];
-    char stringpool_str446[sizeof("mq_timedreceive_time64")];
-    char stringpool_str447[sizeof("fstatfs64")];
-    char stringpool_str448[sizeof("clone3")];
-    char stringpool_str449[sizeof("dup3")];
-    char stringpool_str450[sizeof("setgid32")];
-    char stringpool_str451[sizeof("getgid32")];
-    char stringpool_str452[sizeof("exit_group")];
-    char stringpool_str453[sizeof("inotify_add_watch")];
-    char stringpool_str454[sizeof("open_by_handle_at")];
-    char stringpool_str455[sizeof("pread64")];
-    char stringpool_str456[sizeof("fchown32")];
-    char stringpool_str457[sizeof("lstat64")];
-    char stringpool_str458[sizeof("fstatat64")];
-    char stringpool_str459[sizeof("uselib")];
-    char stringpool_str460[sizeof("multiplexer")];
-    char stringpool_str461[sizeof("adjtimex")];
-    char stringpool_str462[sizeof("quotactl_fd")];
-    char stringpool_str463[sizeof("lchown32")];
-    char stringpool_str464[sizeof("switch_endian")];
-    char stringpool_str465[sizeof("shutdown")];
-    char stringpool_str466[sizeof("futex_waitv")];
-    char stringpool_str467[sizeof("break")];
-    char stringpool_str468[sizeof("breakpoint")];
-    char stringpool_str469[sizeof("wait4")];
-    char stringpool_str470[sizeof("quotactl")];
-    char stringpool_str471[sizeof("pwritev")];
-    char stringpool_str472[sizeof("prlimit64")];
-    char stringpool_str473[sizeof("pwritev2")];
-    char stringpool_str474[sizeof("clock_adjtime64")];
-    char stringpool_str475[sizeof("mq_unlink")];
-    char stringpool_str476[sizeof("unlinkat")];
-    char stringpool_str477[sizeof("pwrite64")];
-    char stringpool_str478[sizeof("unlink")];
-    char stringpool_str479[sizeof("bdflush")];
-    char stringpool_str480[sizeof("chown32")];
+    char stringpool_str10[sizeof("setregid")];
+    char stringpool_str11[sizeof("setresgid")];
+    char stringpool_str12[sizeof("getresgid")];
+    char stringpool_str13[sizeof("getegid")];
+    char stringpool_str14[sizeof("read")];
+    char stringpool_str15[sizeof("setns")];
+    char stringpool_str16[sizeof("fsync")];
+    char stringpool_str17[sizeof("timer_settime")];
+    char stringpool_str18[sizeof("timer_gettime")];
+    char stringpool_str19[sizeof("sched_setattr")];
+    char stringpool_str20[sizeof("sched_getattr")];
+    char stringpool_str21[sizeof("sendmsg")];
+    char stringpool_str22[sizeof("timerfd")];
+    char stringpool_str23[sizeof("sched_setscheduler")];
+    char stringpool_str24[sizeof("sched_getscheduler")];
+    char stringpool_str25[sizeof("timerfd_settime")];
+    char stringpool_str26[sizeof("timerfd_gettime")];
+    char stringpool_str27[sizeof("timerfd_create")];
+    char stringpool_str28[sizeof("fchdir")];
+    char stringpool_str29[sizeof("memfd_secret")];
+    char stringpool_str30[sizeof("sendto")];
+    char stringpool_str31[sizeof("sched_setparam")];
+    char stringpool_str32[sizeof("sched_getparam")];
+    char stringpool_str33[sizeof("timer_create")];
+    char stringpool_str34[sizeof("connect")];
+    char stringpool_str35[sizeof("close")];
+    char stringpool_str36[sizeof("ioprio_set")];
+    char stringpool_str37[sizeof("ioprio_get")];
+    char stringpool_str38[sizeof("msync")];
+    char stringpool_str39[sizeof("readdir")];
+    char stringpool_str40[sizeof("ipc")];
+    char stringpool_str41[sizeof("rt_sigtimedwait")];
+    char stringpool_str42[sizeof("sendfile")];
+    char stringpool_str43[sizeof("memfd_create")];
+    char stringpool_str44[sizeof("pipe")];
+    char stringpool_str45[sizeof("capset")];
+    char stringpool_str46[sizeof("sendmmsg")];
+    char stringpool_str47[sizeof("access")];
+    char stringpool_str48[sizeof("delete_module")];
+    char stringpool_str49[sizeof("socket")];
+    char stringpool_str50[sizeof("mount")];
+    char stringpool_str51[sizeof("clone")];
+    char stringpool_str52[sizeof("pidfd_getfd")];
+    char stringpool_str53[sizeof("prof")];
+    char stringpool_str54[sizeof("mincore")];
+    char stringpool_str55[sizeof("timer_delete")];
+    char stringpool_str56[sizeof("setrlimit")];
+    char stringpool_str57[sizeof("getrlimit")];
+    char stringpool_str58[sizeof("copy_file_range")];
+    char stringpool_str59[sizeof("reboot")];
+    char stringpool_str60[sizeof("mount_setattr")];
+    char stringpool_str61[sizeof("_sysctl")];
+    char stringpool_str62[sizeof("semctl")];
+    char stringpool_str63[sizeof("iopl")];
+    char stringpool_str64[sizeof("sched_rr_get_interval")];
+    char stringpool_str65[sizeof("ioperm")];
+    char stringpool_str66[sizeof("truncate")];
+    char stringpool_str67[sizeof("splice")];
+    char stringpool_str68[sizeof("process_madvise")];
+    char stringpool_str69[sizeof("process_mrelease")];
+    char stringpool_str70[sizeof("finit_module")];
+    char stringpool_str71[sizeof("pause")];
+    char stringpool_str72[sizeof("setitimer")];
+    char stringpool_str73[sizeof("getitimer")];
+    char stringpool_str74[sizeof("open_tree")];
+    char stringpool_str75[sizeof("accept")];
+    char stringpool_str76[sizeof("rmdir")];
+    char stringpool_str77[sizeof("msgctl")];
+    char stringpool_str78[sizeof("oldstat")];
+    char stringpool_str79[sizeof("oldfstat")];
+    char stringpool_str80[sizeof("cachestat")];
+    char stringpool_str81[sizeof("faccessat")];
+    char stringpool_str82[sizeof("stime")];
+    char stringpool_str83[sizeof("signalfd")];
+    char stringpool_str84[sizeof("mprotect")];
+    char stringpool_str85[sizeof("ftime")];
+    char stringpool_str86[sizeof("getdents")];
+    char stringpool_str87[sizeof("nice")];
+    char stringpool_str88[sizeof("membarrier")];
+    char stringpool_str89[sizeof("poll")];
+    char stringpool_str90[sizeof("getpid")];
+    char stringpool_str91[sizeof("setpgid")];
+    char stringpool_str92[sizeof("getpgid")];
+    char stringpool_str93[sizeof("migrate_pages")];
+    char stringpool_str94[sizeof("linkat")];
+    char stringpool_str95[sizeof("openat")];
+    char stringpool_str96[sizeof("oldlstat")];
+    char stringpool_str97[sizeof("epoll_create")];
+    char stringpool_str98[sizeof("alarm")];
+    char stringpool_str99[sizeof("cachectl")];
+    char stringpool_str100[sizeof("sched_get_priority_min")];
+    char stringpool_str101[sizeof("semop")];
+    char stringpool_str102[sizeof("seccomp")];
+    char stringpool_str103[sizeof("profil")];
+    char stringpool_str104[sizeof("rseq")];
+    char stringpool_str105[sizeof("s390_pci_mmio_write")];
+    char stringpool_str106[sizeof("s390_pci_mmio_read")];
+    char stringpool_str107[sizeof("getpmsg")];
+    char stringpool_str108[sizeof("timer_getoverrun")];
+    char stringpool_str109[sizeof("move_pages")];
+    char stringpool_str110[sizeof("pivot_root")];
+    char stringpool_str111[sizeof("fchmod")];
+    char stringpool_str112[sizeof("signal")];
+    char stringpool_str113[sizeof("msgsnd")];
+    char stringpool_str114[sizeof("epoll_create1")];
+    char stringpool_str115[sizeof("stat")];
+    char stringpool_str116[sizeof("fallocate")];
+    char stringpool_str117[sizeof("rt_sigreturn")];
+    char stringpool_str118[sizeof("statfs")];
+    char stringpool_str119[sizeof("tgkill")];
+    char stringpool_str120[sizeof("epoll_ctl_old")];
+    char stringpool_str121[sizeof("gettid")];
+    char stringpool_str122[sizeof("setfsuid")];
+    char stringpool_str123[sizeof("setreuid")];
+    char stringpool_str124[sizeof("setresuid")];
+    char stringpool_str125[sizeof("getresuid")];
+    char stringpool_str126[sizeof("geteuid")];
+    char stringpool_str127[sizeof("arch_prctl")];
+    char stringpool_str128[sizeof("socketpair")];
+    char stringpool_str129[sizeof("getppid")];
+    char stringpool_str130[sizeof("fsconfig")];
+    char stringpool_str131[sizeof("rt_sigsuspend")];
+    char stringpool_str132[sizeof("getpagesize")];
+    char stringpool_str133[sizeof("sysfs")];
+    char stringpool_str134[sizeof("stty")];
+    char stringpool_str135[sizeof("gtty")];
+    char stringpool_str136[sizeof("sync")];
+    char stringpool_str137[sizeof("syncfs")];
+    char stringpool_str138[sizeof("rt_sigpending")];
+    char stringpool_str139[sizeof("clone3")];
+    char stringpool_str140[sizeof("socketcall")];
+    char stringpool_str141[sizeof("rt_sigaction")];
+    char stringpool_str142[sizeof("epoll_ctl")];
+    char stringpool_str143[sizeof("ppoll")];
+    char stringpool_str144[sizeof("sethostname")];
+    char stringpool_str145[sizeof("fchmodat")];
+    char stringpool_str146[sizeof("sched_setaffinity")];
+    char stringpool_str147[sizeof("sched_getaffinity")];
+    char stringpool_str148[sizeof("open")];
+    char stringpool_str149[sizeof("sched_yield")];
+    char stringpool_str150[sizeof("dup")];
+    char stringpool_str151[sizeof("pciconfig_write")];
+    char stringpool_str152[sizeof("pciconfig_iobase")];
+    char stringpool_str153[sizeof("pciconfig_read")];
+    char stringpool_str154[sizeof("acct")];
+    char stringpool_str155[sizeof("sched_get_priority_max")];
+    char stringpool_str156[sizeof("fstat")];
+    char stringpool_str157[sizeof("getrusage")];
+    char stringpool_str158[sizeof("bind")];
+    char stringpool_str159[sizeof("fstatfs")];
+    char stringpool_str160[sizeof("mmap")];
+    char stringpool_str161[sizeof("pidfd_send_signal")];
+    char stringpool_str162[sizeof("creat")];
+    char stringpool_str163[sizeof("timer_settime64")];
+    char stringpool_str164[sizeof("timer_gettime64")];
+    char stringpool_str165[sizeof("setdomainname")];
+    char stringpool_str166[sizeof("newfstatat")];
+    char stringpool_str167[sizeof("syslog")];
+    char stringpool_str168[sizeof("getpgrp")];
+    char stringpool_str169[sizeof("timerfd_settime64")];
+    char stringpool_str170[sizeof("timerfd_gettime64")];
+    char stringpool_str171[sizeof("close_range")];
+    char stringpool_str172[sizeof("clock_getres")];
+    char stringpool_str173[sizeof("clock_settime")];
+    char stringpool_str174[sizeof("clock_gettime")];
+    char stringpool_str175[sizeof("fcntl")];
+    char stringpool_str176[sizeof("sync_file_range")];
+    char stringpool_str177[sizeof("io_destroy")];
+    char stringpool_str178[sizeof("fork")];
+    char stringpool_str179[sizeof("pidfd_open")];
+    char stringpool_str180[sizeof("kexec_file_load")];
+    char stringpool_str181[sizeof("lstat")];
+    char stringpool_str182[sizeof("getrandom")];
+    char stringpool_str183[sizeof("sched_rr_get_interval_time64")];
+    char stringpool_str184[sizeof("kill")];
+    char stringpool_str185[sizeof("rename")];
+    char stringpool_str186[sizeof("setuid")];
+    char stringpool_str187[sizeof("getuid")];
+    char stringpool_str188[sizeof("rt_sigtimedwait_time64")];
+    char stringpool_str189[sizeof("ioctl")];
+    char stringpool_str190[sizeof("pkey_free")];
+    char stringpool_str191[sizeof("bpf")];
+    char stringpool_str192[sizeof("mbind")];
+    char stringpool_str193[sizeof("semtimedop")];
+    char stringpool_str194[sizeof("mpx")];
+    char stringpool_str195[sizeof("ptrace")];
+    char stringpool_str196[sizeof("mknod")];
+    char stringpool_str197[sizeof("link")];
+    char stringpool_str198[sizeof("setxattr")];
+    char stringpool_str199[sizeof("getxattr")];
+    char stringpool_str200[sizeof("keyctl")];
+    char stringpool_str201[sizeof("getcwd")];
+    char stringpool_str202[sizeof("eventfd")];
+    char stringpool_str203[sizeof("setsockopt")];
+    char stringpool_str204[sizeof("getsockopt")];
+    char stringpool_str205[sizeof("io_setup")];
+    char stringpool_str206[sizeof("create_module")];
+    char stringpool_str207[sizeof("mkdir")];
+    char stringpool_str208[sizeof("utimes")];
+    char stringpool_str209[sizeof("utime")];
+    char stringpool_str210[sizeof("lock")];
+    char stringpool_str211[sizeof("futimesat")];
+    char stringpool_str212[sizeof("restart_syscall")];
+    char stringpool_str213[sizeof("io_cancel")];
+    char stringpool_str214[sizeof("rt_sigprocmask")];
+    char stringpool_str215[sizeof("tkill")];
+    char stringpool_str216[sizeof("setresgid32")];
+    char stringpool_str217[sizeof("getresgid32")];
+    char stringpool_str218[sizeof("prctl")];
+    char stringpool_str219[sizeof("fanotify_init")];
+    char stringpool_str220[sizeof("flistxattr")];
+    char stringpool_str221[sizeof("recvmsg")];
+    char stringpool_str222[sizeof("renameat")];
+    char stringpool_str223[sizeof("setxattrat")];
+    char stringpool_str224[sizeof("getxattrat")];
+    char stringpool_str225[sizeof("kexec_load")];
+    char stringpool_str226[sizeof("mremap")];
+    char stringpool_str227[sizeof("mknodat")];
+    char stringpool_str228[sizeof("shmdt")];
+    char stringpool_str229[sizeof("mseal")];
+    char stringpool_str230[sizeof("lookup_dcookie")];
+    char stringpool_str231[sizeof("semget")];
+    char stringpool_str232[sizeof("getpeername")];
+    char stringpool_str233[sizeof("s390_guarded_storage")];
+    char stringpool_str234[sizeof("mkdirat")];
+    char stringpool_str235[sizeof("modify_ldt")];
+    char stringpool_str236[sizeof("rt_sigqueueinfo")];
+    char stringpool_str237[sizeof("rt_tgsigqueueinfo")];
+    char stringpool_str238[sizeof("ulimit")];
+    char stringpool_str239[sizeof("setgid")];
+    char stringpool_str240[sizeof("getgid")];
+    char stringpool_str241[sizeof("remap_file_pages")];
+    char stringpool_str242[sizeof("recvmmsg")];
+    char stringpool_str243[sizeof("fsmount")];
+    char stringpool_str244[sizeof("tuxcall")];
+    char stringpool_str245[sizeof("clock_adjtime")];
+    char stringpool_str246[sizeof("pselect6")];
+    char stringpool_str247[sizeof("vm86old")];
+    char stringpool_str248[sizeof("sigsuspend")];
+    char stringpool_str249[sizeof("llistxattr")];
+    char stringpool_str250[sizeof("msgget")];
+    char stringpool_str251[sizeof("mq_timedsend")];
+    char stringpool_str252[sizeof("madvise")];
+    char stringpool_str253[sizeof("pkey_mprotect")];
+    char stringpool_str254[sizeof("landlock_add_rule")];
+    char stringpool_str255[sizeof("exit")];
+    char stringpool_str256[sizeof("landlock_create_ruleset")];
+    char stringpool_str257[sizeof("unshare")];
+    char stringpool_str258[sizeof("landlock_restrict_self")];
+    char stringpool_str259[sizeof("putpmsg")];
+    char stringpool_str260[sizeof("kcmp")];
+    char stringpool_str261[sizeof("setfsgid32")];
+    char stringpool_str262[sizeof("setregid32")];
+    char stringpool_str263[sizeof("mq_timedreceive")];
+    char stringpool_str264[sizeof("sysmips")];
+    char stringpool_str265[sizeof("_newselect")];
+    char stringpool_str266[sizeof("syscall")];
+    char stringpool_str267[sizeof("nanosleep")];
+    char stringpool_str268[sizeof("setpriority")];
+    char stringpool_str269[sizeof("getpriority")];
+    char stringpool_str270[sizeof("recvfrom")];
+    char stringpool_str271[sizeof("ustat")];
+    char stringpool_str272[sizeof("getcpu")];
+    char stringpool_str273[sizeof("fsopen")];
+    char stringpool_str274[sizeof("capget")];
+    char stringpool_str275[sizeof("chmod")];
+    char stringpool_str276[sizeof("move_mount")];
+    char stringpool_str277[sizeof("sigpending")];
+    char stringpool_str278[sizeof("sendfile64")];
+    char stringpool_str279[sizeof("chroot")];
+    char stringpool_str280[sizeof("subpage_prot")];
+    char stringpool_str281[sizeof("set_tls")];
+    char stringpool_str282[sizeof("get_tls")];
+    char stringpool_str283[sizeof("chdir")];
+    char stringpool_str284[sizeof("getsockname")];
+    char stringpool_str285[sizeof("sysinfo")];
+    char stringpool_str286[sizeof("pkey_alloc")];
+    char stringpool_str287[sizeof("faccessat2")];
+    char stringpool_str288[sizeof("ppoll_time64")];
+    char stringpool_str289[sizeof("io_pgetevents")];
+    char stringpool_str290[sizeof("shmctl")];
+    char stringpool_str291[sizeof("vm86")];
+    char stringpool_str292[sizeof("s390_runtime_instr")];
+    char stringpool_str293[sizeof("settimeofday")];
+    char stringpool_str294[sizeof("gettimeofday")];
+    char stringpool_str295[sizeof("uname")];
+    char stringpool_str296[sizeof("ugetrlimit")];
+    char stringpool_str297[sizeof("lsm_set_self_attr")];
+    char stringpool_str298[sizeof("lsm_get_self_attr")];
+    char stringpool_str299[sizeof("brk")];
+    char stringpool_str300[sizeof("set_tid_address")];
+    char stringpool_str301[sizeof("swapoff")];
+    char stringpool_str302[sizeof("pselect6_time64")];
+    char stringpool_str303[sizeof("lseek")];
+    char stringpool_str304[sizeof("_llseek")];
+    char stringpool_str305[sizeof("flock")];
+    char stringpool_str306[sizeof("userfaultfd")];
+    char stringpool_str307[sizeof("fspick")];
+    char stringpool_str308[sizeof("semtimedop_time64")];
+    char stringpool_str309[sizeof("truncate64")];
+    char stringpool_str310[sizeof("io_submit")];
+    char stringpool_str311[sizeof("readlinkat")];
+    char stringpool_str312[sizeof("sigreturn")];
+    char stringpool_str313[sizeof("sigprocmask")];
+    char stringpool_str314[sizeof("io_uring_enter")];
+    char stringpool_str315[sizeof("dup3")];
+    char stringpool_str316[sizeof("mlockall")];
+    char stringpool_str317[sizeof("io_uring_register")];
+    char stringpool_str318[sizeof("ftruncate")];
+    char stringpool_str319[sizeof("nfsservctl")];
+    char stringpool_str320[sizeof("lsm_list_modules")];
+    char stringpool_str321[sizeof("fsetxattr")];
+    char stringpool_str322[sizeof("fgetxattr")];
+    char stringpool_str323[sizeof("epoll_wait")];
+    char stringpool_str324[sizeof("write")];
+    char stringpool_str325[sizeof("mlock")];
+    char stringpool_str326[sizeof("clock_settime64")];
+    char stringpool_str327[sizeof("clock_gettime64")];
+    char stringpool_str328[sizeof("epoll_wait_old")];
+    char stringpool_str329[sizeof("vmsplice")];
+    char stringpool_str330[sizeof("clock_getres_time64")];
+    char stringpool_str331[sizeof("execve")];
+    char stringpool_str332[sizeof("readahead")];
+    char stringpool_str333[sizeof("listen")];
+    char stringpool_str334[sizeof("setresuid32")];
+    char stringpool_str335[sizeof("getresuid32")];
+    char stringpool_str336[sizeof("munmap")];
+    char stringpool_str337[sizeof("utimensat")];
+    char stringpool_str338[sizeof("getdents64")];
+    char stringpool_str339[sizeof("io_uring_setup")];
+    char stringpool_str340[sizeof("listxattrat")];
+    char stringpool_str341[sizeof("atomic_barrier")];
+    char stringpool_str342[sizeof("spu_create")];
+    char stringpool_str343[sizeof("lsetxattr")];
+    char stringpool_str344[sizeof("lgetxattr")];
+    char stringpool_str345[sizeof("listxattr")];
+    char stringpool_str346[sizeof("personality")];
+    char stringpool_str347[sizeof("set_mempolicy_home_node")];
+    char stringpool_str348[sizeof("riscv_flush_icache")];
+    char stringpool_str349[sizeof("usr26")];
+    char stringpool_str350[sizeof("epoll_pwait")];
+    char stringpool_str351[sizeof("waitid")];
+    char stringpool_str352[sizeof("mq_getsetattr")];
+    char stringpool_str353[sizeof("inotify_init")];
+    char stringpool_str354[sizeof("statmount")];
+    char stringpool_str355[sizeof("sigaction")];
+    char stringpool_str356[sizeof("fanotify_mark")];
+    char stringpool_str357[sizeof("oldolduname")];
+    char stringpool_str358[sizeof("mq_open")];
+    char stringpool_str359[sizeof("fchownat")];
+    char stringpool_str360[sizeof("init_module")];
+    char stringpool_str361[sizeof("atomic_cmpxchg_32")];
+    char stringpool_str362[sizeof("sigaltstack")];
+    char stringpool_str363[sizeof("execveat")];
+    char stringpool_str364[sizeof("futex_requeue")];
+    char stringpool_str365[sizeof("inotify_init1")];
+    char stringpool_str366[sizeof("dup2")];
+    char stringpool_str367[sizeof("readv")];
+    char stringpool_str368[sizeof("olduname")];
+    char stringpool_str369[sizeof("accept4")];
+    char stringpool_str370[sizeof("setfsuid32")];
+    char stringpool_str371[sizeof("setreuid32")];
+    char stringpool_str372[sizeof("query_module")];
+    char stringpool_str373[sizeof("name_to_handle_at")];
+    char stringpool_str374[sizeof("msgrcv")];
+    char stringpool_str375[sizeof("vserver")];
+    char stringpool_str376[sizeof("recv")];
+    char stringpool_str377[sizeof("sync_file_range2")];
+    char stringpool_str378[sizeof("signalfd4")];
+    char stringpool_str379[sizeof("shmat")];
+    char stringpool_str380[sizeof("listmount")];
+    char stringpool_str381[sizeof("waitpid")];
+    char stringpool_str382[sizeof("swapcontext")];
+    char stringpool_str383[sizeof("fdatasync")];
+    char stringpool_str384[sizeof("clock_adjtime64")];
+    char stringpool_str385[sizeof("recvmmsg_time64")];
+    char stringpool_str386[sizeof("quotactl_fd")];
+    char stringpool_str387[sizeof("statx")];
+    char stringpool_str388[sizeof("futex")];
+    char stringpool_str389[sizeof("mq_timedsend_time64")];
+    char stringpool_str390[sizeof("perf_event_open")];
+    char stringpool_str391[sizeof("munlockall")];
+    char stringpool_str392[sizeof("umount")];
+    char stringpool_str393[sizeof("umask")];
+    char stringpool_str394[sizeof("readlink")];
+    char stringpool_str395[sizeof("setgroups")];
+    char stringpool_str396[sizeof("getgroups")];
+    char stringpool_str397[sizeof("removexattrat")];
+    char stringpool_str398[sizeof("fchown")];
+    char stringpool_str399[sizeof("mq_timedreceive_time64")];
+    char stringpool_str400[sizeof("mq_notify")];
+    char stringpool_str401[sizeof("process_vm_readv")];
+    char stringpool_str402[sizeof("process_vm_writev")];
+    char stringpool_str403[sizeof("removexattr")];
+    char stringpool_str404[sizeof("quotactl")];
+    char stringpool_str405[sizeof("symlinkat")];
+    char stringpool_str406[sizeof("cacheflush")];
+    char stringpool_str407[sizeof("clock_nanosleep")];
+    char stringpool_str408[sizeof("futex_time64")];
+    char stringpool_str409[sizeof("io_getevents")];
+    char stringpool_str410[sizeof("s390_sthyi")];
+    char stringpool_str411[sizeof("exit_group")];
+    char stringpool_str412[sizeof("lchown")];
+    char stringpool_str413[sizeof("munlock")];
+    char stringpool_str414[sizeof("io_pgetevents_time64")];
+    char stringpool_str415[sizeof("ssetmask")];
+    char stringpool_str416[sizeof("sgetmask")];
+    char stringpool_str417[sizeof("uselib")];
+    char stringpool_str418[sizeof("pipe2")];
+    char stringpool_str419[sizeof("vfork")];
+    char stringpool_str420[sizeof("uretprobe")];
+    char stringpool_str421[sizeof("adjtimex")];
+    char stringpool_str422[sizeof("shmget")];
+    char stringpool_str423[sizeof("ftruncate64")];
+    char stringpool_str424[sizeof("request_key")];
+    char stringpool_str425[sizeof("security")];
+    char stringpool_str426[sizeof("getegid32")];
+    char stringpool_str427[sizeof("multiplexer")];
+    char stringpool_str428[sizeof("swapon")];
+    char stringpool_str429[sizeof("set_mempolicy")];
+    char stringpool_str430[sizeof("get_mempolicy")];
+    char stringpool_str431[sizeof("utimensat_time64")];
+    char stringpool_str432[sizeof("prlimit64")];
+    char stringpool_str433[sizeof("fremovexattr")];
+    char stringpool_str434[sizeof("get_kernel_syms")];
+    char stringpool_str435[sizeof("futex_wait")];
+    char stringpool_str436[sizeof("afs_syscall")];
+    char stringpool_str437[sizeof("unlinkat")];
+    char stringpool_str438[sizeof("stat64")];
+    char stringpool_str439[sizeof("statfs64")];
+    char stringpool_str440[sizeof("openat2")];
+    char stringpool_str441[sizeof("lremovexattr")];
+    char stringpool_str442[sizeof("symlink")];
+    char stringpool_str443[sizeof("mmap2")];
+    char stringpool_str444[sizeof("arm_sync_file_range")];
+    char stringpool_str445[sizeof("fcntl64")];
+    char stringpool_str446[sizeof("clock_nanosleep_time64")];
+    char stringpool_str447[sizeof("fstat64")];
+    char stringpool_str448[sizeof("fstatfs64")];
+    char stringpool_str449[sizeof("set_robust_list")];
+    char stringpool_str450[sizeof("get_robust_list")];
+    char stringpool_str451[sizeof("chown")];
+    char stringpool_str452[sizeof("epoll_pwait2")];
+    char stringpool_str453[sizeof("fchmodat2")];
+    char stringpool_str454[sizeof("preadv")];
+    char stringpool_str455[sizeof("lstat64")];
+    char stringpool_str456[sizeof("set_thread_area")];
+    char stringpool_str457[sizeof("get_thread_area")];
+    char stringpool_str458[sizeof("geteuid32")];
+    char stringpool_str459[sizeof("fstatat64")];
+    char stringpool_str460[sizeof("open_by_handle_at")];
+    char stringpool_str461[sizeof("break")];
+    char stringpool_str462[sizeof("pread64")];
+    char stringpool_str463[sizeof("spu_run")];
+    char stringpool_str464[sizeof("inotify_rm_watch")];
+    char stringpool_str465[sizeof("mlock2")];
+    char stringpool_str466[sizeof("unlink")];
+    char stringpool_str467[sizeof("breakpoint")];
+    char stringpool_str468[sizeof("eventfd2")];
+    char stringpool_str469[sizeof("vhangup")];
+    char stringpool_str470[sizeof("setgroups32")];
+    char stringpool_str471[sizeof("getgroups32")];
+    char stringpool_str472[sizeof("pwritev")];
+    char stringpool_str473[sizeof("inotify_add_watch")];
+    char stringpool_str474[sizeof("fadvise64")];
+    char stringpool_str475[sizeof("fadvise64_64")];
+    char stringpool_str476[sizeof("futex_wake")];
+    char stringpool_str477[sizeof("renameat2")];
+    char stringpool_str478[sizeof("wait4")];
+    char stringpool_str479[sizeof("setuid32")];
+    char stringpool_str480[sizeof("getuid32")];
+    char stringpool_str481[sizeof("pwrite64")];
+    char stringpool_str482[sizeof("riscv_hwprobe")];
+    char stringpool_str483[sizeof("sys_debug_setcontext")];
+    char stringpool_str484[sizeof("usr32")];
+    char stringpool_str485[sizeof("futex_waitv")];
+    char stringpool_str486[sizeof("arm_fadvise64_64")];
+    char stringpool_str487[sizeof("writev")];
+    char stringpool_str488[sizeof("setgid32")];
+    char stringpool_str489[sizeof("getgid32")];
+    char stringpool_str490[sizeof("add_key")];
+    char stringpool_str491[sizeof("switch_endian")];
+    char stringpool_str492[sizeof("map_shadow_stack")];
+    char stringpool_str493[sizeof("shutdown")];
+    char stringpool_str494[sizeof("bdflush")];
+    char stringpool_str495[sizeof("mq_unlink")];
+    char stringpool_str496[sizeof("fchown32")];
+    char stringpool_str497[sizeof("preadv2")];
+    char stringpool_str498[sizeof("lchown32")];
+    char stringpool_str499[sizeof("umount2")];
+    char stringpool_str500[sizeof("pwritev2")];
+    char stringpool_str501[sizeof("chown32")];
   };
 static const struct stringpool_t stringpool_contents =
   {
     "tee",
     "send",
-    "rtas",
     "times",
     "time",
+    "select",
     "idle",
-    "read",
     "setsid",
     "getsid",
+    "rtas",
     "setfsgid",
-    "getegid",
     "setregid",
     "setresgid",
     "getresgid",
-    "timerfd",
-    "select",
-    "sendmsg",
-    "readdir",
+    "getegid",
+    "read",
+    "setns",
+    "fsync",
     "timer_settime",
     "timer_gettime",
-    "setns",
-    "timerfd_settime",
-    "timerfd_gettime",
-    "fchdir",
     "sched_setattr",
     "sched_getattr",
-    "sendmmsg",
-    "rt_sigtimedwait",
+    "sendmsg",
+    "timerfd",
     "sched_setscheduler",
     "sched_getscheduler",
+    "timerfd_settime",
+    "timerfd_gettime",
     "timerfd_create",
-    "timer_create",
+    "fchdir",
     "memfd_secret",
+    "sendto",
     "sched_setparam",
     "sched_getparam",
-    "pipe",
-    "prof",
-    "memfd_create",
-    "ipc",
-    "fsync",
-    "mincore",
-    "sendto",
-    "pidfd_getfd",
-    "delete_module",
-    "msync",
-    "ioperm",
-    "mount",
+    "timer_create",
+    "connect",
+    "close",
     "ioprio_set",
     "ioprio_get",
-    "reboot",
-    "process_madvise",
-    "process_mrelease",
-    "close",
+    "msync",
+    "readdir",
+    "ipc",
+    "rt_sigtimedwait",
     "sendfile",
-    "connect",
-    "mount_setattr",
-    "access",
+    "memfd_create",
+    "pipe",
     "capset",
+    "sendmmsg",
+    "access",
+    "delete_module",
+    "socket",
+    "mount",
+    "clone",
+    "pidfd_getfd",
+    "prof",
+    "mincore",
     "timer_delete",
     "setrlimit",
     "getrlimit",
-    "setresgid32",
-    "getresgid32",
-    "socket",
-    "stime",
-    "nice",
-    "ftime",
-    "pselect6",
-    "getdents",
-    "iopl",
-    "clone",
-    "sysfs",
-    "sched_rr_get_interval",
-    "msgsnd",
-    "syncfs",
-    "open_tree",
-    "mprotect",
-    "pause",
-    "rt_sigreturn",
-    "sync",
-    "timer_getoverrun",
-    "semop",
-    "truncate",
-    "membarrier",
-    "seccomp",
-    "accept",
-    "sched_get_priority_min",
-    "set_tls",
-    "get_tls",
-    "semctl",
-    "fchmod",
-    "sched_yield",
-    "sched_setaffinity",
-    "sched_getaffinity",
-    "migrate_pages",
-    "poll",
-    "fsconfig",
-    "msgctl",
+    "copy_file_range",
+    "reboot",
+    "mount_setattr",
     "_sysctl",
-    "syslog",
-    "pivot_root",
-    "epoll_create",
-    "set_tid_address",
-    "rt_sigpending",
-    "epoll_create1",
-    "faccessat",
-    "stty",
-    "gtty",
-    "setuid",
-    "getuid",
-    "alarm",
-    "move_pages",
-    "openat",
+    "semctl",
+    "iopl",
+    "sched_rr_get_interval",
+    "ioperm",
+    "truncate",
+    "splice",
+    "process_madvise",
+    "process_mrelease",
+    "finit_module",
+    "pause",
+    "setitimer",
+    "getitimer",
+    "open_tree",
+    "accept",
+    "rmdir",
+    "msgctl",
     "oldstat",
     "oldfstat",
+    "cachestat",
+    "faccessat",
+    "stime",
     "signalfd",
-    "copy_file_range",
-    "set_mempolicy_home_node",
-    "vm86",
-    "profil",
-    "io_destroy",
-    "oldlstat",
-    "open",
-    "eventfd",
-    "pciconfig_read",
-    "pciconfig_write",
-    "pciconfig_iobase",
-    "rt_sigaction",
-    "sync_file_range",
-    "setxattr",
-    "getxattr",
-    "pipe2",
-    "spu_create",
-    "getcwd",
-    "sethostname",
-    "linkat",
-    "fallocate",
-    "epoll_ctl_old",
-    "arch_prctl",
-    "fchmodat",
-    "mknod",
-    "pidfd_open",
-    "pidfd_send_signal",
-    "socketpair",
-    "recvmsg",
-    "setdomainname",
-    "ppoll",
-    "getrandom",
-    "stat",
-    "signal",
-    "statfs",
-    "faccessat2",
-    "cachectl",
-    "recvmmsg",
-    "kill",
-    "gettid",
-    "fanotify_init",
-    "setfsuid",
-    "geteuid",
-    "setreuid",
-    "setresuid",
-    "getresuid",
-    "sysmips",
-    "newfstatat",
-    "rt_sigsuspend",
-    "rt_sigprocmask",
-    "fork",
-    "clock_getres",
-    "clock_settime",
-    "clock_gettime",
-    "timer_settime64",
-    "timer_gettime64",
-    "kexec_file_load",
-    "timerfd_settime64",
-    "timerfd_gettime64",
-    "close_range",
-    "vm86old",
-    "mremap",
-    "dup",
-    "recvfrom",
-    "epoll_ctl",
-    "pkey_free",
-    "sync_file_range2",
-    "rt_sigtimedwait_time64",
-    "setsockopt",
-    "getsockopt",
-    "set_mempolicy",
-    "get_mempolicy",
-    "sched_rr_get_interval_time64",
-    "link",
-    "mknodat",
-    "madvise",
-    "rseq",
-    "keyctl",
+    "mprotect",
+    "ftime",
+    "getdents",
+    "nice",
+    "membarrier",
+    "poll",
     "getpid",
     "setpgid",
     "getpgid",
-    "io_uring_enter",
-    "io_uring_register",
-    "tkill",
-    "shmdt",
+    "migrate_pages",
+    "linkat",
+    "openat",
+    "oldlstat",
+    "epoll_create",
+    "alarm",
+    "cachectl",
+    "sched_get_priority_min",
+    "semop",
+    "seccomp",
+    "profil",
+    "rseq",
+    "s390_pci_mmio_write",
+    "s390_pci_mmio_read",
     "getpmsg",
-    "semget",
-    "readv",
-    "setgid",
-    "getgid",
-    "acct",
-    "lock",
+    "timer_getoverrun",
+    "move_pages",
+    "pivot_root",
+    "fchmod",
+    "signal",
+    "msgsnd",
+    "epoll_create1",
+    "stat",
+    "fallocate",
+    "rt_sigreturn",
+    "statfs",
+    "tgkill",
+    "epoll_ctl_old",
+    "gettid",
+    "setfsuid",
+    "setreuid",
+    "setresuid",
+    "getresuid",
+    "geteuid",
+    "arch_prctl",
+    "socketpair",
+    "getppid",
+    "fsconfig",
+    "rt_sigsuspend",
+    "getpagesize",
+    "sysfs",
+    "stty",
+    "gtty",
+    "sync",
+    "syncfs",
+    "rt_sigpending",
+    "clone3",
     "socketcall",
-    "getrusage",
-    "vserver",
-    "fstat",
-    "bind",
+    "rt_sigaction",
+    "epoll_ctl",
+    "ppoll",
+    "sethostname",
+    "fchmodat",
+    "sched_setaffinity",
+    "sched_getaffinity",
+    "open",
+    "sched_yield",
+    "dup",
+    "pciconfig_write",
+    "pciconfig_iobase",
+    "pciconfig_read",
+    "acct",
     "sched_get_priority_max",
-    "msgget",
+    "fstat",
+    "getrusage",
+    "bind",
     "fstatfs",
-    "setresuid32",
-    "getresuid32",
+    "mmap",
+    "pidfd_send_signal",
+    "creat",
+    "timer_settime64",
+    "timer_gettime64",
+    "setdomainname",
+    "newfstatat",
+    "syslog",
+    "getpgrp",
+    "timerfd_settime64",
+    "timerfd_gettime64",
+    "close_range",
+    "clock_getres",
+    "clock_settime",
+    "clock_gettime",
+    "fcntl",
+    "sync_file_range",
+    "io_destroy",
+    "fork",
+    "pidfd_open",
+    "kexec_file_load",
+    "lstat",
+    "getrandom",
+    "sched_rr_get_interval_time64",
+    "kill",
+    "rename",
+    "setuid",
+    "getuid",
+    "rt_sigtimedwait_time64",
+    "ioctl",
+    "pkey_free",
+    "bpf",
+    "mbind",
     "semtimedop",
-    "openat2",
+    "mpx",
+    "ptrace",
+    "mknod",
+    "link",
+    "setxattr",
+    "getxattr",
+    "keyctl",
+    "getcwd",
+    "eventfd",
+    "setsockopt",
+    "getsockopt",
+    "io_setup",
+    "create_module",
+    "mkdir",
     "utimes",
     "utime",
-    "msgrcv",
-    "pselect6_time64",
-    "sendfile64",
-    "creat",
-    "mpx",
-    "io_uring_setup",
-    "get_kernel_syms",
-    "getppid",
-    "nfsservctl",
-    "rename",
-    "ftruncate",
-    "eventfd2",
-    "io_cancel",
-    "io_setup",
-    "pkey_mprotect",
-    "kexec_load",
-    "mmap",
-    "bpf",
-    "recv",
-    "getdents64",
-    "mbind",
-    "chmod",
-    "nanosleep",
-    "process_vm_readv",
-    "process_vm_writev",
-    "fsmount",
-    "arm_sync_file_range",
-    "ptrace",
-    "truncate64",
-    "fcntl",
-    "getsockname",
-    "sigsuspend",
-    "getpgrp",
-    "syscall",
-    "lstat",
-    "security",
-    "chroot",
-    "lseek",
-    "flock",
-    "create_module",
-    "ioctl",
-    "capget",
+    "lock",
+    "futimesat",
     "restart_syscall",
-    "ulimit",
-    "_llseek",
-    "settimeofday",
-    "gettimeofday",
-    "perf_event_open",
-    "mlock2",
-    "mlock",
-    "fanotify_mark",
-    "afs_syscall",
-    "epoll_wait",
+    "io_cancel",
+    "rt_sigprocmask",
+    "tkill",
+    "setresgid32",
+    "getresgid32",
     "prctl",
-    "epoll_wait_old",
-    "readlinkat",
-    "unshare",
-    "renameat",
-    "move_mount",
-    "personality",
-    "landlock_add_rule",
-    "ppoll_time64",
-    "uname",
-    "landlock_create_ruleset",
-    "landlock_restrict_self",
-    "fchownat",
-    "olduname",
-    "sigreturn",
-    "s390_pci_mmio_read",
-    "s390_pci_mmio_write",
-    "shmctl",
+    "fanotify_init",
     "flistxattr",
-    "write",
-    "request_key",
-    "fchown",
-    "epoll_pwait",
-    "execve",
+    "recvmsg",
+    "renameat",
+    "setxattrat",
+    "getxattrat",
+    "kexec_load",
+    "mremap",
+    "mknodat",
+    "shmdt",
+    "mseal",
+    "lookup_dcookie",
+    "semget",
+    "getpeername",
+    "s390_guarded_storage",
+    "mkdirat",
+    "modify_ldt",
+    "rt_sigqueueinfo",
+    "rt_tgsigqueueinfo",
+    "ulimit",
+    "setgid",
+    "getgid",
     "remap_file_pages",
-    "setpriority",
-    "getpriority",
+    "recvmmsg",
+    "fsmount",
+    "tuxcall",
+    "clock_adjtime",
+    "pselect6",
+    "vm86old",
+    "sigsuspend",
+    "llistxattr",
+    "msgget",
+    "mq_timedsend",
+    "madvise",
+    "pkey_mprotect",
+    "landlock_add_rule",
+    "exit",
+    "landlock_create_ruleset",
+    "unshare",
+    "landlock_restrict_self",
+    "putpmsg",
+    "kcmp",
     "setfsgid32",
     "setregid32",
-    "rmdir",
-    "inotify_init",
-    "lookup_dcookie",
-    "symlinkat",
-    "inotify_init1",
-    "setitimer",
-    "getitimer",
-    "readahead",
-    "_newselect",
-    "mmap2",
-    "vfork",
-    "getpeername",
-    "riscv_flush_icache",
-    "brk",
-    "fsopen",
-    "recvmmsg_time64",
-    "io_pgetevents",
-    "splice",
-    "finit_module",
-    "clock_settime64",
-    "clock_gettime64",
-    "listen",
-    "sigpending",
-    "clock_getres_time64",
-    "umount",
-    "munmap",
-    "readlink",
-    "kcmp",
-    "io_getevents",
-    "utimensat",
-    "llistxattr",
-    "pkey_alloc",
-    "tuxcall",
-    "lchown",
-    "getcpu",
-    "waitid",
-    "mlockall",
-    "exit",
-    "name_to_handle_at",
-    "add_key",
-    "execveat",
-    "swapoff",
-    "epoll_pwait2",
-    "semtimedop_time64",
-    "spu_run",
-    "getegid32",
-    "set_thread_area",
-    "get_thread_area",
-    "fdatasync",
-    "vmsplice",
-    "symlink",
-    "ustat",
-    "waitpid",
-    "clock_nanosleep",
-    "sigaction",
-    "ugetrlimit",
-    "mq_timedsend",
-    "umask",
-    "rt_tgsigqueueinfo",
-    "rt_sigqueueinfo",
     "mq_timedreceive",
-    "removexattr",
-    "mq_open",
-    "renameat2",
-    "ftruncate64",
-    "putpmsg",
-    "mq_notify",
-    "sigprocmask",
-    "accept4",
+    "sysmips",
+    "_newselect",
+    "syscall",
+    "nanosleep",
+    "setpriority",
+    "getpriority",
+    "recvfrom",
+    "ustat",
+    "getcpu",
+    "fsopen",
+    "capget",
+    "chmod",
+    "move_mount",
+    "sigpending",
+    "sendfile64",
+    "chroot",
+    "subpage_prot",
+    "set_tls",
+    "get_tls",
+    "chdir",
+    "getsockname",
+    "sysinfo",
+    "pkey_alloc",
+    "faccessat2",
+    "ppoll_time64",
+    "io_pgetevents",
+    "shmctl",
+    "vm86",
+    "s390_runtime_instr",
+    "settimeofday",
+    "gettimeofday",
+    "uname",
+    "ugetrlimit",
+    "lsm_set_self_attr",
+    "lsm_get_self_attr",
+    "brk",
+    "set_tid_address",
+    "swapoff",
+    "pselect6_time64",
+    "lseek",
+    "_llseek",
+    "flock",
+    "userfaultfd",
+    "fspick",
+    "semtimedop_time64",
+    "truncate64",
     "io_submit",
-    "oldolduname",
+    "readlinkat",
+    "sigreturn",
+    "sigprocmask",
+    "io_uring_enter",
+    "dup3",
+    "mlockall",
+    "io_uring_register",
+    "ftruncate",
+    "nfsservctl",
+    "lsm_list_modules",
     "fsetxattr",
     "fgetxattr",
-    "mkdir",
-    "userfaultfd",
-    "shmget",
-    "init_module",
-    "arm_fadvise64_64",
-    "setgroups",
-    "getgroups",
-    "usr26",
-    "shmat",
-    "munlock",
-    "usr32",
-    "tgkill",
-    "mq_getsetattr",
-    "sigaltstack",
-    "swapcontext",
-    "ssetmask",
-    "sgetmask",
-    "signalfd4",
-    "subpage_prot",
-    "fremovexattr",
-    "umount2",
-    "modify_ldt",
-    "set_robust_list",
-    "get_robust_list",
-    "dup2",
-    "preadv",
-    "munlockall",
+    "epoll_wait",
+    "write",
+    "mlock",
+    "clock_settime64",
+    "clock_gettime64",
+    "epoll_wait_old",
+    "vmsplice",
+    "clock_getres_time64",
+    "execve",
+    "readahead",
+    "listen",
+    "setresuid32",
+    "getresuid32",
+    "munmap",
+    "utimensat",
+    "getdents64",
+    "io_uring_setup",
+    "listxattrat",
+    "atomic_barrier",
+    "spu_create",
     "lsetxattr",
     "lgetxattr",
     "listxattr",
-    "preadv2",
-    "setuid32",
-    "getuid32",
+    "personality",
+    "set_mempolicy_home_node",
+    "riscv_flush_icache",
+    "usr26",
+    "epoll_pwait",
+    "waitid",
+    "mq_getsetattr",
+    "inotify_init",
+    "statmount",
+    "sigaction",
+    "fanotify_mark",
+    "oldolduname",
+    "mq_open",
+    "fchownat",
+    "init_module",
+    "atomic_cmpxchg_32",
+    "sigaltstack",
+    "execveat",
+    "futex_requeue",
+    "inotify_init1",
+    "dup2",
+    "readv",
+    "olduname",
+    "accept4",
     "setfsuid32",
-    "mkdirat",
     "setreuid32",
     "query_module",
-    "sysinfo",
-    "s390_guarded_storage",
-    "setgroups32",
-    "getgroups32",
+    "name_to_handle_at",
+    "msgrcv",
+    "vserver",
+    "recv",
+    "sync_file_range2",
+    "signalfd4",
+    "shmat",
+    "listmount",
+    "waitpid",
+    "swapcontext",
+    "fdatasync",
+    "clock_adjtime64",
+    "recvmmsg_time64",
+    "quotactl_fd",
+    "statx",
+    "futex",
+    "mq_timedsend_time64",
+    "perf_event_open",
+    "munlockall",
+    "umount",
+    "umask",
+    "readlink",
+    "setgroups",
+    "getgroups",
+    "removexattrat",
+    "fchown",
+    "mq_timedreceive_time64",
+    "mq_notify",
+    "process_vm_readv",
+    "process_vm_writev",
+    "removexattr",
+    "quotactl",
+    "symlinkat",
     "cacheflush",
+    "clock_nanosleep",
+    "futex_time64",
+    "io_getevents",
+    "s390_sthyi",
+    "exit_group",
+    "lchown",
+    "munlock",
+    "io_pgetevents_time64",
+    "ssetmask",
+    "sgetmask",
+    "uselib",
+    "pipe2",
+    "vfork",
+    "uretprobe",
+    "adjtimex",
+    "shmget",
+    "ftruncate64",
+    "request_key",
+    "security",
+    "getegid32",
+    "multiplexer",
     "swapon",
-    "s390_runtime_instr",
-    "lremovexattr",
+    "set_mempolicy",
+    "get_mempolicy",
+    "utimensat_time64",
+    "prlimit64",
+    "fremovexattr",
+    "get_kernel_syms",
+    "futex_wait",
+    "afs_syscall",
+    "unlinkat",
     "stat64",
     "statfs64",
-    "io_pgetevents_time64",
-    "sys_debug_setcontext",
-    "utimensat_time64",
-    "writev",
+    "openat2",
+    "lremovexattr",
+    "symlink",
+    "mmap2",
+    "arm_sync_file_range",
+    "fcntl64",
     "clock_nanosleep_time64",
-    "chdir",
-    "clock_adjtime",
-    "futimesat",
+    "fstat64",
+    "fstatfs64",
+    "set_robust_list",
+    "get_robust_list",
+    "chown",
+    "epoll_pwait2",
+    "fchmodat2",
+    "preadv",
+    "lstat64",
+    "set_thread_area",
+    "get_thread_area",
     "geteuid32",
-    "fspick",
+    "fstatat64",
+    "open_by_handle_at",
+    "break",
+    "pread64",
+    "spu_run",
     "inotify_rm_watch",
+    "mlock2",
+    "unlink",
+    "breakpoint",
+    "eventfd2",
+    "vhangup",
+    "setgroups32",
+    "getgroups32",
+    "pwritev",
+    "inotify_add_watch",
     "fadvise64",
     "fadvise64_64",
-    "futex_time64",
-    "s390_sthyi",
-    "chown",
-    "fcntl64",
-    "vhangup",
-    "mq_timedsend_time64",
-    "statx",
-    "fstat64",
-    "futex",
-    "mq_timedreceive_time64",
-    "fstatfs64",
-    "clone3",
-    "dup3",
+    "futex_wake",
+    "renameat2",
+    "wait4",
+    "setuid32",
+    "getuid32",
+    "pwrite64",
+    "riscv_hwprobe",
+    "sys_debug_setcontext",
+    "usr32",
+    "futex_waitv",
+    "arm_fadvise64_64",
+    "writev",
     "setgid32",
     "getgid32",
-    "exit_group",
-    "inotify_add_watch",
-    "open_by_handle_at",
-    "pread64",
-    "fchown32",
-    "lstat64",
-    "fstatat64",
-    "uselib",
-    "multiplexer",
-    "adjtimex",
-    "quotactl_fd",
-    "lchown32",
+    "add_key",
     "switch_endian",
+    "map_shadow_stack",
     "shutdown",
-    "futex_waitv",
-    "break",
-    "breakpoint",
-    "wait4",
-    "quotactl",
-    "pwritev",
-    "prlimit64",
-    "pwritev2",
-    "clock_adjtime64",
-    "mq_unlink",
-    "unlinkat",
-    "pwrite64",
-    "unlink",
     "bdflush",
+    "mq_unlink",
+    "fchown32",
+    "preadv2",
+    "lchown32",
+    "umount2",
+    "pwritev2",
     "chown32"
   };
 #define stringpool ((const char *) &stringpool_contents)
 
 static const struct arch_syscall_table wordlist[] =
   {
-#line 462 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str0,431,315,276,276,342,77,306,265,269,293,293,284,284,77,308,308},
-#line 374 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str1,343,__PNR_send,__PNR_send,__PNR_send,289,__PNR_send,178,__PNR_send,__PNR_send,58,58,334,334,__PNR_send,__PNR_send,__PNR_send},
-#line 338 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str2,307,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,__PNR_rtas,255,255,__PNR_rtas,__PNR_rtas,__PNR_rtas},
-#line 478 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str3,447,43,100,100,43,153,43,98,98,43,43,43,43,153,43,43},
-#line 464 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str4,433,13,201,201,__PNR_time,__PNR_time,13,__PNR_time,__PNR_time,13,13,13,13,__PNR_time,13,__PNR_time},
-#line 174 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str5,143,112,__PNR_idle,__PNR_idle,__PNR_idle,__PNR_idle,112,__PNR_idle,__PNR_idle,__PNR_idle,__PNR_idle,112,112,__PNR_idle,112,112},
-#line 316 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str6,285,3,0,0,3,63,3,0,0,3,3,3,3,63,3,3},
-#line 406 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str7,375,66,112,112,66,157,66,110,110,66,66,66,66,157,66,66},
-#line 163 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str8,132,147,124,124,147,156,151,122,122,147,147,147,147,156,147,147},
-#line 381 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str9,350,139,123,123,139,152,139,121,121,139,139,139,139,152,139,216},
-#line 137 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str10,106,50,108,108,50,177,50,106,106,50,50,50,50,177,50,202},
-#line 396 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str11,365,71,114,114,71,143,71,112,112,71,71,71,71,143,71,204},
-#line 398 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str12,367,170,119,119,170,149,190,117,117,170,170,169,169,149,170,210},
-#line 156 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str13,125,171,120,120,171,150,191,118,118,171,171,170,170,150,171,211},
-#line 467 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str14,436,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,318,277,281,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,__PNR_timerfd,317,317},
-#line 368 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str15,337,82,23,23,__PNR_select,__PNR_select,__PNR_select,__PNR_select,__PNR_select,__PNR_select,__PNR_select,82,82,__PNR_select,__PNR_select,142},
-#line 378 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str16,347,370,46,518,296,211,179,45,45,183,183,341,341,211,370,370},
-#line 318 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str17,287,89,__PNR_readdir,__PNR_readdir,__PNR_readdir,__PNR_readdir,89,__PNR_readdir,__PNR_readdir,__PNR_readdir,__PNR_readdir,89,89,__PNR_readdir,89,89},
-#line 476 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str18,445,260,223,223,258,110,258,217,221,251,251,241,241,110,255,255},
-#line 474 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str19,443,261,224,224,259,108,259,218,222,252,252,242,242,108,256,256},
-#line 393 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str20,362,346,308,308,375,268,344,303,308,328,328,350,350,268,339,339},
-#line 471 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str21,440,325,286,286,353,86,323,282,286,307,307,311,311,86,320,320},
-#line 469 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str22,438,326,287,287,354,87,322,281,285,308,308,312,312,87,321,321},
-#line 100 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str23,69,133,81,81,133,50,133,79,79,133,133,133,133,50,133,133},
-#line 362 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str24,331,351,314,314,380,274,349,309,313,334,334,355,355,274,345,345},
-#line 354 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str25,323,352,315,315,381,275,350,310,314,335,335,356,356,275,346,346},
-#line 377 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str26,346,345,307,538,374,269,343,302,307,329,329,349,349,269,358,358},
-#line 345 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str27,314,177,128,523,177,137,197,126,126,177,177,176,176,137,177,177},
-#line 364 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str28,333,156,144,144,156,119,160,141,141,156,156,156,156,119,156,156},
-#line 358 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str29,327,157,145,145,157,120,161,142,142,157,157,157,157,120,157,157},
-#line 468 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str30,437,322,283,283,350,85,321,280,284,306,306,306,306,85,319,319},
-#line 465 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str31,434,259,222,526,257,107,257,216,220,250,250,240,240,107,254,254},
-#line 224 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str32,193,447,447,447,__PNR_memfd_secret,447,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret,__PNR_memfd_secret},
-#line 363 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str33,332,154,142,142,154,118,158,139,139,154,154,154,154,118,154,154},
-#line 355 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str34,324,155,143,143,155,121,159,140,140,155,155,155,155,121,155,155},
-#line 286 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str35,255,42,22,22,42,__PNR_pipe,42,21,21,42,42,42,42,__PNR_pipe,42,42},
-#line 304 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str36,273,44,__PNR_prof,__PNR_prof,__PNR_prof,__PNR_prof,44,__PNR_prof,__PNR_prof,__PNR_prof,__PNR_prof,44,44,__PNR_prof,__PNR_prof,__PNR_prof},
-#line 223 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str37,192,356,319,319,385,279,354,314,318,340,340,360,360,279,350,350},
-#line 195 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str38,164,117,__PNR_ipc,__PNR_ipc,__PNR_ipc,__PNR_ipc,117,__PNR_ipc,__PNR_ipc,__PNR_ipc,__PNR_ipc,117,117,__PNR_ipc,117,117},
-#line 125 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str39,94,118,74,74,118,82,118,72,72,118,118,118,118,82,118,118},
-#line 226 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str40,195,218,27,27,219,232,217,26,26,72,72,206,206,232,218,218},
-#line 379 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str41,348,369,44,44,290,206,180,43,43,82,82,335,335,206,369,369},
-#line 283 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str42,252,438,438,438,438,438,438,438,438,438,438,438,438,438,438,438},
-#line 75 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str43,44,129,176,176,129,106,129,169,169,129,129,129,129,106,129,129},
-#line 256 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str44,225,144,26,26,144,227,144,25,25,144,144,144,144,227,144,144},
-#line 184 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str45,153,101,173,173,__PNR_ioperm,__PNR_ioperm,101,__PNR_ioperm,__PNR_ioperm,__PNR_ioperm,__PNR_ioperm,101,101,__PNR_ioperm,101,__PNR_ioperm},
-#line 237 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str46,206,21,165,165,21,40,21,160,160,21,21,21,21,40,21,21},
-#line 189 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str47,158,289,251,251,314,30,314,273,277,267,267,273,273,30,282,282},
-#line 188 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str48,157,290,252,252,315,31,315,274,278,268,268,274,274,31,283,283},
-#line 322 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str49,291,88,169,169,88,142,88,164,164,88,88,88,88,142,88,88},
-#line 300 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str50,269,440,440,440,440,440,440,440,440,440,440,440,440,440,440,440},
-#line 301 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str51,270,448,448,448,448,448,448,448,448,448,448,448,448,448,448,448},
-#line 69 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str52,38,6,3,3,6,57,6,3,3,6,6,6,6,57,6,6},
-#line 375 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str53,344,187,40,40,187,71,207,39,39,122,122,186,186,71,187,187},
-#line 71 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str54,40,362,42,42,283,203,170,41,41,31,31,328,328,203,362,362},
-#line 238 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str55,207,442,442,442,442,442,442,442,442,442,442,442,442,442,442,442},
-#line 33 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str56,2,33,21,21,33,__PNR_access,33,20,20,33,33,33,33,__PNR_access,33,33},
-#line 51 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str57,20,185,126,126,185,91,205,124,124,107,107,184,184,91,185,185},
-#line 466 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str58,435,263,226,226,261,111,261,220,224,254,254,244,244,111,258,258},
-#line 404 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str59,373,75,160,160,75,164,75,155,155,75,75,75,75,164,75,75},
-#line 160 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str60,129,76,97,97,__PNR_getrlimit,163,76,95,95,76,76,76,76,163,76,191},
-#line 399 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str61,368,210,__PNR_setresgid32,__PNR_setresgid32,210,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,__PNR_setresgid32,210,__PNR_setresgid32},
-#line 157 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str62,126,211,__PNR_getresgid32,__PNR_getresgid32,211,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,__PNR_getresgid32,211,__PNR_getresgid32},
-#line 430 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str63,399,359,41,41,281,198,183,40,40,17,17,326,326,198,359,359},
-#line 442 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str64,411,25,__PNR_stime,__PNR_stime,__PNR_stime,__PNR_stime,25,__PNR_stime,__PNR_stime,25,25,25,25,__PNR_stime,25,__PNR_stime},
-#line 266 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str65,235,34,__PNR_nice,__PNR_nice,34,__PNR_nice,34,__PNR_nice,__PNR_nice,34,34,34,34,__PNR_nice,34,34},
-#line 126 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str66,95,35,__PNR_ftime,__PNR_ftime,__PNR_ftime,__PNR_ftime,35,__PNR_ftime,__PNR_ftime,__PNR_ftime,__PNR_ftime,35,35,__PNR_ftime,__PNR_ftime,__PNR_ftime},
-#line 306 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str67,275,308,270,270,335,72,301,260,264,273,273,280,280,72,301,301},
-#line 135 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str68,104,141,78,78,141,__PNR_getdents,141,76,76,141,141,141,141,__PNR_getdents,141,141},
-#line 187 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str69,156,110,172,172,__PNR_iopl,__PNR_iopl,110,__PNR_iopl,__PNR_iopl,__PNR_iopl,__PNR_iopl,110,110,__PNR_iopl,__PNR_iopl,__PNR_iopl},
-#line 67 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str70,36,120,56,56,120,220,120,55,55,120,120,120,120,220,120,120},
-#line 458 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str71,427,135,139,139,135,__PNR_sysfs,135,136,136,135,135,135,135,__PNR_sysfs,135,135},
-#line 359 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str72,328,161,148,148,161,127,165,145,145,161,161,161,161,127,161,161},
-#line 255 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str73,224,400,69,69,301,189,400,67,67,188,188,400,400,189,400,400},
-#line 454 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str74,423,344,306,306,373,267,342,301,306,327,327,348,348,267,338,338},
-#line 276 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str75,245,428,428,428,428,428,428,428,428,428,428,428,428,428,428,428},
-#line 241 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str76,210,125,10,10,125,226,125,10,10,125,125,125,125,226,125,125},
-#line 277 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str77,246,29,34,34,29,__PNR_pause,29,33,33,29,29,29,29,__PNR_pause,29,29},
-#line 343 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str78,312,173,15,513,173,139,193,211,211,173,173,172,172,139,173,173},
-#line 451 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str79,420,36,162,162,36,81,36,157,157,36,36,36,36,81,36,36},
-#line 473 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str80,442,262,225,225,260,109,260,219,223,253,253,243,243,109,257,257},
-#line 371 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str81,340,__PNR_semop,65,65,298,193,__PNR_semop,63,63,185,185,__PNR_semop,__PNR_semop,193,__PNR_semop,__PNR_semop},
-#line 480 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str82,449,92,76,76,92,45,92,74,74,92,92,92,92,45,92,92},
-#line 222 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str83,191,375,324,324,389,283,358,318,322,343,343,365,365,283,356,356},
-#line 366 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str84,335,354,317,317,383,277,352,312,316,338,338,358,358,277,348,348},
-#line 31 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str85,0,__PNR_accept,43,43,285,202,168,42,42,35,35,330,330,202,__PNR_accept,__PNR_accept},
-#line 357 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str86,326,160,147,147,160,126,164,144,144,160,160,160,160,126,160,160},
-#line 411 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str87,380,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,983045,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls,__PNR_set_tls},
-#line 169 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str88,138,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,983046,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls,__PNR_get_tls},
-#line 369 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str89,338,394,66,66,300,191,394,64,64,187,187,394,394,191,394,394},
-#line 101 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str90,70,94,91,91,94,52,94,89,89,94,94,94,94,52,94,94},
-#line 365 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str91,334,158,24,24,158,124,162,23,23,158,158,158,158,124,158,158},
-#line 361 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str92,330,241,203,203,241,122,239,195,195,211,211,222,222,122,239,239},
-#line 353 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str93,322,242,204,204,242,123,240,196,196,212,212,223,223,123,240,240},
-#line 225 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str94,194,294,256,256,400,238,287,246,250,272,272,258,258,238,287,287},
-#line 292 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str95,261,168,7,7,168,__PNR_poll,188,7,7,168,168,167,167,__PNR_poll,168,168},
-#line 115 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str96,84,431,431,431,431,431,431,431,431,431,431,431,431,431,431,431},
-#line 252 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str97,221,402,71,71,304,187,402,69,69,191,191,402,402,187,402,402},
-#line 456 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str98,425,149,156,__PNR__sysctl,149,__PNR__sysctl,153,152,152,149,149,149,149,__PNR__sysctl,149,149},
-#line 460 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str99,429,103,103,103,103,116,103,101,101,103,103,103,103,116,103,103},
-#line 288 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str100,257,217,155,155,218,41,216,151,151,67,67,203,203,41,217,217},
-#line 79 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str101,48,254,213,213,250,__PNR_epoll_create,248,207,207,224,224,236,236,__PNR_epoll_create,249,249},
-#line 409 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str102,378,258,218,218,256,96,252,212,213,237,237,232,232,96,252,252},
-#line 340 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str103,309,176,127,522,176,136,196,125,125,176,176,175,175,136,176,176},
-#line 80 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str104,49,329,291,291,357,20,326,285,289,311,311,315,315,20,327,327},
-#line 93 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str105,62,307,269,269,334,48,300,259,263,287,287,298,298,48,300,300},
-#line 443 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str106,412,31,__PNR_stty,__PNR_stty,__PNR_stty,__PNR_stty,31,__PNR_stty,__PNR_stty,__PNR_stty,__PNR_stty,31,31,__PNR_stty,__PNR_stty,__PNR_stty},
-#line 173 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str107,142,32,__PNR_gtty,__PNR_gtty,__PNR_gtty,__PNR_gtty,32,__PNR_gtty,__PNR_gtty,__PNR_gtty,__PNR_gtty,32,32,__PNR_gtty,__PNR_gtty,__PNR_gtty},
-#line 412 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str108,381,23,105,105,23,146,23,103,103,23,23,23,23,146,23,213},
-#line 170 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str109,139,24,102,102,24,174,24,100,100,24,24,24,24,174,24,199},
-#line 38 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str110,7,27,37,37,__PNR_alarm,__PNR_alarm,27,37,37,27,27,27,27,__PNR_alarm,27,27},
-#line 240 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str111,209,317,279,533,344,239,308,267,271,295,295,301,301,239,310,310},
-#line 273 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str112,242,295,257,257,322,56,288,247,251,275,275,286,286,56,288,288},
-#line 270 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str113,239,18,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat,18,18,__PNR_oldstat,__PNR_oldstat,__PNR_oldstat},
-#line 267 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str114,236,28,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat,28,28,__PNR_oldfstat,__PNR_oldfstat,__PNR_oldfstat},
-#line 424 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str115,393,321,282,282,349,__PNR_signalfd,317,276,280,302,302,305,305,__PNR_signalfd,316,316},
-#line 72 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str116,41,377,326,326,391,285,360,320,324,346,346,379,379,285,375,375},
-#line 392 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str117,361,450,450,450,450,450,450,450,450,450,450,450,450,450,450,450},
-#line 503 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str118,472,166,__PNR_vm86,__PNR_vm86,__PNR_vm86,__PNR_vm86,113,__PNR_vm86,__PNR_vm86,__PNR_vm86,__PNR_vm86,113,113,__PNR_vm86,__PNR_vm86,__PNR_vm86},
-#line 305 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str119,274,98,__PNR_profil,__PNR_profil,__PNR_profil,__PNR_profil,98,__PNR_profil,__PNR_profil,__PNR_profil,__PNR_profil,98,98,__PNR_profil,__PNR_profil,__PNR_profil},
-#line 182 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str120,151,246,207,207,244,1,242,201,201,216,216,228,228,1,244,244},
-#line 268 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str121,237,84,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat,84,84,__PNR_oldlstat,__PNR_oldlstat,__PNR_oldlstat},
-#line 272 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str122,241,5,2,2,5,__PNR_open,5,2,2,5,5,5,5,__PNR_open,5,5},
-#line 87 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str123,56,323,284,284,351,__PNR_eventfd,319,278,282,304,304,307,307,__PNR_eventfd,318,318},
-#line 279 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str124,248,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read,272,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read,198,198,__PNR_pciconfig_read,__PNR_pciconfig_read,__PNR_pciconfig_read},
-#line 280 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str125,249,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write,273,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write,199,199,__PNR_pciconfig_write,__PNR_pciconfig_write,__PNR_pciconfig_write},
-#line 278 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str126,247,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,271,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,200,200,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase,__PNR_pciconfig_iobase},
-#line 339 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str127,308,174,13,512,174,134,194,13,13,174,174,173,173,134,174,174},
-#line 452 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str128,421,314,277,277,__PNR_sync_file_range,84,305,264,268,292,292,__PNR_sync_file_range,__PNR_sync_file_range,84,307,307},
-#line 414 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str129,383,226,188,188,226,5,224,180,180,238,238,209,209,5,224,224},
-#line 172 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str130,141,229,191,191,229,8,227,183,183,241,241,212,212,8,227,227},
-#line 287 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str131,256,331,293,293,359,59,328,287,291,313,313,317,317,59,325,325},
-#line 434 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str132,403,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create,279,279,__PNR_spu_create,__PNR_spu_create,__PNR_spu_create},
-#line 134 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str133,103,183,79,79,183,17,203,77,77,110,110,182,182,17,183,183},
-#line 389 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str134,358,74,170,170,74,161,74,165,165,74,74,74,74,161,74,74},
-#line 208 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str135,177,303,265,265,330,37,296,255,259,283,283,294,294,37,296,296},
-#line 97 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str136,66,324,285,285,352,47,320,279,283,305,305,309,309,47,314,314},
-#line 82 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str137,51,__PNR_epoll_ctl_old,214,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old,__PNR_epoll_ctl_old},
-#line 39 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str138,8,384,158,158,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl,__PNR_arch_prctl},
-#line 102 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str139,71,306,268,268,333,53,299,258,262,286,286,297,297,53,299,299},
-#line 229 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str140,198,14,133,133,14,__PNR_mknod,14,131,131,14,14,14,14,__PNR_mknod,14,14},
-#line 284 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str141,253,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-#line 285 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str142,254,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424},
-#line 432 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str143,401,360,53,53,288,199,184,52,52,56,56,333,333,199,360,360},
-#line 327 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str144,296,372,47,519,297,212,177,46,46,184,184,342,342,212,372,372},
-#line 380 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str145,349,121,171,171,121,162,121,166,166,121,121,121,121,162,121,121},
-#line 293 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str146,262,309,271,271,336,73,302,261,265,274,274,281,281,73,302,302},
-#line 155 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str147,124,355,318,318,384,278,353,313,317,339,339,359,359,278,349,349},
-#line 437 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str148,406,106,4,4,106,__PNR_stat,106,4,4,18,18,106,106,__PNR_stat,106,106},
-#line 423 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str149,392,48,__PNR_signal,__PNR_signal,__PNR_signal,__PNR_signal,48,__PNR_signal,__PNR_signal,48,48,48,48,__PNR_signal,48,48},
-#line 439 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str150,408,99,137,137,99,43,99,134,134,99,99,99,99,43,99,99},
-#line 94 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str151,63,439,439,439,439,439,439,439,439,439,439,439,439,439,439,439},
-#line 48 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str152,17,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,148,198,198,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl,__PNR_cachectl},
-#line 325 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str153,294,337,299,537,365,243,335,294,298,319,319,343,343,243,357,357},
-#line 200 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str154,169,37,62,62,37,129,37,60,60,37,37,37,37,129,37,37},
-#line 167 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str155,136,224,186,186,224,178,222,178,178,206,206,207,207,178,236,236},
-#line 98 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str156,67,338,300,300,367,262,336,295,300,322,322,323,323,262,332,332},
-#line 383 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str157,352,138,122,122,138,151,138,120,120,138,138,138,138,151,138,215},
-#line 139 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str158,108,49,107,107,49,175,49,105,105,49,49,49,49,175,49,201},
-#line 402 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str159,371,70,113,113,70,145,70,111,111,70,70,70,70,145,70,203},
-#line 400 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str160,369,164,117,117,164,147,185,115,115,164,164,164,164,147,164,208},
-#line 158 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str161,127,165,118,118,165,148,186,116,116,165,165,165,165,148,165,209},
-#line 461 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str162,430,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,149,199,199,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips,__PNR_sysmips},
-#line 263 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str163,232,__PNR_newfstatat,262,262,__PNR_newfstatat,79,__PNR_newfstatat,252,256,__PNR_newfstatat,__PNR_newfstatat,__PNR_newfstatat,291,79,__PNR_newfstatat,293},
-#line 344 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str164,313,179,130,130,179,133,199,128,128,179,179,178,178,133,179,179},
-#line 341 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str165,310,175,14,14,175,135,195,14,14,175,175,174,174,135,175,175},
-#line 113 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str166,82,2,57,57,2,__PNR_fork,2,56,56,2,2,2,2,__PNR_fork,2,2},
-#line 59 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str167,28,266,229,229,264,114,264,223,227,257,257,247,247,114,261,261},
-#line 65 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str168,34,264,227,227,262,112,262,221,225,255,255,245,245,112,259,259},
-#line 61 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str169,30,265,228,228,263,113,263,222,226,256,256,246,246,113,260,260},
-#line 477 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str170,446,409,__PNR_timer_settime64,__PNR_timer_settime64,409,__PNR_timer_settime64,409,__PNR_timer_settime64,409,409,__PNR_timer_settime64,409,__PNR_timer_settime64,__PNR_timer_settime64,409,__PNR_timer_settime64},
-#line 475 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str171,444,408,__PNR_timer_gettime64,__PNR_timer_gettime64,408,__PNR_timer_gettime64,408,__PNR_timer_gettime64,408,408,__PNR_timer_gettime64,408,__PNR_timer_gettime64,__PNR_timer_gettime64,408,__PNR_timer_gettime64},
-#line 197 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str172,166,__PNR_kexec_file_load,320,320,401,294,__PNR_kexec_file_load,__PNR_kexec_file_load,__PNR_kexec_file_load,355,355,382,382,294,381,381},
-#line 472 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str173,441,411,__PNR_timerfd_settime64,__PNR_timerfd_settime64,411,__PNR_timerfd_settime64,411,__PNR_timerfd_settime64,411,411,__PNR_timerfd_settime64,411,__PNR_timerfd_settime64,__PNR_timerfd_settime64,411,__PNR_timerfd_settime64},
-#line 470 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str174,439,410,__PNR_timerfd_gettime64,__PNR_timerfd_gettime64,410,__PNR_timerfd_gettime64,410,__PNR_timerfd_gettime64,410,410,__PNR_timerfd_gettime64,410,__PNR_timerfd_gettime64,__PNR_timerfd_gettime64,410,__PNR_timerfd_gettime64},
-#line 70 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str175,39,436,436,436,436,436,436,436,436,436,436,436,436,436,436,436},
-#line 504 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str176,473,113,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old,__PNR_vm86old},
-#line 251 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str177,220,163,25,25,163,216,167,24,24,163,163,163,163,216,163,163},
-#line 76 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str178,45,41,32,32,41,23,41,31,31,41,41,41,41,23,41,41},
-#line 324 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str179,293,371,45,517,292,207,176,44,44,123,123,337,337,207,371,371},
-#line 81 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str180,50,255,233,233,251,21,249,208,208,225,225,237,237,21,250,250},
-#line 290 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str181,259,382,331,331,396,290,365,325,329,353,353,385,385,290,386,386},
-#line 453 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str182,422,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2,308,308,__PNR_sync_file_range2,__PNR_sync_file_range2,__PNR_sync_file_range2},
-#line 346 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str183,315,421,__PNR_rt_sigtimedwait_time64,__PNR_rt_sigtimedwait_time64,421,__PNR_rt_sigtimedwait_time64,421,__PNR_rt_sigtimedwait_time64,421,421,__PNR_rt_sigtimedwait_time64,421,__PNR_rt_sigtimedwait_time64,__PNR_rt_sigtimedwait_time64,421,__PNR_rt_sigtimedwait_time64},
-#line 407 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str184,376,366,54,541,294,208,181,53,53,181,181,339,339,208,366,366},
-#line 165 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str185,134,365,55,542,295,209,173,54,54,182,182,340,340,209,365,365},
-#line 391 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str186,360,276,238,238,321,237,270,229,233,262,262,261,261,237,270,270},
-#line 147 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str187,116,275,239,239,320,236,269,228,232,261,261,260,260,236,269,269},
-#line 360 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str188,329,423,__PNR_sched_rr_get_interval_time64,__PNR_sched_rr_get_interval_time64,423,__PNR_sched_rr_get_interval_time64,423,__PNR_sched_rr_get_interval_time64,423,423,__PNR_sched_rr_get_interval_time64,423,__PNR_sched_rr_get_interval_time64,__PNR_sched_rr_get_interval_time64,423,__PNR_sched_rr_get_interval_time64},
-#line 207 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str189,176,9,86,86,9,__PNR_link,9,84,84,9,9,9,9,__PNR_link,9,9},
-#line 230 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str190,199,297,259,259,324,33,290,249,253,277,277,288,288,33,290,290},
-#line 220 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str191,189,219,28,28,220,233,218,27,27,119,119,205,205,233,219,219},
-#line 337 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str192,306,386,334,334,398,293,367,327,331,354,354,387,387,293,383,383},
-#line 199 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str193,168,288,250,250,311,219,282,241,245,266,266,271,271,219,280,280},
-#line 151 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str194,120,20,39,39,20,172,20,38,38,20,20,20,20,172,20,20},
-#line 394 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str195,363,57,109,109,57,154,57,107,107,57,57,57,57,154,57,57},
-#line 149 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str196,118,132,121,121,132,155,132,119,119,132,132,132,132,155,132,132},
-#line 192 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str197,161,426,426,426,426,426,426,426,426,426,426,426,426,426,426,426},
-#line 193 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str198,162,427,427,427,427,427,427,427,427,427,427,427,427,427,427,427},
-#line 479 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str199,448,238,200,200,238,130,236,192,192,208,208,208,208,130,237,237},
-#line 418 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str200,387,398,67,67,306,197,398,65,65,193,193,398,398,197,398,398},
-#line 152 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str201,121,188,181,181,__PNR_getpmsg,__PNR_getpmsg,208,174,174,__PNR_getpmsg,__PNR_getpmsg,187,187,__PNR_getpmsg,188,188},
-#line 370 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str202,339,393,64,64,299,190,393,62,62,186,186,393,393,190,393,393},
-#line 321 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str203,290,145,19,515,145,65,145,18,18,145,145,145,145,65,145,145},
-#line 385 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str204,354,46,106,106,46,144,46,104,104,46,46,46,46,144,46,214},
-#line 141 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str205,110,47,104,104,47,176,47,102,102,47,47,47,47,176,47,200},
-#line 34 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str206,3,51,163,163,51,89,51,158,158,51,51,51,51,89,51,51},
-#line 213 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str207,182,53,__PNR_lock,__PNR_lock,__PNR_lock,__PNR_lock,53,__PNR_lock,__PNR_lock,__PNR_lock,__PNR_lock,53,53,__PNR_lock,__PNR_lock,__PNR_lock},
-#line 431 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str208,400,102,__PNR_socketcall,__PNR_socketcall,__PNR_socketcall,__PNR_socketcall,102,__PNR_socketcall,__PNR_socketcall,__PNR_socketcall,__PNR_socketcall,102,102,__PNR_socketcall,102,102},
-#line 162 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str209,131,77,98,98,77,165,77,96,96,77,77,77,77,165,77,77},
-#line 506 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str210,475,273,236,__PNR_vserver,313,__PNR_vserver,277,236,240,__PNR_vserver,__PNR_vserver,__PNR_vserver,__PNR_vserver,__PNR_vserver,__PNR_vserver,__PNR_vserver},
-#line 120 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str211,89,108,5,5,108,80,108,5,5,28,28,108,108,80,108,108},
-#line 43 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str212,12,361,49,49,282,200,169,48,48,22,22,327,327,200,361,361},
-#line 356 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str213,325,159,146,146,159,125,163,143,143,159,159,159,159,125,159,159},
-#line 253 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str214,222,399,68,68,303,186,399,66,66,190,190,399,399,186,399,399},
-#line 123 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str215,92,100,138,138,100,44,100,135,135,100,100,100,100,44,100,100},
-#line 401 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str216,370,208,__PNR_setresuid32,__PNR_setresuid32,208,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,__PNR_setresuid32,208,__PNR_setresuid32},
-#line 159 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str217,128,209,__PNR_getresuid32,__PNR_getresuid32,209,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,__PNR_getresuid32,209,__PNR_getresuid32},
-#line 372 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str218,341,__PNR_semtimedop,220,220,312,192,__PNR_semtimedop,214,215,228,228,__PNR_semtimedop,392,192,__PNR_semtimedop,392},
-#line 274 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str219,243,437,437,437,437,437,437,437,437,437,437,437,437,437,437,437},
-#line 500 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str220,469,271,235,235,269,__PNR_utimes,267,226,230,336,336,251,251,__PNR_utimes,313,313},
-#line 497 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str221,466,30,132,132,__PNR_utime,__PNR_utime,30,130,130,30,30,30,30,__PNR_utime,30,30},
-#line 254 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str222,223,401,70,70,302,188,401,68,68,189,189,401,401,188,401,401},
-#line 307 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str223,276,413,__PNR_pselect6_time64,__PNR_pselect6_time64,413,__PNR_pselect6_time64,413,__PNR_pselect6_time64,413,413,__PNR_pselect6_time64,413,__PNR_pselect6_time64,__PNR_pselect6_time64,413,__PNR_pselect6_time64},
-#line 376 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str224,345,239,__PNR_sendfile64,__PNR_sendfile64,239,__PNR_sendfile64,237,__PNR_sendfile64,219,209,209,226,__PNR_sendfile64,__PNR_sendfile64,223,__PNR_sendfile64},
-#line 73 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str225,42,8,85,85,8,__PNR_creat,8,83,83,8,8,8,8,__PNR_creat,8,8},
-#line 242 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str226,211,56,__PNR_mpx,__PNR_mpx,__PNR_mpx,__PNR_mpx,56,__PNR_mpx,__PNR_mpx,__PNR_mpx,__PNR_mpx,56,56,__PNR_mpx,__PNR_mpx,__PNR_mpx},
-#line 194 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str227,163,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425},
-#line 146 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str228,115,130,177,__PNR_get_kernel_syms,__PNR_get_kernel_syms,__PNR_get_kernel_syms,130,170,170,__PNR_get_kernel_syms,__PNR_get_kernel_syms,130,130,__PNR_get_kernel_syms,130,130},
-#line 153 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str229,122,64,110,110,64,173,64,108,108,64,64,64,64,173,64,64},
-#line 265 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str230,234,169,180,__PNR_nfsservctl,169,42,189,173,173,__PNR_nfsservctl,__PNR_nfsservctl,168,168,42,169,169},
-#line 330 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str231,299,38,82,82,38,__PNR_rename,38,80,80,38,38,38,38,__PNR_rename,38,38},
-#line 127 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str232,96,93,77,77,93,46,93,75,75,93,93,93,93,46,93,93},
-#line 88 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str233,57,328,290,290,356,19,325,284,288,310,310,314,314,19,323,323},
-#line 180 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str234,149,249,210,210,247,3,245,204,204,219,219,231,231,3,247,247},
-#line 190 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str235,159,245,206,543,243,0,241,200,200,215,215,227,227,0,243,243},
-#line 291 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str236,260,380,329,329,394,288,363,323,327,351,351,386,386,288,384,384},
-#line 198 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str237,167,283,246,528,347,104,311,270,274,300,300,268,268,104,277,277},
-#line 234 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str238,203,90,9,9,__PNR_mmap,222,90,9,9,90,90,90,90,222,90,90},
-#line 44 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str239,13,357,321,321,386,280,355,315,319,341,341,361,361,280,351,351},
-#line 323 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str240,292,__PNR_recv,__PNR_recv,__PNR_recv,291,__PNR_recv,175,__PNR_recv,__PNR_recv,98,98,336,336,__PNR_recv,__PNR_recv,__PNR_recv},
-#line 136 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str241,105,220,217,217,217,61,219,308,299,201,201,202,202,61,220,220},
-#line 221 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str242,190,274,237,237,319,235,268,227,231,260,260,259,259,235,268,268},
-#line 53 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str243,22,15,90,90,15,__PNR_chmod,15,88,88,15,15,15,15,__PNR_chmod,15,15},
-#line 262 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str244,231,162,35,35,162,101,166,34,34,162,162,162,162,101,162,162},
-#line 302 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str245,271,347,310,539,376,270,345,304,309,330,330,351,351,270,340,340},
-#line 303 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str246,272,348,311,540,377,271,346,305,310,331,331,352,352,271,341,341},
-#line 117 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str247,86,432,432,432,432,432,432,432,432,432,432,432,432,432,432,432},
-#line 41 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str248,10,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,341,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range,__PNR_arm_sync_file_range},
-#line 308 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str249,277,26,101,521,26,117,26,99,99,26,26,26,26,117,26,26},
-#line 481 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str250,450,193,__PNR_truncate64,__PNR_truncate64,193,__PNR_truncate64,211,__PNR_truncate64,__PNR_truncate64,199,199,193,__PNR_truncate64,__PNR_truncate64,193,__PNR_truncate64},
-#line 106 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str251,75,55,72,72,55,25,55,70,70,55,55,55,55,25,55,55},
-#line 164 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str252,133,367,51,51,286,204,172,50,50,44,44,331,331,204,367,367},
-#line 429 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str253,398,72,__PNR_sigsuspend,__PNR_sigsuspend,72,__PNR_sigsuspend,72,__PNR_sigsuspend,__PNR_sigsuspend,__PNR_sigsuspend,__PNR_sigsuspend,72,72,__PNR_sigsuspend,72,72},
-#line 150 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str254,119,65,111,111,65,__PNR_getpgrp,65,109,109,65,65,65,65,__PNR_getpgrp,65,65},
-#line 455 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str255,424,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,0,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall,__PNR_syscall},
-#line 218 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str256,187,107,6,6,107,__PNR_lstat,107,6,6,84,84,107,107,__PNR_lstat,107,107},
-#line 367 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str257,336,__PNR_security,185,185,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security,__PNR_security},
-#line 56 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str258,25,61,161,161,61,51,61,156,156,61,61,61,61,51,61,61},
-#line 216 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str259,185,19,8,8,19,62,19,8,8,19,19,19,19,62,19,19},
-#line 112 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str260,81,143,73,73,143,32,143,71,71,143,143,143,143,32,143,143},
-#line 74 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str261,43,127,174,__PNR_create_module,__PNR_create_module,__PNR_create_module,127,167,167,__PNR_create_module,__PNR_create_module,127,127,__PNR_create_module,127,127},
-#line 181 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str262,150,54,16,514,54,29,54,15,15,54,54,54,54,29,54,54},
-#line 50 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str263,19,184,125,125,184,90,204,123,123,106,106,183,183,90,184,184},
-#line 334 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str264,303,0,219,219,0,128,253,213,214,0,0,0,0,128,7,7},
 #line 484 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str265,453,58,__PNR_ulimit,__PNR_ulimit,__PNR_ulimit,__PNR_ulimit,58,__PNR_ulimit,__PNR_ulimit,__PNR_ulimit,__PNR_ulimit,58,58,__PNR_ulimit,__PNR_ulimit,__PNR_ulimit},
-#line 212 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str266,181,140,__PNR__llseek,__PNR__llseek,140,__PNR__llseek,140,__PNR__llseek,__PNR__llseek,140,140,140,140,__PNR__llseek,140,__PNR__llseek},
-#line 410 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str267,379,79,164,164,79,170,79,159,159,79,79,79,79,170,79,79},
-#line 168 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str268,137,78,96,96,78,169,78,94,94,78,78,78,78,169,78,78},
-#line 281 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str269,250,336,298,298,364,241,333,292,296,318,318,319,319,241,331,331},
-#line 232 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str270,201,376,325,325,390,284,359,319,323,345,345,378,378,284,374,374},
-#line 231 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str271,200,150,149,149,150,228,154,146,146,150,150,150,150,228,150,150},
-#line 99 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str272,68,339,301,301,368,263,337,296,301,323,323,324,324,263,333,333},
-#line 37 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str273,6,137,183,183,__PNR_afs_syscall,__PNR_afs_syscall,137,176,176,__PNR_afs_syscall,__PNR_afs_syscall,137,137,__PNR_afs_syscall,137,137},
-#line 85 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str274,54,256,232,232,252,__PNR_epoll_wait,250,209,209,226,226,238,238,__PNR_epoll_wait,251,251},
-#line 295 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str275,264,172,157,157,172,167,192,153,153,172,172,171,171,167,172,172},
-#line 86 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str276,55,__PNR_epoll_wait_old,215,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old,__PNR_epoll_wait_old},
-#line 320 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str277,289,305,267,267,332,78,298,257,261,285,285,296,296,78,298,298},
-#line 491 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str278,460,310,272,272,337,97,303,262,266,288,288,282,282,97,303,303},
-#line 331 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str279,300,302,264,264,329,38,295,254,258,282,282,293,293,__PNR_renameat,295,295},
-#line 239 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str280,208,429,429,429,429,429,429,429,429,429,429,429,429,429,429,429},
-#line 282 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str281,251,136,135,135,136,92,136,132,132,136,136,136,136,92,136,136},
-#line 201 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str282,170,445,445,445,445,445,445,445,445,445,445,445,445,445,445,445},
-#line 294 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str283,263,414,__PNR_ppoll_time64,__PNR_ppoll_time64,414,__PNR_ppoll_time64,414,__PNR_ppoll_time64,414,414,__PNR_ppoll_time64,414,__PNR_ppoll_time64,__PNR_ppoll_time64,414,__PNR_ppoll_time64},
-#line 488 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str284,457,122,63,63,122,160,122,61,61,59,59,122,122,160,122,122},
-#line 202 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str285,171,444,444,444,444,444,444,444,444,444,444,444,444,444,444,444},
-#line 203 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str286,172,446,446,446,446,446,446,446,446,446,446,446,446,446,446,446},
-#line 105 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str287,74,298,260,260,325,54,291,250,254,278,278,289,289,54,291,291},
-#line 271 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str288,240,109,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,__PNR_olduname,109,109,__PNR_olduname,__PNR_olduname,__PNR_olduname},
-#line 428 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str289,397,119,__PNR_sigreturn,__PNR_sigreturn,119,__PNR_sigreturn,119,__PNR_sigreturn,__PNR_sigreturn,__PNR_sigreturn,__PNR_sigreturn,119,119,__PNR_sigreturn,119,119},
-#line 349 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str290,318,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,__PNR_s390_pci_mmio_read,353,353},
-#line 350 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str291,319,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,__PNR_s390_pci_mmio_write,352,352},
-#line 417 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str292,386,396,31,31,308,195,396,30,30,195,195,396,396,195,396,396},
-#line 111 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str293,80,234,196,196,234,13,232,188,188,246,246,217,217,13,232,232},
-#line 510 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str294,479,4,1,1,4,64,4,1,1,4,4,4,4,64,4,4},
-#line 333 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str295,302,287,249,249,310,218,281,240,244,265,265,270,270,218,279,279},
-#line 103 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str296,72,95,93,93,95,55,95,91,91,95,95,95,95,55,95,207},
-#line 83 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str297,52,319,281,281,346,22,313,272,276,297,297,303,303,22,312,312},
-#line 89 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str298,58,11,59,520,11,221,11,57,57,11,11,11,11,221,11,11},
-#line 328 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str299,297,257,216,216,253,234,251,210,210,227,227,239,239,234,267,267},
-#line 395 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str300,364,97,141,141,97,140,97,138,138,97,97,97,97,140,97,97},
-#line 154 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str301,123,96,140,140,96,141,96,137,137,96,96,96,96,141,96,96},
-#line 382 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str302,351,216,__PNR_setfsgid32,__PNR_setfsgid32,216,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,__PNR_setfsgid32,216,__PNR_setfsgid32},
-#line 397 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str303,366,204,__PNR_setregid32,__PNR_setregid32,204,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,__PNR_setregid32,204,__PNR_setregid32},
-#line 336 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str304,305,40,84,84,40,__PNR_rmdir,40,82,82,40,40,40,40,__PNR_rmdir,40,40},
-#line 177 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str305,146,291,253,253,316,__PNR_inotify_init,284,243,247,269,269,275,275,__PNR_inotify_init,284,284},
-#line 214 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str306,183,253,212,212,249,18,247,206,206,223,223,235,235,18,110,110},
-#line 450 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str307,419,304,266,266,331,36,297,256,260,284,284,295,295,36,297,297},
-#line 178 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str308,147,332,294,294,360,26,329,288,292,314,314,318,318,26,324,324},
-#line 390 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str309,359,104,38,38,104,103,104,36,36,104,104,104,104,103,104,104},
-#line 145 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str310,114,105,36,36,105,102,105,35,35,105,105,105,105,102,105,105},
-#line 317 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str311,286,225,187,187,225,213,223,179,179,207,207,191,191,213,222,222},
-#line 264 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str312,233,142,__PNR__newselect,__PNR__newselect,142,__PNR__newselect,142,22,22,142,142,142,142,__PNR__newselect,142,__PNR__newselect},
-#line 235 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str313,204,192,__PNR_mmap2,__PNR_mmap2,192,__PNR_mmap2,210,__PNR_mmap2,__PNR_mmap2,89,89,192,__PNR_mmap2,__PNR_mmap2,192,__PNR_mmap2},
-#line 501 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str314,470,190,58,58,190,__PNR_vfork,__PNR_vfork,__PNR_vfork,__PNR_vfork,113,113,189,189,__PNR_vfork,190,190},
-#line 148 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str315,117,368,52,52,287,205,171,51,51,53,53,332,332,205,368,368},
-#line 335 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str316,304,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache,259,__PNR_riscv_flush_icache,__PNR_riscv_flush_icache},
-#line 47 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str317,16,45,12,12,45,214,45,12,12,45,45,45,45,214,45,45},
-#line 118 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str318,87,430,430,430,430,430,430,430,430,430,430,430,430,430,430,430},
-#line 326 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str319,295,417,__PNR_recvmmsg_time64,__PNR_recvmmsg_time64,417,__PNR_recvmmsg_time64,417,__PNR_recvmmsg_time64,417,417,__PNR_recvmmsg_time64,417,__PNR_recvmmsg_time64,__PNR_recvmmsg_time64,417,__PNR_recvmmsg_time64},
-#line 185 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str320,154,385,333,333,399,292,368,328,332,350,350,388,388,292,382,382},
-#line 433 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str321,402,313,275,275,340,76,304,263,267,291,291,283,283,76,306,306},
-#line 110 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str322,79,350,313,313,379,273,348,307,312,333,333,353,353,273,344,344},
-#line 66 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str323,35,404,__PNR_clock_settime64,__PNR_clock_settime64,404,__PNR_clock_settime64,404,__PNR_clock_settime64,404,404,__PNR_clock_settime64,404,__PNR_clock_settime64,__PNR_clock_settime64,404,__PNR_clock_settime64},
-#line 62 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str324,31,403,__PNR_clock_gettime64,__PNR_clock_gettime64,403,__PNR_clock_gettime64,403,__PNR_clock_gettime64,403,403,__PNR_clock_gettime64,403,__PNR_clock_gettime64,__PNR_clock_gettime64,403,__PNR_clock_gettime64},
-#line 209 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str325,178,363,50,50,284,201,174,49,49,32,32,329,329,201,363,363},
-#line 426 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str326,395,73,__PNR_sigpending,__PNR_sigpending,73,__PNR_sigpending,73,__PNR_sigpending,__PNR_sigpending,73,73,73,73,__PNR_sigpending,73,73},
-#line 60 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str327,29,406,__PNR_clock_getres_time64,__PNR_clock_getres_time64,406,__PNR_clock_getres_time64,406,__PNR_clock_getres_time64,406,406,__PNR_clock_getres_time64,406,__PNR_clock_getres_time64,__PNR_clock_getres_time64,406,__PNR_clock_getres_time64},
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str0,451,315,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF},
+#line 394 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str1,361,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,__PNR_send,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF},
+#line 500 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str2,467,43,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF},
 #line 486 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str328,455,22,__PNR_umount,__PNR_umount,__PNR_umount,__PNR_umount,22,__PNR_umount,__PNR_umount,__PNR_umount,__PNR_umount,22,22,__PNR_umount,22,22},
-#line 260 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str329,229,91,11,11,91,215,91,11,11,91,91,91,91,215,91,91},
-#line 319 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str330,288,85,89,89,85,__PNR_readlink,85,87,87,85,85,85,85,__PNR_readlink,85,85},
-#line 196 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str331,165,349,312,312,378,272,347,306,311,332,332,354,354,272,343,343},
-#line 183 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str332,152,247,208,208,245,4,243,202,202,217,217,229,229,4,245,245},
-#line 498 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str333,467,320,280,280,348,88,316,275,279,301,301,304,304,88,315,315},
-#line 211 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str334,180,233,195,195,233,12,231,187,187,245,245,216,216,12,231,231},
-#line 289 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str335,258,381,330,330,395,289,364,324,328,352,352,384,384,289,385,385},
-#line 482 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str336,451,__PNR_tuxcall,184,184,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall,225,225,__PNR_tuxcall,__PNR_tuxcall,__PNR_tuxcall},
-#line 204 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str337,173,16,94,94,16,__PNR_lchown,16,92,92,16,16,16,16,__PNR_lchown,16,198},
-#line 133 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str338,102,318,309,309,345,168,312,271,275,296,296,302,302,168,311,311},
-#line 508 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str339,477,284,247,529,280,95,278,237,241,235,235,272,272,95,281,281},
-#line 233 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str340,202,152,151,151,152,230,156,148,148,152,152,152,152,230,152,152},
-#line 91 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str341,60,1,60,60,1,93,1,58,58,1,1,1,1,93,1,1},
-#line 261 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str342,230,341,303,303,370,264,339,298,303,325,325,345,345,264,335,335},
-#line 35 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str343,4,286,248,248,309,217,280,239,243,264,264,269,269,217,278,278},
-#line 90 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str344,59,358,322,545,387,281,356,316,320,342,342,362,362,281,354,354},
-#line 446 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str345,415,115,168,168,115,225,115,163,163,115,115,115,115,225,115,115},
-#line 84 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str346,53,441,441,441,441,441,441,441,441,441,441,441,441,441,441,441},
-#line 373 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str347,342,420,__PNR_semtimedop_time64,__PNR_semtimedop_time64,420,__PNR_semtimedop_time64,420,__PNR_semtimedop_time64,420,420,__PNR_semtimedop_time64,420,__PNR_semtimedop_time64,__PNR_semtimedop_time64,420,__PNR_semtimedop_time64},
-#line 435 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str348,404,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run,278,278,__PNR_spu_run,__PNR_spu_run,__PNR_spu_run},
-#line 138 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str349,107,202,__PNR_getegid32,__PNR_getegid32,202,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,__PNR_getegid32,202,__PNR_getegid32},
-#line 408 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str350,377,243,205,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area,283,242,246,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area,__PNR_set_thread_area},
-#line 166 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str351,135,244,211,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area,__PNR_get_thread_area},
-#line 108 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str352,77,148,75,75,148,83,152,73,73,148,148,148,148,83,148,148},
-#line 505 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str353,474,316,278,532,343,75,307,266,270,294,294,285,285,75,309,309},
-#line 449 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str354,418,83,88,88,83,__PNR_symlink,83,86,86,83,83,83,83,__PNR_symlink,83,83},
-#line 496 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str355,465,62,136,136,62,__PNR_ustat,62,133,133,62,62,62,62,__PNR_ustat,62,62},
-#line 509 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str356,478,7,__PNR_waitpid,__PNR_waitpid,__PNR_waitpid,__PNR_waitpid,7,__PNR_waitpid,__PNR_waitpid,7,7,7,7,__PNR_waitpid,__PNR_waitpid,__PNR_waitpid},
-#line 63 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str357,32,267,230,230,265,115,265,224,228,258,258,248,248,115,262,262},
-#line 421 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str358,390,67,__PNR_sigaction,__PNR_sigaction,67,__PNR_sigaction,67,__PNR_sigaction,__PNR_sigaction,__PNR_sigaction,__PNR_sigaction,67,67,__PNR_sigaction,67,67},
-#line 483 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str359,452,191,__PNR_ugetrlimit,__PNR_ugetrlimit,191,__PNR_ugetrlimit,__PNR_ugetrlimit,__PNR_ugetrlimit,__PNR_ugetrlimit,__PNR_ugetrlimit,__PNR_ugetrlimit,190,190,__PNR_ugetrlimit,191,__PNR_ugetrlimit},
-#line 248 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str360,217,279,242,242,276,182,273,232,236,231,231,264,264,182,273,273},
-#line 485 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str361,454,60,95,95,60,166,60,93,93,60,60,60,60,166,60,60},
-#line 347 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str362,316,335,297,536,363,240,332,291,295,317,317,322,322,240,330,330},
-#line 342 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str363,311,178,129,524,178,138,198,127,127,178,178,177,177,138,178,178},
-#line 246 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str364,215,280,243,243,277,183,274,233,237,232,232,265,265,183,274,274},
-#line 329 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str365,298,235,197,197,235,14,233,189,189,247,247,218,218,14,233,233},
-#line 245 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str366,214,277,240,240,274,180,271,230,234,229,229,262,262,180,271,271},
-#line 332 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str367,301,353,316,316,382,276,351,311,315,337,337,357,357,276,347,347},
-#line 128 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str368,97,194,__PNR_ftruncate64,__PNR_ftruncate64,194,__PNR_ftruncate64,212,__PNR_ftruncate64,__PNR_ftruncate64,200,200,194,__PNR_ftruncate64,__PNR_ftruncate64,194,__PNR_ftruncate64},
-#line 309 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str369,278,189,182,182,__PNR_putpmsg,__PNR_putpmsg,209,175,175,__PNR_putpmsg,__PNR_putpmsg,188,188,__PNR_putpmsg,189,189},
-#line 244 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str370,213,281,244,527,278,184,275,234,238,233,233,266,266,184,275,275},
-#line 427 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str371,396,126,__PNR_sigprocmask,__PNR_sigprocmask,126,__PNR_sigprocmask,126,__PNR_sigprocmask,__PNR_sigprocmask,126,126,126,126,__PNR_sigprocmask,126,126},
-#line 32 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str372,1,364,288,288,366,242,334,293,297,320,320,344,344,242,364,364},
-#line 191 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str373,160,248,209,544,246,2,244,203,203,218,218,230,230,2,246,246},
-#line 269 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str374,238,59,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname,59,59,__PNR_oldolduname,__PNR_oldolduname,__PNR_oldolduname},
-#line 116 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str375,85,228,190,190,228,7,226,182,182,240,240,211,211,7,226,226},
-#line 109 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str376,78,231,193,193,231,10,229,185,185,243,243,214,214,10,229,229},
-#line 227 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str377,196,39,83,83,39,__PNR_mkdir,39,81,81,39,39,39,39,__PNR_mkdir,39,39},
-#line 493 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str378,462,374,323,323,388,282,357,317,321,344,344,364,364,282,355,355},
-#line 419 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str379,388,395,29,29,307,194,395,28,28,194,194,395,395,194,395,395},
-#line 175 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str380,144,128,175,175,128,105,128,168,168,128,128,128,128,105,128,128},
-#line 40 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str381,9,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,270,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64,__PNR_arm_fadvise64_64},
-#line 387 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str382,356,81,116,116,81,159,81,114,114,81,81,81,81,159,81,206},
-#line 143 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str383,112,80,115,115,80,158,80,113,113,80,80,80,80,158,80,205},
-#line 494 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str384,463,__PNR_usr26,__PNR_usr26,__PNR_usr26,983043,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26,__PNR_usr26},
-#line 416 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str385,385,397,30,30,305,196,397,29,29,192,192,397,397,196,397,397},
-#line 258 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str386,227,151,150,150,151,229,155,147,147,151,151,151,151,229,151,151},
-#line 495 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str387,464,__PNR_usr32,__PNR_usr32,__PNR_usr32,983044,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32,__PNR_usr32},
-#line 463 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str388,432,270,234,234,268,131,266,225,229,259,259,250,250,131,241,241},
-#line 243 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str389,212,282,245,245,279,185,276,235,239,234,234,267,267,185,276,276},
-#line 422 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str390,391,186,131,525,186,132,206,129,129,166,166,185,185,132,186,186},
-#line 445 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str391,414,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext,249,249,__PNR_swapcontext,__PNR_swapcontext,__PNR_swapcontext},
-#line 436 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str392,405,69,__PNR_ssetmask,__PNR_ssetmask,__PNR_ssetmask,__PNR_ssetmask,69,__PNR_ssetmask,__PNR_ssetmask,69,69,69,69,__PNR_ssetmask,__PNR_ssetmask,__PNR_ssetmask},
-#line 415 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str393,384,68,__PNR_sgetmask,__PNR_sgetmask,__PNR_sgetmask,__PNR_sgetmask,68,__PNR_sgetmask,__PNR_sgetmask,68,68,68,68,__PNR_sgetmask,__PNR_sgetmask,__PNR_sgetmask},
-#line 425 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str394,394,327,289,289,355,74,324,283,287,309,309,313,313,74,322,322},
-#line 444 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str395,413,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot,310,310,__PNR_subpage_prot,__PNR_subpage_prot,__PNR_subpage_prot},
-#line 114 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str396,83,237,199,199,237,16,235,191,191,249,249,220,220,16,235,235},
-#line 487 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str397,456,52,166,166,52,39,52,161,161,52,52,52,52,39,52,52},
-#line 236 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str398,205,123,154,154,__PNR_modify_ldt,__PNR_modify_ldt,123,__PNR_modify_ldt,__PNR_modify_ldt,__PNR_modify_ldt,__PNR_modify_ldt,123,123,__PNR_modify_ldt,__PNR_modify_ldt,__PNR_modify_ldt},
-#line 405 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str399,374,311,273,530,338,99,309,268,272,289,289,300,300,99,304,304},
-#line 161 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str400,130,312,274,531,339,100,310,269,273,290,290,299,299,100,305,305},
-#line 77 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str401,46,63,33,33,63,__PNR_dup2,63,32,32,63,63,63,63,__PNR_dup2,63,63},
-#line 297 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str402,266,333,295,534,361,69,330,289,293,315,315,320,320,69,328,328},
-#line 259 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str403,228,153,152,152,153,231,157,149,149,153,153,153,153,231,153,153},
-#line 217 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str404,186,227,189,189,227,6,225,181,181,239,239,210,210,6,225,225},
-#line 206 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str405,175,230,192,192,230,9,228,184,184,242,242,213,213,9,228,228},
-#line 210 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str406,179,232,194,194,232,11,230,186,186,244,244,215,215,11,230,230},
-#line 298 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str407,267,378,327,546,392,286,361,321,325,347,347,380,380,286,376,376},
-#line 413 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str408,382,213,__PNR_setuid32,__PNR_setuid32,213,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,__PNR_setuid32,213,__PNR_setuid32},
-#line 171 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str409,140,199,__PNR_getuid32,__PNR_getuid32,199,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,__PNR_getuid32,199,__PNR_getuid32},
-#line 384 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str410,353,215,__PNR_setfsuid32,__PNR_setfsuid32,215,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,__PNR_setfsuid32,215,__PNR_setfsuid32},
-#line 228 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str411,197,296,258,258,323,34,289,248,252,276,276,287,287,34,289,289},
-#line 403 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str412,372,203,__PNR_setreuid32,__PNR_setreuid32,203,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,__PNR_setreuid32,203,__PNR_setreuid32},
-#line 313 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str413,282,167,178,__PNR_query_module,__PNR_query_module,__PNR_query_module,187,171,171,__PNR_query_module,__PNR_query_module,166,166,__PNR_query_module,167,167},
-#line 459 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str414,428,116,99,99,116,179,116,97,97,116,116,116,116,179,116,116},
-#line 348 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str415,317,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,__PNR_s390_guarded_storage,378,378},
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str3,453,13,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,__PNR_time,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF},
 #line 388 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str416,357,206,__PNR_setgroups32,__PNR_setgroups32,206,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,__PNR_setgroups32,206,__PNR_setgroups32},
-#line 144 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str417,113,205,__PNR_getgroups32,__PNR_getgroups32,205,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,__PNR_getgroups32,205,__PNR_getgroups32},
-#line 49 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str418,18,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush,983042,__PNR_cacheflush,147,197,197,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush,__PNR_cacheflush},
-#line 447 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str419,416,87,167,167,87,224,87,162,162,87,87,87,87,224,87,87},
-#line 351 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str420,320,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,__PNR_s390_runtime_instr,342,342},
-#line 215 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str421,184,236,198,198,236,15,234,190,190,248,248,219,219,15,234,234},
-#line 438 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str422,407,195,__PNR_stat64,__PNR_stat64,195,__PNR_stat64,213,__PNR_stat64,__PNR_stat64,101,101,195,__PNR_stat64,__PNR_stat64,195,__PNR_stat64},
-#line 440 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str423,409,268,__PNR_statfs64,__PNR_statfs64,266,__PNR_statfs64,255,__PNR_statfs64,217,298,298,252,252,__PNR_statfs64,265,265},
-#line 186 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str424,155,416,__PNR_io_pgetevents_time64,__PNR_io_pgetevents_time64,416,__PNR_io_pgetevents_time64,416,__PNR_io_pgetevents_time64,416,416,__PNR_io_pgetevents_time64,416,__PNR_io_pgetevents_time64,__PNR_io_pgetevents_time64,416,__PNR_io_pgetevents_time64},
-#line 457 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str425,426,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,256,256,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext,__PNR_sys_debug_setcontext},
-#line 499 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str426,468,412,__PNR_utimensat_time64,__PNR_utimensat_time64,412,__PNR_utimensat_time64,412,__PNR_utimensat_time64,412,412,__PNR_utimensat_time64,412,__PNR_utimensat_time64,__PNR_utimensat_time64,412,__PNR_utimensat_time64},
-#line 511 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str427,480,146,20,516,146,66,146,19,19,146,146,146,146,66,146,146},
-#line 64 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str428,33,407,__PNR_clock_nanosleep_time64,__PNR_clock_nanosleep_time64,407,__PNR_clock_nanosleep_time64,407,__PNR_clock_nanosleep_time64,407,407,__PNR_clock_nanosleep_time64,407,__PNR_clock_nanosleep_time64,__PNR_clock_nanosleep_time64,407,__PNR_clock_nanosleep_time64},
-#line 52 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str429,21,12,80,80,12,49,12,78,78,12,12,12,12,49,12,12},
-#line 57 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str430,26,343,305,305,372,266,341,300,305,324,324,347,347,266,337,337},
-#line 132 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str431,101,299,261,261,326,__PNR_futimesat,292,251,255,279,279,290,290,__PNR_futimesat,292,292},
-#line 140 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str432,109,201,__PNR_geteuid32,__PNR_geteuid32,201,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,__PNR_geteuid32,201,__PNR_geteuid32},
-#line 119 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str433,88,433,433,433,433,433,433,433,433,433,433,433,433,433,433,433},
-#line 179 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str434,148,293,255,255,318,28,286,245,249,271,271,277,277,28,286,286},
-#line 95 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str435,64,250,221,221,__PNR_fadvise64,223,254,215,216,__PNR_fadvise64,__PNR_fadvise64,233,233,223,253,253},
-#line 96 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str436,65,272,__PNR_fadvise64_64,__PNR_fadvise64_64,__PNR_fadvise64_64,__PNR_fadvise64_64,__PNR_fadvise64_64,__PNR_fadvise64_64,__PNR_fadvise64_64,236,236,254,__PNR_fadvise64_64,__PNR_fadvise64_64,264,__PNR_fadvise64_64},
-#line 130 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str437,99,422,__PNR_futex_time64,__PNR_futex_time64,422,__PNR_futex_time64,422,__PNR_futex_time64,422,422,__PNR_futex_time64,422,__PNR_futex_time64,__PNR_futex_time64,422,__PNR_futex_time64},
-#line 352 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str438,321,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,__PNR_s390_sthyi,380,380},
-#line 54 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str439,23,182,92,92,182,__PNR_chown,202,90,90,180,180,181,181,__PNR_chown,182,212},
-#line 107 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str440,76,221,__PNR_fcntl64,__PNR_fcntl64,221,__PNR_fcntl64,220,__PNR_fcntl64,212,202,202,204,__PNR_fcntl64,__PNR_fcntl64,221,__PNR_fcntl64},
-#line 502 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str441,471,111,153,153,111,58,111,150,150,111,111,111,111,58,111,111},
-#line 249 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str442,218,418,__PNR_mq_timedsend_time64,__PNR_mq_timedsend_time64,418,__PNR_mq_timedsend_time64,418,__PNR_mq_timedsend_time64,418,418,__PNR_mq_timedsend_time64,418,__PNR_mq_timedsend_time64,__PNR_mq_timedsend_time64,418,__PNR_mq_timedsend_time64},
-#line 441 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str443,410,383,332,332,397,291,366,326,330,349,349,383,383,291,379,379},
-#line 121 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str444,90,197,__PNR_fstat64,__PNR_fstat64,197,__PNR_fstat64,215,__PNR_fstat64,__PNR_fstat64,112,112,197,__PNR_fstat64,__PNR_fstat64,197,__PNR_fstat64},
-#line 129 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str445,98,240,202,202,240,98,238,194,194,210,210,221,221,98,238,238},
-#line 247 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str446,216,419,__PNR_mq_timedreceive_time64,__PNR_mq_timedreceive_time64,419,__PNR_mq_timedreceive_time64,419,__PNR_mq_timedreceive_time64,419,419,__PNR_mq_timedreceive_time64,419,__PNR_mq_timedreceive_time64,__PNR_mq_timedreceive_time64,419,__PNR_mq_timedreceive_time64},
-#line 124 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str447,93,269,__PNR_fstatfs64,__PNR_fstatfs64,267,__PNR_fstatfs64,256,__PNR_fstatfs64,218,299,299,253,253,__PNR_fstatfs64,266,266},
-#line 68 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str448,37,435,435,435,435,435,435,435,435,435,435,435,435,435,435,435},
-#line 78 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str449,47,330,292,292,358,24,327,286,290,312,312,316,316,24,326,326},
-#line 386 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str450,355,214,__PNR_setgid32,__PNR_setgid32,214,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,__PNR_setgid32,214,__PNR_setgid32},
-#line 142 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str451,111,200,__PNR_getgid32,__PNR_getgid32,200,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,__PNR_getgid32,200,__PNR_getgid32},
-#line 92 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str452,61,252,231,231,248,94,246,205,205,222,222,234,234,94,248,248},
-#line 176 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str453,145,292,254,254,317,27,285,244,248,270,270,276,276,27,285,285},
-#line 275 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str454,244,342,304,304,371,265,340,299,304,326,326,346,346,265,336,336},
-#line 296 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str455,265,180,17,17,180,67,200,16,16,108,108,179,179,67,180,180},
-#line 104 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str456,73,207,__PNR_fchown32,__PNR_fchown32,207,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,__PNR_fchown32,207,__PNR_fchown32},
-#line 219 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str457,188,196,__PNR_lstat64,__PNR_lstat64,196,__PNR_lstat64,214,__PNR_lstat64,__PNR_lstat64,198,198,196,__PNR_lstat64,__PNR_lstat64,196,__PNR_lstat64},
-#line 122 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str458,91,300,__PNR_fstatat64,__PNR_fstatat64,327,__PNR_fstatat64,293,__PNR_fstatat64,__PNR_fstatat64,280,280,291,__PNR_fstatat64,__PNR_fstatat64,293,__PNR_fstatat64},
-#line 492 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str459,461,86,134,__PNR_uselib,86,__PNR_uselib,86,__PNR_uselib,__PNR_uselib,86,86,86,86,__PNR_uselib,86,86},
-#line 257 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str460,226,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer,201,201,__PNR_multiplexer,__PNR_multiplexer,__PNR_multiplexer},
-#line 36 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str461,5,124,159,159,124,171,124,154,154,124,124,124,124,171,124,124},
-#line 315 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str462,284,443,443,443,443,443,443,443,443,443,443,443,443,443,443,443},
-#line 205 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str463,174,198,__PNR_lchown32,__PNR_lchown32,198,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,__PNR_lchown32,198,__PNR_lchown32},
-#line 448 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str464,417,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian,363,363,__PNR_switch_endian,__PNR_switch_endian,__PNR_switch_endian},
-#line 420 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str465,389,373,48,48,293,210,182,47,47,117,117,338,338,210,373,373},
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str4,355,82,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,__PNR_select,SCMP_KV_UNDEF},
+#line 185 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str5,152,112,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,__PNR_idle,SCMP_KV_UNDEF},
+#line 426 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str6,393,66,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF},
+#line 173 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str7,140,147,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF},
+#line 358 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str8,325,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF,__PNR_rtas,SCMP_KV_UNDEF},
+#line 401 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str9,368,139,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF},
+#line 416 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str10,383,71,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF},
+#line 418 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str11,385,170,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF},
+#line 166 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str12,133,171,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF},
+#line 146 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str13,113,50,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF},
+#line 334 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str14,301,3,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF},
+#line 413 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str15,380,346,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,375,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF},
 #line 131 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str466,100,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449},
-#line 45 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str467,14,17,__PNR_break,__PNR_break,__PNR_break,__PNR_break,17,__PNR_break,__PNR_break,__PNR_break,__PNR_break,17,17,__PNR_break,__PNR_break,__PNR_break},
-#line 46 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str468,15,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,983041,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint,__PNR_breakpoint},
-#line 507 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str469,476,114,61,61,114,260,114,59,59,114,114,114,114,260,114,114},
-#line 314 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str470,283,131,179,179,131,60,131,172,172,131,131,131,131,60,131,131},
-#line 311 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str471,280,334,296,535,362,70,331,290,294,316,316,321,321,70,329,329},
-#line 299 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str472,268,340,302,302,369,261,338,297,302,321,321,325,325,261,334,334},
-#line 312 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str473,281,379,328,547,393,287,362,322,326,348,348,381,381,287,377,377},
-#line 58 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str474,27,405,__PNR_clock_adjtime64,__PNR_clock_adjtime64,405,__PNR_clock_adjtime64,405,__PNR_clock_adjtime64,405,405,__PNR_clock_adjtime64,405,__PNR_clock_adjtime64,__PNR_clock_adjtime64,405,__PNR_clock_adjtime64},
-#line 250 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str475,219,278,241,241,275,181,272,231,235,230,230,263,263,181,272,272},
-#line 490 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str476,459,301,263,263,328,35,294,253,257,281,281,292,292,35,294,294},
-#line 310 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str477,279,181,18,18,181,68,201,17,17,109,109,180,180,68,181,181},
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str16,98,118,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF},
+#line 498 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str17,465,260,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF},
+#line 496 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str18,463,261,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF},
+#line 382 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str19,349,351,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,370,SCMP_KV_UNDEF},
+#line 374 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str20,341,352,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,369,SCMP_KV_UNDEF},
+#line 398 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str21,365,370,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,518,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,370,SCMP_KV_UNDEF,370,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF},
 #line 489 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str478,458,10,87,87,10,__PNR_unlink,10,85,85,10,10,10,10,__PNR_unlink,10,10},
-#line 42 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str479,11,134,__PNR_bdflush,__PNR_bdflush,134,__PNR_bdflush,134,__PNR_bdflush,__PNR_bdflush,134,134,134,134,__PNR_bdflush,134,134},
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str22,456,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,__PNR_timerfd,SCMP_KV_UNDEF},
+#line 384 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str23,351,156,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF},
+#line 378 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str24,345,157,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF},
+#line 493 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str25,460,325,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF},
+#line 491 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str26,458,326,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF},
+#line 490 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str27,457,322,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF},
+#line 105 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str28,72,133,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF},
+#line 241 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str29,208,447,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,447,SCMP_KV_UNDEF,__PNR_memfd_secret,SCMP_KV_UNDEF},
+#line 399 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str30,366,369,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,369,SCMP_KV_UNDEF,369,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF},
+#line 383 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str31,350,154,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF},
+#line 375 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str32,342,155,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF},
+#line 487 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str33,454,259,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,526,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF},
+#line 76 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str34,43,362,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF},
+#line 74 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str35,41,6,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF},
+#line 200 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str36,167,289,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF},
+#line 199 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str37,166,290,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF},
+#line 274 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str38,241,144,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF},
+#line 336 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str39,303,89,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,__PNR_readdir,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF},
+#line 206 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str40,173,117,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,__PNR_ipc,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF},
+#line 365 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str41,332,177,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,523,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF},
+#line 395 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str42,362,187,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF},
+#line 240 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str43,207,356,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,374,SCMP_KV_UNDEF},
+#line 304 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str44,271,42,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,__PNR_pipe,SCMP_KV_UNDEF,__PNR_pipe,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,__PNR_pipe,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF},
+#line 56 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str45,23,185,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF},
+#line 397 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str46,364,345,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,538,SCMP_KV_UNDEF,374,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,372,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF},
+#line 35 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str47,2,33,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,__PNR_access,SCMP_KV_UNDEF,__PNR_access,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,__PNR_access,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF},
+#line 80 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str48,47,129,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF},
+#line 451 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str49,418,359,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF},
+#line 254 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str50,221,21,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF},
+#line 72 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str51,39,120,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF},
+#line 301 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str52,268,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF,438,SCMP_KV_UNDEF},
+#line 322 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str53,289,44,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF,__PNR_prof,SCMP_KV_UNDEF},
+#line 243 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str54,210,218,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF},
+#line 488 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str55,455,263,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF},
+#line 424 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str56,391,75,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,__PNR_setrlimit,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF},
+#line 170 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str57,137,76,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,__PNR_getrlimit,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,__PNR_getrlimit,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF},
+#line 77 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str58,44,377,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,391,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,376,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,375,SCMP_KV_UNDEF,375,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF},
+#line 340 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str59,307,88,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF},
+#line 255 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str60,222,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF,442,SCMP_KV_UNDEF},
+#line 478 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str61,445,149,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,__PNR__sysctl,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,__PNR__sysctl,SCMP_KV_UNDEF,__PNR__sysctl,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,__PNR__sysctl,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF},
+#line 389 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str62,356,394,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF},
+#line 198 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str63,165,110,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF,__PNR_iopl,SCMP_KV_UNDEF},
+#line 379 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str64,346,161,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF},
+#line 195 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str65,162,101,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF,__PNR_ioperm,SCMP_KV_UNDEF},
+#line 502 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str66,469,92,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF},
+#line 454 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str67,421,313,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF},
+#line 318 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str68,285,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF,440,SCMP_KV_UNDEF},
+#line 319 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str69,286,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF,448,SCMP_KV_UNDEF},
+#line 116 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str70,83,350,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF},
+#line 295 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str71,262,29,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,__PNR_pause,SCMP_KV_UNDEF,__PNR_pause,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,__PNR_pause,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF},
+#line 410 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str72,377,104,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF},
+#line 154 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str73,121,105,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF},
+#line 294 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str74,261,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF,428,SCMP_KV_UNDEF},
+#line 33 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str75,0,__PNR_accept,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,__PNR_accept,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,__PNR_accept,SCMP_KV_UNDEF,__PNR_accept,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF},
+#line 356 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str76,323,40,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,__PNR_rmdir,SCMP_KV_UNDEF,__PNR_rmdir,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,__PNR_rmdir,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF,40,SCMP_KV_UNDEF},
+#line 270 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str77,237,402,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF,402,SCMP_KV_UNDEF},
+#line 288 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str78,255,18,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,__PNR_oldstat,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF},
+#line 285 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str79,252,28,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,__PNR_oldfstat,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF},
+#line 54 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str80,21,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF,451,SCMP_KV_UNDEF},
+#line 98 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str81,65,307,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF},
+#line 464 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str82,431,25,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,__PNR_stime,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF},
+#line 445 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str83,412,321,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,__PNR_signalfd,SCMP_KV_UNDEF,__PNR_signalfd,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,__PNR_signalfd,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF},
+#line 258 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str84,225,125,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF},
+#line 132 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str85,99,35,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF,__PNR_ftime,SCMP_KV_UNDEF},
+#line 144 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str86,111,141,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,__PNR_getdents,SCMP_KV_UNDEF,__PNR_getdents,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,76,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,__PNR_getdents,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF},
+#line 284 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str87,251,34,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,__PNR_nice,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF},
+#line 239 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str88,206,375,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,389,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,374,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF},
+#line 310 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str89,277,168,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,__PNR_poll,SCMP_KV_UNDEF,__PNR_poll,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,__PNR_poll,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF},
+#line 161 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str90,128,20,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF},
+#line 414 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str91,381,57,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF},
+#line 159 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str92,126,132,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF},
+#line 242 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str93,209,294,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF},
+#line 219 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str94,186,303,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF},
+#line 291 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str95,258,295,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF},
+#line 286 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str96,253,84,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,__PNR_oldlstat,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF},
+#line 84 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str97,51,254,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,__PNR_epoll_create,SCMP_KV_UNDEF,__PNR_epoll_create,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,__PNR_epoll_create,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF},
+#line 40 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str98,7,27,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,__PNR_alarm,SCMP_KV_UNDEF,__PNR_alarm,SCMP_KV_UNDEF,__PNR_alarm,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,__PNR_alarm,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF},
+#line 52 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str99,19,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF,__PNR_cachectl,SCMP_KV_UNDEF},
+#line 377 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str100,344,160,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF},
+#line 391 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str101,358,__PNR_semop,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF,__PNR_semop,SCMP_KV_UNDEF},
+#line 386 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str102,353,354,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,372,SCMP_KV_UNDEF},
+#line 323 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str103,290,98,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF,__PNR_profil,SCMP_KV_UNDEF},
+#line 357 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str104,324,386,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,387,SCMP_KV_UNDEF,387,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,387,SCMP_KV_UNDEF},
+#line 370 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str105,337,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_write,SCMP_KV_UNDEF},
+#line 369 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str106,336,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,__PNR_s390_pci_mmio_read,SCMP_KV_UNDEF},
+#line 162 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str107,129,188,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,__PNR_getpmsg,SCMP_KV_UNDEF},
+#line 495 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str108,462,262,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF},
+#line 257 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str109,224,317,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,533,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF},
+#line 306 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str110,273,217,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF},
+#line 106 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str111,73,94,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF},
+#line 444 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str112,411,48,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,__PNR_signal,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF},
+#line 273 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str113,240,400,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF,400,SCMP_KV_UNDEF},
+#line 85 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str114,52,329,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF},
+#line 458 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str115,425,106,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,__PNR_stat,SCMP_KV_UNDEF,__PNR_stat,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,__PNR_stat,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF},
+#line 102 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str116,69,324,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF},
+#line 363 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str117,330,173,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,513,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF},
+#line 460 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str118,427,99,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,43,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF},
+#line 485 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str119,452,270,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF},
+#line 87 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str120,54,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF,__PNR_epoll_ctl_old,SCMP_KV_UNDEF},
+#line 177 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str121,144,224,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF},
+#line 403 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str122,370,138,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,120,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF},
+#line 422 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str123,389,70,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF},
+#line 420 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str124,387,164,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF},
+#line 168 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str125,135,165,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,118,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF},
+#line 148 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str126,115,49,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF},
+#line 41 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str127,8,384,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF,__PNR_arch_prctl,SCMP_KV_UNDEF},
+#line 453 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str128,420,360,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF},
+#line 163 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str129,130,64,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF},
+#line 121 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str130,88,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF,431,SCMP_KV_UNDEF},
+#line 364 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str131,331,179,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF},
+#line 157 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str132,124,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF,__PNR_getpagesize,SCMP_KV_UNDEF},
+#line 480 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str133,447,135,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,139,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,__PNR_sysfs,SCMP_KV_UNDEF,__PNR_sysfs,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,__PNR_sysfs,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF},
+#line 465 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str134,432,31,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF,__PNR_stty,SCMP_KV_UNDEF},
+#line 184 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str135,151,32,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF,__PNR_gtty,SCMP_KV_UNDEF},
+#line 473 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str136,440,36,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF},
+#line 476 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str137,443,344,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,373,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF},
+#line 360 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str138,327,176,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,522,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF},
+#line 73 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str139,40,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,435,SCMP_KV_UNDEF,__PNR_clone3,SCMP_KV_UNDEF},
+#line 452 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str140,419,102,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,__PNR_socketcall,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF},
+#line 359 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str141,326,174,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,512,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF},
+#line 86 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str142,53,255,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,21,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF},
+#line 311 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str143,278,309,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF},
+#line 409 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str144,376,74,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF},
+#line 107 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str145,74,306,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF},
+#line 381 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str146,348,241,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF},
+#line 373 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str147,340,242,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF},
+#line 290 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str148,257,5,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,__PNR_open,SCMP_KV_UNDEF,__PNR_open,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,__PNR_open,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF},
+#line 385 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str149,352,158,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF},
+#line 81 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str150,48,41,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF,41,SCMP_KV_UNDEF},
+#line 298 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str151,265,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF,__PNR_pciconfig_write,SCMP_KV_UNDEF},
+#line 296 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str152,263,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF,__PNR_pciconfig_iobase,SCMP_KV_UNDEF},
+#line 297 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str153,264,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF,__PNR_pciconfig_read,SCMP_KV_UNDEF},
+#line 36 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str154,3,51,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF},
+#line 376 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str155,343,159,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF},
+#line 126 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str156,93,108,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF},
+#line 172 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str157,139,77,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,165,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF},
+#line 47 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str158,14,361,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF},
+#line 129 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str159,96,100,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF},
+#line 251 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str160,218,90,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,__PNR_mmap,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF},
+#line 303 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str161,270,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF,424,SCMP_KV_UNDEF},
+#line 78 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str162,45,8,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,__PNR_creat,SCMP_KV_UNDEF,__PNR_creat,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,__PNR_creat,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF},
+#line 499 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str163,466,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF,__PNR_timer_settime64,SCMP_KV_UNDEF,409,SCMP_KV_UNDEF},
+#line 497 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str164,464,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF,__PNR_timer_gettime64,SCMP_KV_UNDEF,408,SCMP_KV_UNDEF},
+#line 400 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str165,367,121,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF,121,SCMP_KV_UNDEF},
+#line 281 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str166,248,__PNR_newfstatat,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,__PNR_newfstatat,SCMP_KV_UNDEF},
+#line 482 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str167,449,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF},
+#line 160 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str168,127,65,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,__PNR_getpgrp,SCMP_KV_UNDEF,__PNR_getpgrp,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,__PNR_getpgrp,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF},
+#line 494 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str169,461,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF,__PNR_timerfd_settime64,SCMP_KV_UNDEF,411,SCMP_KV_UNDEF},
+#line 492 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str170,459,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF,__PNR_timerfd_gettime64,SCMP_KV_UNDEF,410,SCMP_KV_UNDEF},
+#line 75 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str171,42,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF,436,SCMP_KV_UNDEF},
+#line 64 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str172,31,266,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF},
+#line 70 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str173,37,264,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF},
+#line 66 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str174,33,265,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF},
+#line 112 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str175,79,55,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF},
+#line 474 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str176,441,314,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,__PNR_sync_file_range,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,__PNR_sync_file_range,SCMP_KV_UNDEF,__PNR_sync_file_range,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF},
+#line 193 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str177,160,246,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF},
+#line 119 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str178,86,2,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,__PNR_fork,SCMP_KV_UNDEF,__PNR_fork,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,__PNR_fork,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF},
+#line 302 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str179,269,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF,434,SCMP_KV_UNDEF},
+#line 208 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str180,175,__PNR_kexec_file_load,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,__PNR_kexec_file_load,SCMP_KV_UNDEF,__PNR_kexec_file_load,SCMP_KV_UNDEF,__PNR_kexec_file_load,SCMP_KV_UNDEF,__PNR_kexec_file_load,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,__PNR_kexec_file_load,SCMP_KV_UNDEF},
+#line 234 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str181,201,107,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,__PNR_lstat,SCMP_KV_UNDEF,__PNR_lstat,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,__PNR_lstat,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF,107,SCMP_KV_UNDEF},
+#line 165 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str182,132,355,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,373,SCMP_KV_UNDEF},
+#line 380 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str183,347,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF,__PNR_sched_rr_get_interval_time64,SCMP_KV_UNDEF,423,SCMP_KV_UNDEF},
+#line 211 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str184,178,37,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF,37,SCMP_KV_UNDEF},
+#line 349 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str185,316,38,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,82,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,__PNR_rename,SCMP_KV_UNDEF,__PNR_rename,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,__PNR_rename,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF},
+#line 432 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str186,399,23,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,103,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,23,SCMP_KV_UNDEF},
+#line 180 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str187,147,24,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF},
+#line 366 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str188,333,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF,__PNR_rt_sigtimedwait_time64,SCMP_KV_UNDEF,421,SCMP_KV_UNDEF},
+#line 192 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str189,159,54,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,514,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF},
+#line 308 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str190,275,382,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF},
+#line 48 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str191,15,357,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,375,SCMP_KV_UNDEF},
+#line 238 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str192,205,274,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF},
+#line 392 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str193,359,__PNR_semtimedop,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,__PNR_semtimedop,SCMP_KV_UNDEF,__PNR_semtimedop,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,__PNR_semtimedop,SCMP_KV_UNDEF,392,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,__PNR_semtimedop,SCMP_KV_UNDEF,392,SCMP_KV_UNDEF,__PNR_semtimedop,SCMP_KV_UNDEF},
+#line 259 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str194,226,56,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,56,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF,__PNR_mpx,SCMP_KV_UNDEF},
+#line 326 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str195,293,26,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,521,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF},
+#line 246 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str196,213,14,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,__PNR_mknod,SCMP_KV_UNDEF,__PNR_mknod,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,__PNR_mknod,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF},
+#line 218 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str197,185,9,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,__PNR_link,SCMP_KV_UNDEF,__PNR_link,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,84,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,__PNR_link,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF},
+#line 434 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str198,401,226,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,5,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF},
+#line 182 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str199,149,229,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF},
+#line 210 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str200,177,288,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF},
+#line 143 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str201,110,183,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF},
+#line 92 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str202,59,323,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,__PNR_eventfd,SCMP_KV_UNDEF,__PNR_eventfd,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,__PNR_eventfd,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF},
+#line 427 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str203,394,366,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,541,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF,353,SCMP_KV_UNDEF},
+#line 175 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str204,142,365,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,542,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF},
+#line 201 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str205,168,245,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,543,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF},
+#line 79 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str206,46,127,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,__PNR_create_module,SCMP_KV_UNDEF},
+#line 244 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str207,211,39,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,__PNR_mkdir,SCMP_KV_UNDEF,__PNR_mkdir,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,__PNR_mkdir,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF},
+#line 523 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str208,490,271,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,__PNR_utimes,SCMP_KV_UNDEF,__PNR_utimes,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,__PNR_utimes,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF},
+#line 520 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str209,487,30,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,__PNR_utime,SCMP_KV_UNDEF,__PNR_utime,SCMP_KV_UNDEF,__PNR_utime,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,__PNR_utime,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF},
+#line 226 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str210,193,53,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF,__PNR_lock,SCMP_KV_UNDEF},
+#line 141 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str211,108,299,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,__PNR_futimesat,SCMP_KV_UNDEF,__PNR_futimesat,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,__PNR_futimesat,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF},
+#line 353 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str212,320,0,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF},
+#line 191 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str213,158,249,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,3,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF},
+#line 361 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str214,328,175,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF},
+#line 501 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str215,468,238,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF},
+#line 419 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str216,386,210,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,__PNR_setresgid32,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF},
+#line 167 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str217,134,211,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,__PNR_getresgid32,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF},
+#line 313 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str218,280,172,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF},
+#line 103 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str219,70,338,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF},
+#line 117 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str220,84,234,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,13,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF},
+#line 345 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str221,312,372,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,519,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,369,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,372,SCMP_KV_UNDEF,372,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF},
+#line 350 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str222,317,302,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,38,SCMP_KV_UNDEF,__PNR_renameat,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,__PNR_renameat,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF},
+#line 435 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str223,402,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF,463,SCMP_KV_UNDEF},
+#line 183 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str224,150,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF,464,SCMP_KV_UNDEF},
+#line 209 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str225,176,283,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,528,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF},
+#line 268 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str226,235,163,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,25,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF},
+#line 247 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str227,214,297,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF},
+#line 439 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str228,406,398,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF,398,SCMP_KV_UNDEF},
+#line 269 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str229,236,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF,462,SCMP_KV_UNDEF},
+#line 227 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str230,194,253,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,110,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF},
+#line 390 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str231,357,393,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF},
+#line 158 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str232,125,368,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,53,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF},
+#line 368 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str233,335,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,__PNR_s390_guarded_storage,SCMP_KV_UNDEF},
+#line 245 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str234,212,296,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF},
+#line 253 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str235,220,123,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF,__PNR_modify_ldt,SCMP_KV_UNDEF},
+#line 362 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str236,329,178,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,524,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,127,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF},
+#line 367 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str237,334,335,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,536,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF},
+#line 506 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str238,473,58,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF,__PNR_ulimit,SCMP_KV_UNDEF},
+#line 405 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str239,372,46,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,144,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF},
+#line 150 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str240,117,47,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,104,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,102,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF},
+#line 346 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str241,313,257,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF},
+#line 343 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str242,310,337,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,537,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,371,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF},
+#line 123 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str243,90,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF,432,SCMP_KV_UNDEF},
+#line 504 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str244,471,__PNR_tuxcall,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF,__PNR_tuxcall,SCMP_KV_UNDEF},
+#line 62 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str245,29,343,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,372,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF},
+#line 324 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str246,291,308,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF},
+#line 527 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str247,494,113,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF,__PNR_vm86old,SCMP_KV_UNDEF},
+#line 450 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str248,417,72,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,__PNR_sigsuspend,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF,72,SCMP_KV_UNDEF},
+#line 224 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str249,191,233,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF},
+#line 271 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str250,238,399,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF},
+#line 265 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str251,232,279,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF},
+#line 236 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str252,203,219,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF},
+#line 309 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str253,276,380,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,394,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF,386,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF},
+#line 212 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str254,179,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF,445,SCMP_KV_UNDEF},
+#line 96 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str255,63,1,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF},
+#line 213 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str256,180,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF,444,SCMP_KV_UNDEF},
+#line 513 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str257,480,310,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF},
+#line 214 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str258,181,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF,446,SCMP_KV_UNDEF},
+#line 327 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str259,294,189,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,__PNR_putpmsg,SCMP_KV_UNDEF},
+#line 207 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str260,174,349,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,306,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF},
+#line 402 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str261,369,216,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,__PNR_setfsgid32,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF},
+#line 417 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str262,384,204,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,__PNR_setregid32,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF},
+#line 263 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str263,230,280,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF},
+#line 483 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str264,450,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF,__PNR_sysmips,SCMP_KV_UNDEF},
+#line 282 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str265,249,142,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF,__PNR__newselect,SCMP_KV_UNDEF,142,SCMP_KV_UNDEF},
+#line 477 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str266,444,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,0,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF,__PNR_syscall,SCMP_KV_UNDEF},
+#line 280 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str267,247,162,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,34,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF},
+#line 415 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str268,382,97,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,138,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF},
+#line 164 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str269,131,96,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,141,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF},
+#line 342 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str270,309,371,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,517,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,371,SCMP_KV_UNDEF,371,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF},
+#line 519 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str271,486,62,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,__PNR_ustat,SCMP_KV_UNDEF,__PNR_ustat,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,133,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,__PNR_ustat,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF},
+#line 142 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str272,109,318,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF},
+#line 124 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str273,91,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF,430,SCMP_KV_UNDEF},
 #line 55 "syscalls.perf"
-    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str480,24,212,__PNR_chown32,__PNR_chown32,212,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,__PNR_chown32,212,__PNR_chown32}
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str274,22,184,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,125,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,106,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF},
+#line 58 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str275,25,15,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,__PNR_chmod,SCMP_KV_UNDEF,__PNR_chmod,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,__PNR_chmod,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF},
+#line 256 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str276,223,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF,429,SCMP_KV_UNDEF},
+#line 447 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str277,414,73,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,__PNR_sigpending,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF},
+#line 396 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str278,363,239,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,__PNR_sendfile64,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF},
+#line 61 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str279,28,61,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF},
+#line 466 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str280,433,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF,__PNR_subpage_prot,SCMP_KV_UNDEF},
+#line 431 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str281,398,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,983045,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF,__PNR_set_tls,SCMP_KV_UNDEF},
+#line 179 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str282,146,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,983046,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF,__PNR_get_tls,SCMP_KV_UNDEF},
+#line 57 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str283,24,12,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF},
+#line 174 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str284,141,367,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,51,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,44,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF,367,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF},
+#line 481 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str285,448,116,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,97,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF},
+#line 307 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str286,274,381,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,384,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF,385,SCMP_KV_UNDEF},
+#line 99 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str287,66,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF,439,SCMP_KV_UNDEF},
+#line 312 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str288,279,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF,__PNR_ppoll_time64,SCMP_KV_UNDEF,414,SCMP_KV_UNDEF},
+#line 196 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str289,163,385,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,399,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,__PNR_io_pgetevents,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF,388,SCMP_KV_UNDEF,388,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,__PNR_io_pgetevents,SCMP_KV_UNDEF},
+#line 438 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str290,405,396,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,31,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF,396,SCMP_KV_UNDEF},
+#line 526 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str291,493,166,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF,__PNR_vm86,SCMP_KV_UNDEF},
+#line 371 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str292,338,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,__PNR_s390_runtime_instr,SCMP_KV_UNDEF},
+#line 430 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str293,397,79,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,164,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF,79,SCMP_KV_UNDEF},
+#line 178 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str294,145,78,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF},
+#line 510 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str295,477,122,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,160,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF,122,SCMP_KV_UNDEF},
+#line 505 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str296,472,191,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,__PNR_ugetrlimit,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF},
+#line 233 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str297,200,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF,460,SCMP_KV_UNDEF},
+#line 231 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str298,198,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF,459,SCMP_KV_UNDEF},
+#line 51 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str299,18,45,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,12,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF,45,SCMP_KV_UNDEF},
+#line 429 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str300,396,258,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,96,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF},
+#line 468 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str301,435,115,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,163,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF},
+#line 325 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str302,292,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF,__PNR_pselect6_time64,SCMP_KV_UNDEF,413,SCMP_KV_UNDEF},
+#line 229 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str303,196,19,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,8,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,62,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF},
+#line 225 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str304,192,140,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF,__PNR__llseek,SCMP_KV_UNDEF,140,SCMP_KV_UNDEF},
+#line 118 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str305,85,143,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,71,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF,143,SCMP_KV_UNDEF},
+#line 516 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str306,483,374,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,388,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,373,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,377,SCMP_KV_UNDEF},
+#line 125 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str307,92,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF,433,SCMP_KV_UNDEF},
+#line 393 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str308,360,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF,__PNR_semtimedop_time64,SCMP_KV_UNDEF,420,SCMP_KV_UNDEF},
+#line 503 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str309,470,193,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,__PNR_truncate64,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF},
+#line 202 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str310,169,248,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,544,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,2,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF},
+#line 338 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str311,305,305,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,78,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF},
+#line 449 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str312,416,119,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,__PNR_sigreturn,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF,119,SCMP_KV_UNDEF},
+#line 448 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str313,415,126,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,__PNR_sigprocmask,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF,126,SCMP_KV_UNDEF},
+#line 203 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str314,170,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF,426,SCMP_KV_UNDEF},
+#line 83 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str315,50,330,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,24,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF},
+#line 250 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str316,217,152,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,156,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF},
+#line 204 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str317,171,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF,427,SCMP_KV_UNDEF},
+#line 133 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str318,100,93,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,77,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,46,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF},
+#line 283 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str319,250,169,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,__PNR_nfsservctl,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,173,SCMP_KV_UNDEF,__PNR_nfsservctl,SCMP_KV_UNDEF,__PNR_nfsservctl,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,42,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF,169,SCMP_KV_UNDEF},
+#line 232 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str320,199,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF,461,SCMP_KV_UNDEF},
+#line 122 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str321,89,228,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF},
+#line 115 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str322,82,231,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,193,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF},
+#line 90 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str323,57,256,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,__PNR_epoll_wait,SCMP_KV_UNDEF,__PNR_epoll_wait,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,226,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,__PNR_epoll_wait,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,251,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF},
+#line 533 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str324,500,4,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,1,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,64,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF},
+#line 248 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str325,215,150,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF},
+#line 71 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str326,38,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF,__PNR_clock_settime64,SCMP_KV_UNDEF,404,SCMP_KV_UNDEF},
+#line 67 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str327,34,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF,__PNR_clock_gettime64,SCMP_KV_UNDEF,403,SCMP_KV_UNDEF},
+#line 91 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str328,58,__PNR_epoll_wait_old,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF,__PNR_epoll_wait_old,SCMP_KV_UNDEF},
+#line 528 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str329,495,316,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,532,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF},
+#line 65 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str330,32,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF,__PNR_clock_getres_time64,SCMP_KV_UNDEF,406,SCMP_KV_UNDEF},
+#line 94 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str331,61,11,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,520,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,57,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF},
+#line 335 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str332,302,225,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF},
+#line 220 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str333,187,363,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,50,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,174,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,49,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,343,SCMP_KV_UNDEF},
+#line 421 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str334,388,208,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,__PNR_setresuid32,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF},
+#line 169 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str335,136,209,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF,__PNR_getresuid32,SCMP_KV_UNDEF,209,SCMP_KV_UNDEF},
+#line 278 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str336,245,91,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF},
+#line 521 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str337,488,320,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF},
+#line 145 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str338,112,220,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF},
+#line 205 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str339,172,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF,425,SCMP_KV_UNDEF},
+#line 223 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str340,190,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF,465,SCMP_KV_UNDEF},
+#line 44 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str341,11,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF,__PNR_atomic_barrier,SCMP_KV_UNDEF},
+#line 455 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str342,422,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF,__PNR_spu_create,SCMP_KV_UNDEF},
+#line 230 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str343,197,227,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,6,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,225,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF},
+#line 217 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str344,184,230,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,227,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,9,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF},
+#line 222 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str345,189,232,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,11,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF},
+#line 300 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str346,267,136,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,135,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF,136,SCMP_KV_UNDEF},
+#line 412 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str347,379,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF,450,SCMP_KV_UNDEF},
+#line 354 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str348,321,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,259,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF,__PNR_riscv_flush_icache,SCMP_KV_UNDEF},
+#line 517 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str349,484,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,983043,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF,__PNR_usr26,SCMP_KV_UNDEF},
+#line 88 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str350,55,319,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF},
+#line 531 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str351,498,284,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,529,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF},
+#line 260 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str352,227,282,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,282,SCMP_KV_UNDEF},
+#line 188 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str353,155,291,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,__PNR_inotify_init,SCMP_KV_UNDEF,__PNR_inotify_init,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,__PNR_inotify_init,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF},
+#line 462 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str354,429,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF,457,SCMP_KV_UNDEF},
+#line 442 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str355,409,67,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,__PNR_sigaction,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF},
+#line 104 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str356,71,339,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,368,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF},
+#line 287 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str357,254,59,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF,__PNR_oldolduname,SCMP_KV_UNDEF},
+#line 262 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str358,229,277,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF},
+#line 111 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str359,78,298,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,54,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF},
+#line 186 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str360,153,128,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,168,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,105,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF,128,SCMP_KV_UNDEF},
+#line 45 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str361,12,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF,__PNR_atomic_cmpxchg_32,SCMP_KV_UNDEF},
+#line 443 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str362,410,186,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,525,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,129,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,132,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF,186,SCMP_KV_UNDEF},
+#line 95 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str363,62,358,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,545,SCMP_KV_UNDEF,387,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,342,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,354,SCMP_KV_UNDEF,376,SCMP_KV_UNDEF},
+#line 136 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str364,103,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF,456,SCMP_KV_UNDEF},
+#line 189 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str365,156,332,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,26,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF},
+#line 82 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str366,49,63,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,33,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,__PNR_dup2,SCMP_KV_UNDEF,__PNR_dup2,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,32,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,__PNR_dup2,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF,63,SCMP_KV_UNDEF},
+#line 339 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str367,306,145,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,515,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,65,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF,145,SCMP_KV_UNDEF},
+#line 289 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str368,256,109,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,__PNR_olduname,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF},
+#line 34 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str369,1,364,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,344,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,358,SCMP_KV_UNDEF},
+#line 404 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str370,371,215,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,__PNR_setfsuid32,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF},
+#line 423 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str371,390,203,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF,__PNR_setreuid32,SCMP_KV_UNDEF,203,SCMP_KV_UNDEF},
+#line 331 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str372,298,167,SCMP_KV_UNDEF,178,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,187,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,__PNR_query_module,SCMP_KV_UNDEF},
+#line 279 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str373,246,341,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,370,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,303,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF},
+#line 272 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str374,239,401,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,188,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF,401,SCMP_KV_UNDEF},
+#line 529 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str375,496,273,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF,__PNR_vserver,SCMP_KV_UNDEF},
+#line 341 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str376,308,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,175,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,__PNR_recv,SCMP_KV_UNDEF,350,SCMP_KV_UNDEF},
+#line 475 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str377,442,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,308,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,__PNR_sync_file_range2,SCMP_KV_UNDEF,388,SCMP_KV_UNDEF},
+#line 446 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str378,413,327,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,355,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,74,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF},
+#line 437 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str379,404,397,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,30,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF},
+#line 221 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str380,188,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF,458,SCMP_KV_UNDEF},
+#line 532 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str381,499,7,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,__PNR_waitpid,SCMP_KV_UNDEF,7,SCMP_KV_UNDEF},
+#line 467 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str382,434,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF,__PNR_swapcontext,SCMP_KV_UNDEF},
+#line 114 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str383,81,148,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,75,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,73,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF,148,SCMP_KV_UNDEF},
+#line 63 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str384,30,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF,__PNR_clock_adjtime64,SCMP_KV_UNDEF,405,SCMP_KV_UNDEF},
+#line 344 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str385,311,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF,__PNR_recvmmsg_time64,SCMP_KV_UNDEF,417,SCMP_KV_UNDEF},
+#line 333 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str386,300,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF,443,SCMP_KV_UNDEF},
+#line 463 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str387,430,383,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,397,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,349,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF,383,SCMP_KV_UNDEF},
+#line 135 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str388,102,240,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,98,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF},
+#line 266 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str389,233,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF,__PNR_mq_timedsend_time64,SCMP_KV_UNDEF,418,SCMP_KV_UNDEF},
+#line 299 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str390,266,336,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,364,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,332,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF},
+#line 277 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str391,244,153,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,152,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,157,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,149,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF},
+#line 508 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str392,475,22,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,__PNR_umount,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF,22,SCMP_KV_UNDEF},
+#line 507 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str393,474,60,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF},
+#line 337 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str394,304,85,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,__PNR_readlink,SCMP_KV_UNDEF,__PNR_readlink,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,__PNR_readlink,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF},
+#line 407 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str395,374,81,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,116,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,81,SCMP_KV_UNDEF},
+#line 152 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str396,119,80,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,158,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,80,SCMP_KV_UNDEF},
+#line 348 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str397,315,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF,466,SCMP_KV_UNDEF},
+#line 109 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str398,76,95,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,93,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,91,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,55,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,95,SCMP_KV_UNDEF},
+#line 264 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str399,231,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF,__PNR_mq_timedreceive_time64,SCMP_KV_UNDEF,419,SCMP_KV_UNDEF},
+#line 261 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str400,228,281,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,527,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,184,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF},
+#line 320 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str401,287,347,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,539,SCMP_KV_UNDEF,376,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,365,SCMP_KV_UNDEF},
+#line 321 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str402,288,348,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,540,SCMP_KV_UNDEF,377,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,366,SCMP_KV_UNDEF},
+#line 347 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str403,314,235,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,14,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF},
+#line 332 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str404,299,131,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,172,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,60,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF,131,SCMP_KV_UNDEF},
+#line 472 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str405,439,304,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,36,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF},
+#line 53 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str406,20,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,983042,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,__PNR_cacheflush,SCMP_KV_UNDEF,123,SCMP_KV_UNDEF},
+#line 68 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str407,35,267,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,115,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF},
+#line 137 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str408,104,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF,__PNR_futex_time64,SCMP_KV_UNDEF,422,SCMP_KV_UNDEF},
+#line 194 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str409,161,247,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,208,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,4,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF},
+#line 372 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str410,339,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,__PNR_s390_sthyi,SCMP_KV_UNDEF},
+#line 97 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str411,64,252,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,247,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,222,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF},
+#line 215 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str412,182,16,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,94,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,__PNR_lchown,SCMP_KV_UNDEF,__PNR_lchown,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,__PNR_lchown,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF},
+#line 276 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str413,243,151,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,155,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,147,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF,151,SCMP_KV_UNDEF},
+#line 197 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str414,164,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF,__PNR_io_pgetevents_time64,SCMP_KV_UNDEF,416,SCMP_KV_UNDEF},
+#line 457 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str415,424,69,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,__PNR_ssetmask,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF},
+#line 436 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str416,403,68,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,__PNR_sgetmask,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF},
+#line 515 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str417,482,86,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,__PNR_uselib,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF},
+#line 305 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str418,272,331,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,313,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF},
+#line 524 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str419,491,190,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,113,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,189,SCMP_KV_UNDEF,__PNR_vfork,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF},
+#line 514 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str420,481,__PNR_uretprobe,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,335,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF,__PNR_uretprobe,SCMP_KV_UNDEF},
+#line 38 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str421,5,124,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,159,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,154,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,171,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF,124,SCMP_KV_UNDEF},
+#line 440 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str422,407,395,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,29,SCMP_KV_UNDEF,307,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF,395,SCMP_KV_UNDEF},
+#line 134 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str423,101,194,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF,__PNR_ftruncate64,SCMP_KV_UNDEF,194,SCMP_KV_UNDEF},
+#line 352 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str424,319,287,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,240,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF},
+#line 387 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str425,354,__PNR_security,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,185,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF,__PNR_security,SCMP_KV_UNDEF},
+#line 147 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str426,114,202,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,__PNR_getegid32,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF},
+#line 275 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str427,242,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF,__PNR_multiplexer,SCMP_KV_UNDEF},
+#line 469 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str428,436,87,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,167,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,162,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,224,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF},
+#line 411 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str429,378,276,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,238,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,229,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,262,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF},
+#line 156 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str430,123,275,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,228,SCMP_KV_UNDEF,232,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF},
+#line 522 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str431,489,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF,__PNR_utimensat_time64,SCMP_KV_UNDEF,412,SCMP_KV_UNDEF},
+#line 317 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str432,284,340,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,369,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,297,SCMP_KV_UNDEF,302,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,261,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF},
+#line 120 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str433,87,237,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,191,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,237,SCMP_KV_UNDEF},
+#line 155 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str434,122,130,SCMP_KV_UNDEF,177,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,170,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,130,SCMP_KV_UNDEF,__PNR_get_kernel_syms,SCMP_KV_UNDEF},
+#line 138 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str435,105,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF,455,SCMP_KV_UNDEF},
+#line 39 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str436,6,137,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,183,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,176,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,137,SCMP_KV_UNDEF,__PNR_afs_syscall,SCMP_KV_UNDEF},
+#line 512 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str437,479,301,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,257,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,281,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF,35,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,301,SCMP_KV_UNDEF},
+#line 459 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str438,426,195,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,101,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF,__PNR_stat64,SCMP_KV_UNDEF,195,SCMP_KV_UNDEF},
+#line 461 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str439,428,268,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,298,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,252,SCMP_KV_UNDEF,__PNR_statfs64,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF},
+#line 292 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str440,259,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF,437,SCMP_KV_UNDEF},
+#line 228 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str441,195,236,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,190,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,219,SCMP_KV_UNDEF,15,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,234,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF},
+#line 471 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str442,438,83,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,88,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,__PNR_symlink,SCMP_KV_UNDEF,__PNR_symlink,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,86,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,__PNR_symlink,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF,83,SCMP_KV_UNDEF},
+#line 252 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str443,219,192,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,89,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF,__PNR_mmap2,SCMP_KV_UNDEF,192,SCMP_KV_UNDEF},
+#line 43 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str444,10,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF,__PNR_arm_sync_file_range,SCMP_KV_UNDEF},
+#line 113 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str445,80,221,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,220,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,204,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,__PNR_fcntl64,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF},
+#line 69 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str446,36,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF,__PNR_clock_nanosleep_time64,SCMP_KV_UNDEF,407,SCMP_KV_UNDEF},
+#line 127 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str447,94,197,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,112,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF,__PNR_fstat64,SCMP_KV_UNDEF,197,SCMP_KV_UNDEF},
+#line 130 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str448,97,269,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,218,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,__PNR_fstatfs64,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,266,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF},
+#line 425 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str449,392,311,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,530,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,268,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF,99,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF},
+#line 171 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str450,138,312,SCMP_KV_UNDEF,274,SCMP_KV_UNDEF,531,SCMP_KV_UNDEF,339,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,273,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,100,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,305,SCMP_KV_UNDEF,312,SCMP_KV_UNDEF},
+#line 59 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str451,26,182,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,92,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,__PNR_chown,SCMP_KV_UNDEF,__PNR_chown,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,202,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,90,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,__PNR_chown,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF},
+#line 89 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str452,56,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF,441,SCMP_KV_UNDEF},
+#line 108 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str453,75,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF,452,SCMP_KV_UNDEF},
+#line 315 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str454,282,333,SCMP_KV_UNDEF,295,SCMP_KV_UNDEF,534,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,289,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,320,SCMP_KV_UNDEF,69,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF},
+#line 235 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str455,202,196,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF,__PNR_lstat64,SCMP_KV_UNDEF,196,SCMP_KV_UNDEF},
+#line 428 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str456,395,243,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF,283,SCMP_KV_UNDEF,242,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF,__PNR_set_thread_area,SCMP_KV_UNDEF},
+#line 176 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str457,143,244,SCMP_KV_UNDEF,211,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,333,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF,__PNR_get_thread_area,SCMP_KV_UNDEF},
+#line 149 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str458,116,201,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,__PNR_geteuid32,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF},
+#line 128 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str459,95,300,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,__PNR_fstatat64,SCMP_KV_UNDEF,300,SCMP_KV_UNDEF},
+#line 293 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str460,260,342,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,371,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,341,SCMP_KV_UNDEF,340,SCMP_KV_UNDEF,299,SCMP_KV_UNDEF,304,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,346,SCMP_KV_UNDEF,265,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,336,SCMP_KV_UNDEF,360,SCMP_KV_UNDEF},
+#line 49 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str461,16,17,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF,__PNR_break,SCMP_KV_UNDEF},
+#line 314 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str462,281,180,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,16,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,108,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,179,SCMP_KV_UNDEF,67,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF},
+#line 456 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str463,423,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF,__PNR_spu_run,SCMP_KV_UNDEF},
+#line 190 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str464,157,293,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,255,SCMP_KV_UNDEF,318,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,245,SCMP_KV_UNDEF,249,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,271,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,277,SCMP_KV_UNDEF,28,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,292,SCMP_KV_UNDEF},
+#line 249 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str465,216,376,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,390,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,375,SCMP_KV_UNDEF,359,SCMP_KV_UNDEF,319,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,345,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,374,SCMP_KV_UNDEF,374,SCMP_KV_UNDEF,379,SCMP_KV_UNDEF},
+#line 511 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str466,478,10,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,87,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,__PNR_unlink,SCMP_KV_UNDEF,__PNR_unlink,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,85,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,__PNR_unlink,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF,10,SCMP_KV_UNDEF},
+#line 50 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str467,17,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,983041,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF,__PNR_breakpoint,SCMP_KV_UNDEF},
+#line 93 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str468,60,328,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,356,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,324,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,284,SCMP_KV_UNDEF,288,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,310,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,314,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,323,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF},
+#line 525 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str469,492,111,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,153,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,150,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,58,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF,111,SCMP_KV_UNDEF},
+#line 408 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str470,375,206,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF,__PNR_setgroups32,SCMP_KV_UNDEF,206,SCMP_KV_UNDEF},
+#line 153 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str471,120,205,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF,__PNR_getgroups32,SCMP_KV_UNDEF,205,SCMP_KV_UNDEF},
+#line 329 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str472,296,334,SCMP_KV_UNDEF,296,SCMP_KV_UNDEF,535,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,330,SCMP_KV_UNDEF,331,SCMP_KV_UNDEF,290,SCMP_KV_UNDEF,294,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,70,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,329,SCMP_KV_UNDEF,334,SCMP_KV_UNDEF},
+#line 187 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str473,154,292,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,317,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,244,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,27,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF,291,SCMP_KV_UNDEF},
+#line 100 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str474,67,250,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,221,SCMP_KV_UNDEF,__PNR_fadvise64,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,246,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,215,SCMP_KV_UNDEF,216,SCMP_KV_UNDEF,__PNR_fadvise64,SCMP_KV_UNDEF,__PNR_fadvise64,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,233,SCMP_KV_UNDEF,223,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,253,SCMP_KV_UNDEF,250,SCMP_KV_UNDEF},
+#line 101 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str475,68,272,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,267,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,236,SCMP_KV_UNDEF,254,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,__PNR_fadvise64_64,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF},
+#line 140 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str476,107,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF,454,SCMP_KV_UNDEF},
+#line 351 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str477,318,353,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,316,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,351,SCMP_KV_UNDEF,311,SCMP_KV_UNDEF,315,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,337,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,357,SCMP_KV_UNDEF,276,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,371,SCMP_KV_UNDEF},
+#line 530 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str478,497,114,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,61,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,59,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,260,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF,114,SCMP_KV_UNDEF},
+#line 433 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str479,400,213,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF,__PNR_setuid32,SCMP_KV_UNDEF,213,SCMP_KV_UNDEF},
+#line 181 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str480,148,199,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF,__PNR_getuid32,SCMP_KV_UNDEF,199,SCMP_KV_UNDEF},
+#line 328 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str481,295,181,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,18,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,201,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,17,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,109,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,180,SCMP_KV_UNDEF,68,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF},
+#line 355 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str482,322,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,258,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF,__PNR_riscv_hwprobe,SCMP_KV_UNDEF},
+#line 479 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str483,446,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,256,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF,__PNR_sys_debug_setcontext,SCMP_KV_UNDEF},
+#line 518 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str484,485,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,983044,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF,__PNR_usr32,SCMP_KV_UNDEF},
+#line 139 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str485,106,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF,449,SCMP_KV_UNDEF},
+#line 42 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str486,9,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,270,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF,__PNR_arm_fadvise64_64,SCMP_KV_UNDEF},
+#line 534 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str487,501,146,SCMP_KV_UNDEF,20,SCMP_KV_UNDEF,516,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,19,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,66,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF,146,SCMP_KV_UNDEF},
+#line 406 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str488,373,214,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF,__PNR_setgid32,SCMP_KV_UNDEF,214,SCMP_KV_UNDEF},
+#line 151 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str489,118,200,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF,__PNR_getgid32,SCMP_KV_UNDEF,200,SCMP_KV_UNDEF},
+#line 37 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str490,4,286,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,248,SCMP_KV_UNDEF,309,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,279,SCMP_KV_UNDEF,280,SCMP_KV_UNDEF,239,SCMP_KV_UNDEF,243,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,264,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,269,SCMP_KV_UNDEF,217,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF,285,SCMP_KV_UNDEF},
+#line 470 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str491,437,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,363,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF,__PNR_switch_endian,SCMP_KV_UNDEF},
+#line 237 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str492,204,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF,453,SCMP_KV_UNDEF},
+#line 441 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str493,408,373,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,48,SCMP_KV_UNDEF,293,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,370,SCMP_KV_UNDEF,182,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,47,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,117,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,338,SCMP_KV_UNDEF,210,SCMP_KV_UNDEF,373,SCMP_KV_UNDEF,373,SCMP_KV_UNDEF,352,SCMP_KV_UNDEF},
+#line 46 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str494,13,134,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,__PNR_bdflush,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF,134,SCMP_KV_UNDEF},
+#line 267 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str495,234,278,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,241,SCMP_KV_UNDEF,275,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,231,SCMP_KV_UNDEF,235,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,230,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,263,SCMP_KV_UNDEF,181,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,272,SCMP_KV_UNDEF,278,SCMP_KV_UNDEF},
+#line 110 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str496,77,207,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF,__PNR_fchown32,SCMP_KV_UNDEF,207,SCMP_KV_UNDEF},
+#line 316 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str497,283,378,SCMP_KV_UNDEF,327,SCMP_KV_UNDEF,546,SCMP_KV_UNDEF,392,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,377,SCMP_KV_UNDEF,361,SCMP_KV_UNDEF,321,SCMP_KV_UNDEF,325,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,347,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,380,SCMP_KV_UNDEF,286,SCMP_KV_UNDEF,376,SCMP_KV_UNDEF,376,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF},
+#line 216 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str498,183,198,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,__PNR_lchown32,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF},
+#line 509 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str499,476,52,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,166,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,161,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,39,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF,52,SCMP_KV_UNDEF},
+#line 330 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str500,297,379,SCMP_KV_UNDEF,328,SCMP_KV_UNDEF,547,SCMP_KV_UNDEF,393,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,378,SCMP_KV_UNDEF,362,SCMP_KV_UNDEF,322,SCMP_KV_UNDEF,326,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,348,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,381,SCMP_KV_UNDEF,287,SCMP_KV_UNDEF,377,SCMP_KV_UNDEF,377,SCMP_KV_UNDEF,382,SCMP_KV_UNDEF},
+#line 60 "syscalls.perf"
+    {(int)(size_t)&((struct stringpool_t *)0)->stringpool_str501,27,212,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,198,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF,__PNR_chown32,SCMP_KV_UNDEF,212,SCMP_KV_UNDEF}
   };
 
 const struct arch_syscall_table *
@@ -2086,1450 +2172,1513 @@ in_word_set (register const char *str, register size_t len)
         {
           register const struct arch_syscall_table *resword;
 
-          switch (key - 13)
+          switch (key - 7)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 3:
+              case 6:
                 resword = &wordlist[1];
                 goto compare;
-              case 4:
+              case 8:
                 resword = &wordlist[2];
                 goto compare;
-              case 5:
+              case 9:
                 resword = &wordlist[3];
                 goto compare;
-              case 6:
+              case 10:
                 resword = &wordlist[4];
                 goto compare;
-              case 7:
+              case 14:
                 resword = &wordlist[5];
                 goto compare;
-              case 10:
+              case 16:
                 resword = &wordlist[6];
                 goto compare;
-              case 11:
+              case 17:
                 resword = &wordlist[7];
                 goto compare;
-              case 12:
+              case 18:
                 resword = &wordlist[8];
                 goto compare;
-              case 16:
+              case 20:
                 resword = &wordlist[9];
                 goto compare;
-              case 17:
+              case 21:
                 resword = &wordlist[10];
                 goto compare;
-              case 18:
+              case 22:
                 resword = &wordlist[11];
                 goto compare;
-              case 20:
+              case 23:
                 resword = &wordlist[12];
                 goto compare;
-              case 21:
+              case 24:
                 resword = &wordlist[13];
                 goto compare;
-              case 23:
+              case 27:
                 resword = &wordlist[14];
                 goto compare;
-              case 24:
+              case 28:
                 resword = &wordlist[15];
                 goto compare;
-              case 28:
+              case 39:
                 resword = &wordlist[16];
                 goto compare;
-              case 34:
+              case 41:
                 resword = &wordlist[17];
                 goto compare;
-              case 35:
+              case 42:
                 resword = &wordlist[18];
                 goto compare;
-              case 36:
+              case 43:
                 resword = &wordlist[19];
                 goto compare;
-              case 37:
+              case 44:
                 resword = &wordlist[20];
                 goto compare;
-              case 38:
+              case 45:
                 resword = &wordlist[21];
                 goto compare;
-              case 39:
+              case 46:
                 resword = &wordlist[22];
                 goto compare;
-              case 40:
+              case 48:
                 resword = &wordlist[23];
                 goto compare;
-              case 46:
+              case 49:
                 resword = &wordlist[24];
                 goto compare;
-              case 47:
+              case 51:
                 resword = &wordlist[25];
                 goto compare;
-              case 49:
+              case 52:
                 resword = &wordlist[26];
                 goto compare;
-              case 50:
+              case 54:
                 resword = &wordlist[27];
                 goto compare;
-              case 51:
+              case 57:
                 resword = &wordlist[28];
                 goto compare;
-              case 52:
+              case 58:
                 resword = &wordlist[29];
                 goto compare;
-              case 54:
+              case 59:
                 resword = &wordlist[30];
                 goto compare;
-              case 57:
+              case 62:
                 resword = &wordlist[31];
                 goto compare;
-              case 58:
+              case 63:
                 resword = &wordlist[32];
                 goto compare;
-              case 59:
+              case 65:
                 resword = &wordlist[33];
                 goto compare;
-              case 60:
+              case 66:
                 resword = &wordlist[34];
                 goto compare;
-              case 61:
+              case 67:
                 resword = &wordlist[35];
                 goto compare;
-              case 62:
+              case 71:
                 resword = &wordlist[36];
                 goto compare;
-              case 67:
+              case 72:
                 resword = &wordlist[37];
                 goto compare;
-              case 70:
+              case 73:
                 resword = &wordlist[38];
                 goto compare;
-              case 71:
+              case 77:
                 resword = &wordlist[39];
                 goto compare;
-              case 76:
+              case 78:
                 resword = &wordlist[40];
                 goto compare;
-              case 80:
+              case 79:
                 resword = &wordlist[41];
                 goto compare;
-              case 81:
+              case 80:
                 resword = &wordlist[42];
                 goto compare;
-              case 84:
+              case 81:
                 resword = &wordlist[43];
                 goto compare;
-              case 87:
+              case 82:
                 resword = &wordlist[44];
                 goto compare;
-              case 88:
+              case 84:
                 resword = &wordlist[45];
                 goto compare;
-              case 92:
+              case 85:
                 resword = &wordlist[46];
                 goto compare;
-              case 96:
+              case 87:
                 resword = &wordlist[47];
                 goto compare;
-              case 97:
+              case 89:
                 resword = &wordlist[48];
                 goto compare;
-              case 104:
+              case 90:
                 resword = &wordlist[49];
                 goto compare;
-              case 105:
+              case 93:
                 resword = &wordlist[50];
                 goto compare;
-              case 106:
+              case 95:
                 resword = &wordlist[51];
                 goto compare;
-              case 111:
+              case 96:
                 resword = &wordlist[52];
                 goto compare;
-              case 112:
+              case 97:
                 resword = &wordlist[53];
                 goto compare;
-              case 114:
+              case 102:
                 resword = &wordlist[54];
                 goto compare;
-              case 118:
+              case 106:
                 resword = &wordlist[55];
                 goto compare;
-              case 119:
+              case 114:
                 resword = &wordlist[56];
                 goto compare;
-              case 122:
+              case 115:
                 resword = &wordlist[57];
                 goto compare;
-              case 125:
+              case 120:
                 resword = &wordlist[58];
                 goto compare;
-              case 127:
+              case 123:
                 resword = &wordlist[59];
                 goto compare;
-              case 128:
+              case 124:
                 resword = &wordlist[60];
                 goto compare;
-              case 129:
+              case 126:
                 resword = &wordlist[61];
                 goto compare;
-              case 130:
+              case 128:
                 resword = &wordlist[62];
                 goto compare;
-              case 131:
+              case 130:
                 resword = &wordlist[63];
                 goto compare;
-              case 133:
+              case 131:
                 resword = &wordlist[64];
                 goto compare;
-              case 134:
+              case 136:
                 resword = &wordlist[65];
                 goto compare;
-              case 136:
+              case 137:
                 resword = &wordlist[66];
                 goto compare;
-              case 141:
+              case 144:
                 resword = &wordlist[67];
                 goto compare;
-              case 143:
+              case 150:
                 resword = &wordlist[68];
                 goto compare;
-              case 145:
+              case 151:
                 resword = &wordlist[69];
                 goto compare;
-              case 147:
+              case 153:
                 resword = &wordlist[70];
                 goto compare;
-              case 148:
+              case 154:
                 resword = &wordlist[71];
                 goto compare;
-              case 151:
+              case 156:
                 resword = &wordlist[72];
                 goto compare;
-              case 152:
+              case 157:
                 resword = &wordlist[73];
                 goto compare;
-              case 154:
+              case 158:
                 resword = &wordlist[74];
                 goto compare;
-              case 156:
+              case 160:
                 resword = &wordlist[75];
                 goto compare;
-              case 157:
+              case 164:
                 resword = &wordlist[76];
                 goto compare;
-              case 160:
+              case 165:
                 resword = &wordlist[77];
                 goto compare;
-              case 162:
+              case 168:
                 resword = &wordlist[78];
                 goto compare;
-              case 164:
+              case 170:
                 resword = &wordlist[79];
                 goto compare;
-              case 165:
+              case 171:
                 resword = &wordlist[80];
                 goto compare;
-              case 168:
+              case 172:
                 resword = &wordlist[81];
                 goto compare;
-              case 172:
+              case 188:
                 resword = &wordlist[82];
                 goto compare;
-              case 173:
+              case 189:
                 resword = &wordlist[83];
                 goto compare;
-              case 174:
+              case 192:
                 resword = &wordlist[84];
                 goto compare;
-              case 177:
+              case 193:
                 resword = &wordlist[85];
                 goto compare;
-              case 178:
+              case 194:
                 resword = &wordlist[86];
                 goto compare;
-              case 181:
+              case 195:
                 resword = &wordlist[87];
                 goto compare;
-              case 182:
+              case 197:
                 resword = &wordlist[88];
                 goto compare;
-              case 185:
+              case 198:
                 resword = &wordlist[89];
                 goto compare;
-              case 189:
+              case 201:
                 resword = &wordlist[90];
                 goto compare;
-              case 192:
+              case 202:
                 resword = &wordlist[91];
                 goto compare;
-              case 193:
+              case 203:
                 resword = &wordlist[92];
                 goto compare;
-              case 194:
+              case 204:
                 resword = &wordlist[93];
                 goto compare;
-              case 196:
+              case 205:
                 resword = &wordlist[94];
                 goto compare;
-              case 197:
+              case 207:
                 resword = &wordlist[95];
                 goto compare;
-              case 200:
+              case 208:
                 resword = &wordlist[96];
                 goto compare;
-              case 201:
+              case 209:
                 resword = &wordlist[97];
                 goto compare;
-              case 204:
+              case 216:
                 resword = &wordlist[98];
                 goto compare;
-              case 207:
+              case 217:
                 resword = &wordlist[99];
                 goto compare;
-              case 209:
+              case 218:
                 resword = &wordlist[100];
                 goto compare;
-              case 210:
+              case 219:
                 resword = &wordlist[101];
                 goto compare;
-              case 211:
+              case 220:
                 resword = &wordlist[102];
                 goto compare;
-              case 212:
+              case 221:
                 resword = &wordlist[103];
                 goto compare;
-              case 214:
+              case 223:
                 resword = &wordlist[104];
                 goto compare;
-              case 215:
+              case 224:
                 resword = &wordlist[105];
                 goto compare;
-              case 217:
+              case 226:
                 resword = &wordlist[106];
                 goto compare;
-              case 218:
+              case 228:
                 resword = &wordlist[107];
                 goto compare;
-              case 219:
+              case 229:
                 resword = &wordlist[108];
                 goto compare;
-              case 220:
+              case 230:
                 resword = &wordlist[109];
                 goto compare;
-              case 225:
+              case 231:
                 resword = &wordlist[110];
                 goto compare;
-              case 229:
+              case 232:
                 resword = &wordlist[111];
                 goto compare;
-              case 231:
+              case 233:
                 resword = &wordlist[112];
                 goto compare;
-              case 232:
+              case 234:
                 resword = &wordlist[113];
                 goto compare;
-              case 234:
+              case 235:
                 resword = &wordlist[114];
                 goto compare;
-              case 241:
+              case 237:
                 resword = &wordlist[115];
                 goto compare;
-              case 243:
+              case 240:
                 resword = &wordlist[116];
                 goto compare;
-              case 245:
+              case 241:
                 resword = &wordlist[117];
                 goto compare;
-              case 246:
+              case 244:
                 resword = &wordlist[118];
                 goto compare;
               case 247:
                 resword = &wordlist[119];
                 goto compare;
-              case 248:
+              case 251:
                 resword = &wordlist[120];
                 goto compare;
-              case 252:
+              case 257:
                 resword = &wordlist[121];
                 goto compare;
-              case 254:
+              case 259:
                 resword = &wordlist[122];
                 goto compare;
-              case 258:
+              case 260:
                 resword = &wordlist[123];
                 goto compare;
               case 261:
                 resword = &wordlist[124];
                 goto compare;
-              case 263:
+              case 262:
                 resword = &wordlist[125];
                 goto compare;
-              case 264:
+              case 263:
                 resword = &wordlist[126];
                 goto compare;
-              case 269:
+              case 267:
                 resword = &wordlist[127];
                 goto compare;
-              case 270:
+              case 272:
                 resword = &wordlist[128];
                 goto compare;
-              case 272:
+              case 275:
                 resword = &wordlist[129];
                 goto compare;
-              case 273:
+              case 277:
                 resword = &wordlist[130];
                 goto compare;
               case 278:
                 resword = &wordlist[131];
                 goto compare;
-              case 279:
+              case 280:
                 resword = &wordlist[132];
                 goto compare;
-              case 283:
+              case 282:
                 resword = &wordlist[133];
                 goto compare;
-              case 284:
+              case 285:
                 resword = &wordlist[134];
                 goto compare;
-              case 285:
+              case 286:
                 resword = &wordlist[135];
                 goto compare;
-              case 288:
+              case 289:
                 resword = &wordlist[136];
                 goto compare;
-              case 291:
+              case 292:
                 resword = &wordlist[137];
                 goto compare;
-              case 292:
+              case 295:
                 resword = &wordlist[138];
                 goto compare;
-              case 293:
+              case 296:
                 resword = &wordlist[139];
                 goto compare;
-              case 297:
+              case 299:
                 resword = &wordlist[140];
                 goto compare;
-              case 298:
+              case 301:
                 resword = &wordlist[141];
                 goto compare;
-              case 302:
+              case 303:
                 resword = &wordlist[142];
                 goto compare;
-              case 304:
+              case 305:
                 resword = &wordlist[143];
                 goto compare;
               case 306:
                 resword = &wordlist[144];
                 goto compare;
-              case 307:
+              case 308:
                 resword = &wordlist[145];
                 goto compare;
-              case 308:
+              case 309:
                 resword = &wordlist[146];
                 goto compare;
-              case 315:
+              case 310:
                 resword = &wordlist[147];
                 goto compare;
-              case 316:
+              case 312:
                 resword = &wordlist[148];
                 goto compare;
-              case 320:
+              case 313:
                 resword = &wordlist[149];
                 goto compare;
-              case 322:
+              case 314:
                 resword = &wordlist[150];
                 goto compare;
-              case 324:
+              case 317:
                 resword = &wordlist[151];
                 goto compare;
-              case 325:
+              case 318:
                 resword = &wordlist[152];
                 goto compare;
-              case 327:
+              case 319:
                 resword = &wordlist[153];
                 goto compare;
-              case 329:
+              case 320:
                 resword = &wordlist[154];
                 goto compare;
-              case 330:
+              case 323:
                 resword = &wordlist[155];
                 goto compare;
-              case 331:
+              case 324:
                 resword = &wordlist[156];
                 goto compare;
-              case 334:
+              case 329:
                 resword = &wordlist[157];
                 goto compare;
-              case 335:
+              case 330:
                 resword = &wordlist[158];
                 goto compare;
-              case 336:
+              case 331:
                 resword = &wordlist[159];
                 goto compare;
-              case 338:
+              case 332:
                 resword = &wordlist[160];
                 goto compare;
-              case 339:
+              case 343:
                 resword = &wordlist[161];
                 goto compare;
-              case 340:
+              case 344:
                 resword = &wordlist[162];
                 goto compare;
-              case 342:
+              case 347:
                 resword = &wordlist[163];
                 goto compare;
-              case 344:
+              case 348:
                 resword = &wordlist[164];
                 goto compare;
-              case 345:
+              case 349:
                 resword = &wordlist[165];
                 goto compare;
-              case 346:
+              case 350:
                 resword = &wordlist[166];
                 goto compare;
-              case 347:
+              case 351:
                 resword = &wordlist[167];
                 goto compare;
-              case 350:
+              case 355:
                 resword = &wordlist[168];
                 goto compare;
-              case 351:
+              case 357:
                 resword = &wordlist[169];
                 goto compare;
-              case 356:
+              case 358:
                 resword = &wordlist[170];
                 goto compare;
-              case 357:
+              case 359:
                 resword = &wordlist[171];
                 goto compare;
-              case 358:
+              case 360:
                 resword = &wordlist[172];
                 goto compare;
-              case 359:
+              case 362:
                 resword = &wordlist[173];
                 goto compare;
-              case 360:
+              case 363:
                 resword = &wordlist[174];
                 goto compare;
-              case 361:
+              case 369:
                 resword = &wordlist[175];
                 goto compare;
-              case 362:
+              case 371:
                 resword = &wordlist[176];
                 goto compare;
-              case 366:
+              case 372:
                 resword = &wordlist[177];
                 goto compare;
-              case 370:
+              case 373:
                 resword = &wordlist[178];
                 goto compare;
-              case 372:
+              case 376:
                 resword = &wordlist[179];
                 goto compare;
-              case 375:
+              case 377:
                 resword = &wordlist[180];
                 goto compare;
-              case 376:
+              case 380:
                 resword = &wordlist[181];
                 goto compare;
-              case 377:
+              case 381:
                 resword = &wordlist[182];
                 goto compare;
-              case 378:
+              case 383:
                 resword = &wordlist[183];
                 goto compare;
-              case 379:
+              case 384:
                 resword = &wordlist[184];
                 goto compare;
-              case 380:
+              case 386:
                 resword = &wordlist[185];
                 goto compare;
-              case 382:
+              case 390:
                 resword = &wordlist[186];
                 goto compare;
-              case 383:
+              case 391:
                 resword = &wordlist[187];
                 goto compare;
-              case 390:
+              case 392:
                 resword = &wordlist[188];
                 goto compare;
-              case 400:
+              case 393:
                 resword = &wordlist[189];
                 goto compare;
-              case 401:
+              case 394:
                 resword = &wordlist[190];
                 goto compare;
-              case 404:
+              case 395:
                 resword = &wordlist[191];
                 goto compare;
-              case 405:
+              case 396:
                 resword = &wordlist[192];
                 goto compare;
-              case 406:
+              case 397:
                 resword = &wordlist[193];
                 goto compare;
-              case 407:
+              case 399:
                 resword = &wordlist[194];
                 goto compare;
-              case 409:
+              case 401:
                 resword = &wordlist[195];
                 goto compare;
-              case 410:
+              case 402:
                 resword = &wordlist[196];
                 goto compare;
-              case 412:
+              case 406:
                 resword = &wordlist[197];
                 goto compare;
-              case 415:
+              case 407:
                 resword = &wordlist[198];
                 goto compare;
-              case 418:
+              case 408:
                 resword = &wordlist[199];
                 goto compare;
-              case 421:
+              case 410:
                 resword = &wordlist[200];
                 goto compare;
-              case 422:
+              case 416:
                 resword = &wordlist[201];
                 goto compare;
-              case 426:
+              case 419:
                 resword = &wordlist[202];
                 goto compare;
-              case 428:
+              case 420:
                 resword = &wordlist[203];
                 goto compare;
-              case 429:
+              case 421:
                 resword = &wordlist[204];
                 goto compare;
-              case 430:
+              case 422:
                 resword = &wordlist[205];
                 goto compare;
-              case 432:
+              case 423:
                 resword = &wordlist[206];
                 goto compare;
-              case 433:
+              case 425:
                 resword = &wordlist[207];
                 goto compare;
-              case 434:
+              case 427:
                 resword = &wordlist[208];
                 goto compare;
-              case 435:
+              case 428:
                 resword = &wordlist[209];
                 goto compare;
-              case 436:
+              case 429:
                 resword = &wordlist[210];
                 goto compare;
-              case 437:
+              case 431:
                 resword = &wordlist[211];
                 goto compare;
-              case 439:
+              case 432:
                 resword = &wordlist[212];
                 goto compare;
-              case 441:
+              case 433:
                 resword = &wordlist[213];
                 goto compare;
-              case 442:
+              case 438:
                 resword = &wordlist[214];
                 goto compare;
-              case 443:
+              case 441:
                 resword = &wordlist[215];
                 goto compare;
-              case 447:
+              case 443:
                 resword = &wordlist[216];
                 goto compare;
-              case 448:
+              case 444:
                 resword = &wordlist[217];
                 goto compare;
-              case 449:
+              case 454:
                 resword = &wordlist[218];
                 goto compare;
-              case 450:
+              case 456:
                 resword = &wordlist[219];
                 goto compare;
-              case 451:
+              case 460:
                 resword = &wordlist[220];
                 goto compare;
-              case 452:
+              case 463:
                 resword = &wordlist[221];
                 goto compare;
-              case 453:
+              case 465:
                 resword = &wordlist[222];
                 goto compare;
-              case 454:
+              case 467:
                 resword = &wordlist[223];
                 goto compare;
-              case 455:
+              case 468:
                 resword = &wordlist[224];
                 goto compare;
-              case 458:
+              case 469:
                 resword = &wordlist[225];
                 goto compare;
-              case 460:
+              case 470:
                 resword = &wordlist[226];
                 goto compare;
-              case 461:
+              case 478:
                 resword = &wordlist[227];
                 goto compare;
-              case 464:
+              case 479:
                 resword = &wordlist[228];
                 goto compare;
-              case 465:
+              case 480:
                 resword = &wordlist[229];
                 goto compare;
-              case 466:
+              case 481:
                 resword = &wordlist[230];
                 goto compare;
-              case 469:
+              case 482:
                 resword = &wordlist[231];
                 goto compare;
-              case 471:
+              case 483:
                 resword = &wordlist[232];
                 goto compare;
-              case 476:
+              case 484:
                 resword = &wordlist[233];
                 goto compare;
-              case 477:
+              case 485:
                 resword = &wordlist[234];
                 goto compare;
-              case 480:
+              case 488:
                 resword = &wordlist[235];
                 goto compare;
-              case 481:
+              case 489:
                 resword = &wordlist[236];
                 goto compare;
-              case 483:
+              case 490:
                 resword = &wordlist[237];
                 goto compare;
-              case 485:
+              case 491:
                 resword = &wordlist[238];
                 goto compare;
-              case 487:
+              case 495:
                 resword = &wordlist[239];
                 goto compare;
-              case 488:
+              case 496:
                 resword = &wordlist[240];
                 goto compare;
-              case 489:
+              case 497:
                 resword = &wordlist[241];
                 goto compare;
-              case 492:
+              case 503:
                 resword = &wordlist[242];
                 goto compare;
-              case 493:
+              case 504:
                 resword = &wordlist[243];
                 goto compare;
-              case 498:
+              case 507:
                 resword = &wordlist[244];
                 goto compare;
-              case 502:
+              case 508:
                 resword = &wordlist[245];
                 goto compare;
-              case 503:
+              case 509:
                 resword = &wordlist[246];
                 goto compare;
-              case 510:
+              case 513:
                 resword = &wordlist[247];
                 goto compare;
-              case 511:
+              case 514:
                 resword = &wordlist[248];
                 goto compare;
-              case 514:
+              case 516:
                 resword = &wordlist[249];
                 goto compare;
-              case 515:
+              case 519:
                 resword = &wordlist[250];
                 goto compare;
-              case 516:
+              case 524:
                 resword = &wordlist[251];
                 goto compare;
-              case 519:
+              case 526:
                 resword = &wordlist[252];
                 goto compare;
-              case 520:
+              case 527:
                 resword = &wordlist[253];
                 goto compare;
-              case 521:
+              case 529:
                 resword = &wordlist[254];
                 goto compare;
-              case 523:
+              case 530:
                 resword = &wordlist[255];
                 goto compare;
-              case 524:
+              case 533:
                 resword = &wordlist[256];
                 goto compare;
-              case 527:
+              case 535:
                 resword = &wordlist[257];
                 goto compare;
-              case 530:
+              case 537:
                 resword = &wordlist[258];
                 goto compare;
-              case 532:
+              case 538:
                 resword = &wordlist[259];
                 goto compare;
-              case 534:
+              case 540:
                 resword = &wordlist[260];
                 goto compare;
-              case 535:
+              case 542:
                 resword = &wordlist[261];
                 goto compare;
-              case 537:
+              case 543:
                 resword = &wordlist[262];
                 goto compare;
-              case 540:
+              case 545:
                 resword = &wordlist[263];
                 goto compare;
-              case 542:
+              case 547:
                 resword = &wordlist[264];
                 goto compare;
-              case 543:
+              case 549:
                 resword = &wordlist[265];
                 goto compare;
-              case 544:
+              case 550:
                 resword = &wordlist[266];
                 goto compare;
-              case 546:
+              case 551:
                 resword = &wordlist[267];
                 goto compare;
-              case 547:
+              case 553:
                 resword = &wordlist[268];
                 goto compare;
-              case 548:
+              case 554:
                 resword = &wordlist[269];
                 goto compare;
-              case 549:
+              case 555:
                 resword = &wordlist[270];
                 goto compare;
-              case 550:
+              case 559:
                 resword = &wordlist[271];
                 goto compare;
-              case 551:
+              case 560:
                 resword = &wordlist[272];
                 goto compare;
-              case 553:
+              case 562:
                 resword = &wordlist[273];
                 goto compare;
-              case 557:
+              case 563:
                 resword = &wordlist[274];
                 goto compare;
-              case 559:
+              case 564:
                 resword = &wordlist[275];
                 goto compare;
-              case 562:
+              case 568:
                 resword = &wordlist[276];
                 goto compare;
-              case 564:
+              case 577:
                 resword = &wordlist[277];
                 goto compare;
-              case 566:
+              case 581:
                 resword = &wordlist[278];
                 goto compare;
-              case 572:
+              case 583:
                 resword = &wordlist[279];
                 goto compare;
-              case 574:
+              case 584:
                 resword = &wordlist[280];
                 goto compare;
-              case 577:
+              case 585:
                 resword = &wordlist[281];
                 goto compare;
-              case 578:
+              case 586:
                 resword = &wordlist[282];
                 goto compare;
-              case 579:
+              case 587:
                 resword = &wordlist[283];
                 goto compare;
-              case 580:
+              case 588:
                 resword = &wordlist[284];
                 goto compare;
-              case 582:
+              case 594:
                 resword = &wordlist[285];
                 goto compare;
-              case 583:
+              case 596:
                 resword = &wordlist[286];
                 goto compare;
-              case 584:
+              case 597:
                 resword = &wordlist[287];
                 goto compare;
-              case 593:
+              case 601:
                 resword = &wordlist[288];
                 goto compare;
-              case 597:
+              case 602:
                 resword = &wordlist[289];
                 goto compare;
-              case 598:
+              case 605:
                 resword = &wordlist[290];
                 goto compare;
-              case 600:
+              case 606:
                 resword = &wordlist[291];
                 goto compare;
-              case 601:
+              case 607:
                 resword = &wordlist[292];
                 goto compare;
-              case 602:
+              case 609:
                 resword = &wordlist[293];
                 goto compare;
-              case 603:
+              case 610:
                 resword = &wordlist[294];
                 goto compare;
-              case 605:
+              case 614:
                 resword = &wordlist[295];
                 goto compare;
-              case 607:
+              case 615:
                 resword = &wordlist[296];
                 goto compare;
-              case 610:
+              case 616:
                 resword = &wordlist[297];
                 goto compare;
-              case 611:
+              case 617:
                 resword = &wordlist[298];
                 goto compare;
-              case 614:
+              case 620:
                 resword = &wordlist[299];
                 goto compare;
-              case 615:
+              case 621:
                 resword = &wordlist[300];
                 goto compare;
-              case 616:
+              case 626:
                 resword = &wordlist[301];
                 goto compare;
-              case 617:
+              case 627:
                 resword = &wordlist[302];
                 goto compare;
-              case 619:
+              case 628:
                 resword = &wordlist[303];
                 goto compare;
-              case 623:
+              case 629:
                 resword = &wordlist[304];
                 goto compare;
-              case 626:
+              case 633:
                 resword = &wordlist[305];
                 goto compare;
-              case 628:
+              case 634:
                 resword = &wordlist[306];
                 goto compare;
-              case 630:
+              case 636:
                 resword = &wordlist[307];
                 goto compare;
-              case 632:
+              case 637:
                 resword = &wordlist[308];
                 goto compare;
-              case 635:
+              case 638:
                 resword = &wordlist[309];
                 goto compare;
-              case 636:
+              case 640:
                 resword = &wordlist[310];
                 goto compare;
-              case 644:
+              case 641:
                 resword = &wordlist[311];
                 goto compare;
-              case 645:
+              case 642:
                 resword = &wordlist[312];
                 goto compare;
-              case 649:
+              case 646:
                 resword = &wordlist[313];
                 goto compare;
-              case 651:
+              case 648:
                 resword = &wordlist[314];
                 goto compare;
-              case 652:
+              case 649:
                 resword = &wordlist[315];
                 goto compare;
-              case 655:
+              case 650:
                 resword = &wordlist[316];
                 goto compare;
-              case 656:
+              case 651:
                 resword = &wordlist[317];
                 goto compare;
-              case 659:
+              case 654:
                 resword = &wordlist[318];
                 goto compare;
-              case 660:
+              case 656:
                 resword = &wordlist[319];
                 goto compare;
-              case 663:
+              case 658:
                 resword = &wordlist[320];
                 goto compare;
-              case 664:
+              case 659:
                 resword = &wordlist[321];
                 goto compare;
-              case 667:
+              case 660:
                 resword = &wordlist[322];
                 goto compare;
-              case 671:
+              case 661:
                 resword = &wordlist[323];
                 goto compare;
-              case 672:
+              case 662:
                 resword = &wordlist[324];
                 goto compare;
-              case 673:
+              case 667:
                 resword = &wordlist[325];
                 goto compare;
-              case 674:
+              case 668:
                 resword = &wordlist[326];
                 goto compare;
-              case 676:
+              case 669:
                 resword = &wordlist[327];
                 goto compare;
-              case 677:
+              case 670:
                 resword = &wordlist[328];
                 goto compare;
-              case 678:
+              case 672:
                 resword = &wordlist[329];
                 goto compare;
-              case 681:
+              case 673:
                 resword = &wordlist[330];
                 goto compare;
-              case 685:
+              case 675:
                 resword = &wordlist[331];
                 goto compare;
-              case 687:
+              case 676:
                 resword = &wordlist[332];
                 goto compare;
-              case 688:
+              case 679:
                 resword = &wordlist[333];
                 goto compare;
-              case 689:
+              case 682:
                 resword = &wordlist[334];
                 goto compare;
-              case 692:
+              case 683:
                 resword = &wordlist[335];
                 goto compare;
-              case 693:
+              case 689:
                 resword = &wordlist[336];
                 goto compare;
-              case 694:
+              case 695:
                 resword = &wordlist[337];
                 goto compare;
-              case 699:
+              case 697:
                 resword = &wordlist[338];
                 goto compare;
               case 700:
                 resword = &wordlist[339];
                 goto compare;
-              case 705:
+              case 701:
                 resword = &wordlist[340];
                 goto compare;
-              case 710:
+              case 702:
                 resword = &wordlist[341];
                 goto compare;
-              case 711:
+              case 706:
                 resword = &wordlist[342];
                 goto compare;
-              case 713:
+              case 715:
                 resword = &wordlist[343];
                 goto compare;
-              case 714:
+              case 716:
                 resword = &wordlist[344];
                 goto compare;
-              case 717:
+              case 720:
                 resword = &wordlist[345];
                 goto compare;
-              case 719:
+              case 721:
                 resword = &wordlist[346];
                 goto compare;
-              case 722:
+              case 723:
                 resword = &wordlist[347];
                 goto compare;
-              case 727:
+              case 724:
                 resword = &wordlist[348];
                 goto compare;
-              case 728:
+              case 729:
                 resword = &wordlist[349];
                 goto compare;
               case 730:
                 resword = &wordlist[350];
                 goto compare;
-              case 731:
+              case 732:
                 resword = &wordlist[351];
                 goto compare;
-              case 742:
+              case 733:
                 resword = &wordlist[352];
                 goto compare;
-              case 744:
+              case 734:
                 resword = &wordlist[353];
                 goto compare;
-              case 745:
+              case 735:
                 resword = &wordlist[354];
                 goto compare;
-              case 753:
+              case 737:
                 resword = &wordlist[355];
                 goto compare;
-              case 758:
+              case 738:
                 resword = &wordlist[356];
                 goto compare;
-              case 759:
+              case 739:
                 resword = &wordlist[357];
                 goto compare;
-              case 761:
+              case 743:
                 resword = &wordlist[358];
                 goto compare;
-              case 770:
+              case 747:
                 resword = &wordlist[359];
                 goto compare;
-              case 772:
+              case 749:
                 resword = &wordlist[360];
                 goto compare;
-              case 778:
+              case 751:
                 resword = &wordlist[361];
                 goto compare;
-              case 779:
+              case 752:
                 resword = &wordlist[362];
                 goto compare;
-              case 780:
+              case 754:
                 resword = &wordlist[363];
                 goto compare;
-              case 783:
+              case 756:
                 resword = &wordlist[364];
                 goto compare;
-              case 785:
+              case 762:
                 resword = &wordlist[365];
                 goto compare;
-              case 789:
+              case 767:
                 resword = &wordlist[366];
                 goto compare;
-              case 791:
+              case 771:
                 resword = &wordlist[367];
                 goto compare;
-              case 792:
+              case 772:
                 resword = &wordlist[368];
                 goto compare;
-              case 793:
+              case 773:
                 resword = &wordlist[369];
                 goto compare;
-              case 802:
+              case 781:
                 resword = &wordlist[370];
                 goto compare;
-              case 808:
+              case 782:
                 resword = &wordlist[371];
                 goto compare;
-              case 822:
+              case 786:
                 resword = &wordlist[372];
                 goto compare;
-              case 826:
+              case 787:
                 resword = &wordlist[373];
                 goto compare;
-              case 833:
+              case 790:
                 resword = &wordlist[374];
                 goto compare;
-              case 835:
+              case 792:
                 resword = &wordlist[375];
                 goto compare;
-              case 836:
+              case 793:
                 resword = &wordlist[376];
                 goto compare;
-              case 837:
+              case 794:
                 resword = &wordlist[377];
                 goto compare;
-              case 841:
+              case 797:
                 resword = &wordlist[378];
                 goto compare;
-              case 842:
+              case 798:
                 resword = &wordlist[379];
                 goto compare;
-              case 843:
+              case 801:
                 resword = &wordlist[380];
                 goto compare;
-              case 845:
+              case 806:
                 resword = &wordlist[381];
                 goto compare;
-              case 846:
+              case 807:
                 resword = &wordlist[382];
                 goto compare;
-              case 847:
+              case 808:
                 resword = &wordlist[383];
                 goto compare;
-              case 849:
+              case 814:
                 resword = &wordlist[384];
                 goto compare;
-              case 853:
+              case 815:
                 resword = &wordlist[385];
                 goto compare;
-              case 854:
+              case 817:
                 resword = &wordlist[386];
                 goto compare;
-              case 856:
+              case 820:
                 resword = &wordlist[387];
                 goto compare;
-              case 857:
+              case 830:
                 resword = &wordlist[388];
                 goto compare;
-              case 858:
+              case 832:
                 resword = &wordlist[389];
                 goto compare;
-              case 859:
+              case 834:
                 resword = &wordlist[390];
                 goto compare;
-              case 865:
+              case 836:
                 resword = &wordlist[391];
                 goto compare;
-              case 883:
+              case 838:
                 resword = &wordlist[392];
                 goto compare;
-              case 884:
+              case 841:
                 resword = &wordlist[393];
                 goto compare;
-              case 885:
+              case 842:
                 resword = &wordlist[394];
                 goto compare;
-              case 888:
+              case 845:
                 resword = &wordlist[395];
                 goto compare;
-              case 895:
+              case 846:
                 resword = &wordlist[396];
                 goto compare;
-              case 896:
+              case 848:
                 resword = &wordlist[397];
                 goto compare;
-              case 898:
+              case 852:
                 resword = &wordlist[398];
                 goto compare;
-              case 899:
+              case 856:
                 resword = &wordlist[399];
                 goto compare;
-              case 900:
+              case 857:
                 resword = &wordlist[400];
                 goto compare;
-              case 916:
+              case 858:
                 resword = &wordlist[401];
                 goto compare;
-              case 917:
+              case 859:
                 resword = &wordlist[402];
                 goto compare;
-              case 918:
+              case 867:
                 resword = &wordlist[403];
                 goto compare;
-              case 922:
+              case 870:
                 resword = &wordlist[404];
                 goto compare;
-              case 923:
+              case 876:
                 resword = &wordlist[405];
                 goto compare;
-              case 926:
+              case 878:
                 resword = &wordlist[406];
                 goto compare;
-              case 928:
+              case 884:
                 resword = &wordlist[407];
                 goto compare;
-              case 930:
+              case 896:
                 resword = &wordlist[408];
                 goto compare;
-              case 931:
+              case 897:
                 resword = &wordlist[409];
                 goto compare;
-              case 935:
+              case 898:
                 resword = &wordlist[410];
                 goto compare;
-              case 936:
+              case 899:
                 resword = &wordlist[411];
                 goto compare;
-              case 937:
+              case 908:
                 resword = &wordlist[412];
                 goto compare;
-              case 938:
+              case 914:
                 resword = &wordlist[413];
                 goto compare;
-              case 943:
+              case 915:
                 resword = &wordlist[414];
                 goto compare;
-              case 947:
+              case 923:
                 resword = &wordlist[415];
                 goto compare;
-              case 957:
+              case 924:
                 resword = &wordlist[416];
                 goto compare;
-              case 958:
+              case 925:
                 resword = &wordlist[417];
                 goto compare;
-              case 961:
+              case 929:
                 resword = &wordlist[418];
                 goto compare;
-              case 964:
+              case 941:
                 resword = &wordlist[419];
                 goto compare;
-              case 978:
+              case 950:
                 resword = &wordlist[420];
                 goto compare;
-              case 982:
+              case 953:
                 resword = &wordlist[421];
                 goto compare;
-              case 984:
+              case 959:
                 resword = &wordlist[422];
                 goto compare;
-              case 991:
+              case 960:
                 resword = &wordlist[423];
                 goto compare;
-              case 992:
+              case 968:
                 resword = &wordlist[424];
                 goto compare;
-              case 1013:
+              case 969:
                 resword = &wordlist[425];
                 goto compare;
-              case 1016:
+              case 970:
                 resword = &wordlist[426];
                 goto compare;
-              case 1020:
+              case 976:
                 resword = &wordlist[427];
                 goto compare;
-              case 1032:
+              case 982:
                 resword = &wordlist[428];
                 goto compare;
-              case 1033:
+              case 994:
                 resword = &wordlist[429];
                 goto compare;
-              case 1034:
+              case 995:
                 resword = &wordlist[430];
                 goto compare;
-              case 1037:
+              case 1008:
                 resword = &wordlist[431];
                 goto compare;
-              case 1046:
+              case 1011:
                 resword = &wordlist[432];
                 goto compare;
-              case 1047:
+              case 1012:
                 resword = &wordlist[433];
                 goto compare;
-              case 1051:
+              case 1026:
                 resword = &wordlist[434];
                 goto compare;
-              case 1054:
+              case 1027:
                 resword = &wordlist[435];
                 goto compare;
-              case 1057:
+              case 1037:
                 resword = &wordlist[436];
                 goto compare;
-              case 1075:
+              case 1038:
                 resword = &wordlist[437];
                 goto compare;
-              case 1081:
+              case 1046:
                 resword = &wordlist[438];
                 goto compare;
-              case 1083:
+              case 1053:
                 resword = &wordlist[439];
                 goto compare;
-              case 1095:
+              case 1056:
                 resword = &wordlist[440];
                 goto compare;
-              case 1098:
+              case 1068:
                 resword = &wordlist[441];
                 goto compare;
-              case 1099:
+              case 1077:
                 resword = &wordlist[442];
                 goto compare;
-              case 1101:
+              case 1108:
                 resword = &wordlist[443];
                 goto compare;
-              case 1105:
+              case 1109:
                 resword = &wordlist[444];
                 goto compare;
-              case 1106:
+              case 1117:
                 resword = &wordlist[445];
                 goto compare;
-              case 1109:
+              case 1124:
                 resword = &wordlist[446];
                 goto compare;
-              case 1112:
+              case 1133:
                 resword = &wordlist[447];
                 goto compare;
-              case 1128:
+              case 1140:
                 resword = &wordlist[448];
                 goto compare;
-              case 1129:
+              case 1142:
                 resword = &wordlist[449];
                 goto compare;
-              case 1140:
+              case 1143:
                 resword = &wordlist[450];
                 goto compare;
-              case 1141:
+              case 1144:
                 resword = &wordlist[451];
                 goto compare;
-              case 1144:
+              case 1155:
                 resword = &wordlist[452];
                 goto compare;
-              case 1145:
+              case 1157:
                 resword = &wordlist[453];
                 goto compare;
-              case 1156:
+              case 1167:
                 resword = &wordlist[454];
                 goto compare;
-              case 1166:
+              case 1189:
                 resword = &wordlist[455];
                 goto compare;
-              case 1191:
+              case 1192:
                 resword = &wordlist[456];
                 goto compare;
-              case 1192:
+              case 1193:
                 resword = &wordlist[457];
                 goto compare;
-              case 1210:
+              case 1209:
                 resword = &wordlist[458];
                 goto compare;
-              case 1211:
+              case 1214:
                 resword = &wordlist[459];
                 goto compare;
-              case 1216:
+              case 1222:
                 resword = &wordlist[460];
                 goto compare;
-              case 1234:
+              case 1225:
                 resword = &wordlist[461];
                 goto compare;
-              case 1255:
+              case 1227:
                 resword = &wordlist[462];
                 goto compare;
-              case 1278:
+              case 1228:
                 resword = &wordlist[463];
                 goto compare;
-              case 1303:
+              case 1233:
                 resword = &wordlist[464];
                 goto compare;
-              case 1312:
+              case 1234:
                 resword = &wordlist[465];
                 goto compare;
-              case 1315:
+              case 1239:
                 resword = &wordlist[466];
                 goto compare;
-              case 1316:
+              case 1240:
                 resword = &wordlist[467];
                 goto compare;
-              case 1331:
+              case 1263:
                 resword = &wordlist[468];
                 goto compare;
-              case 1334:
+              case 1268:
                 resword = &wordlist[469];
                 goto compare;
-              case 1335:
+              case 1271:
                 resword = &wordlist[470];
                 goto compare;
-              case 1339:
+              case 1272:
                 resword = &wordlist[471];
                 goto compare;
-              case 1343:
+              case 1286:
                 resword = &wordlist[472];
                 goto compare;
-              case 1350:
+              case 1292:
                 resword = &wordlist[473];
                 goto compare;
-              case 1355:
+              case 1299:
                 resword = &wordlist[474];
                 goto compare;
-              case 1423:
+              case 1302:
                 resword = &wordlist[475];
                 goto compare;
-              case 1489:
+              case 1306:
                 resword = &wordlist[476];
                 goto compare;
-              case 1588:
+              case 1314:
                 resword = &wordlist[477];
                 goto compare;
-              case 1604:
+              case 1328:
                 resword = &wordlist[478];
                 goto compare;
-              case 1614:
+              case 1336:
                 resword = &wordlist[479];
                 goto compare;
-              case 1667:
+              case 1337:
                 resword = &wordlist[480];
+                goto compare;
+              case 1346:
+                resword = &wordlist[481];
+                goto compare;
+              case 1364:
+                resword = &wordlist[482];
+                goto compare;
+              case 1387:
+                resword = &wordlist[483];
+                goto compare;
+              case 1392:
+                resword = &wordlist[484];
+                goto compare;
+              case 1402:
+                resword = &wordlist[485];
+                goto compare;
+              case 1405:
+                resword = &wordlist[486];
+                goto compare;
+              case 1409:
+                resword = &wordlist[487];
+                goto compare;
+              case 1441:
+                resword = &wordlist[488];
+                goto compare;
+              case 1442:
+                resword = &wordlist[489];
+                goto compare;
+              case 1456:
+                resword = &wordlist[490];
+                goto compare;
+              case 1502:
+                resword = &wordlist[491];
+                goto compare;
+              case 1522:
+                resword = &wordlist[492];
+                goto compare;
+              case 1524:
+                resword = &wordlist[493];
+                goto compare;
+              case 1563:
+                resword = &wordlist[494];
+                goto compare;
+              case 1601:
+                resword = &wordlist[495];
+                goto compare;
+              case 1617:
+                resword = &wordlist[496];
+                goto compare;
+              case 1642:
+                resword = &wordlist[497];
+                goto compare;
+              case 1673:
+                resword = &wordlist[498];
+                goto compare;
+              case 1687:
+                resword = &wordlist[499];
+                goto compare;
+              case 1761:
+                resword = &wordlist[500];
+                goto compare;
+              case 1909:
+                resword = &wordlist[501];
                 goto compare;
             }
           return 0;
@@ -3544,43 +3693,85 @@ in_word_set (register const char *str, register size_t len)
     }
   return 0;
 }
-#line 512 "syscalls.perf"
+#line 535 "syscalls.perf"
 
 
-static int syscall_get_offset_value(const struct arch_syscall_table *s,
+static int __syscall_offset_value(const struct arch_syscall_table *s,
 				    int offset)
 {
 	return *(int *)((char *)s + offset);
 }
 
-int syscall_resolve_name(const char *name, int offset)
+static const struct arch_syscall_table *__syscall_lookup_name(const char *name)
 {
-	const struct arch_syscall_table *s;
-
-	s = in_word_set(name, strlen(name));
-	if (s == NULL)
-		return __NR_SCMP_ERROR;
-
-	return syscall_get_offset_value(s, offset);
+	return in_word_set(name, strlen(name));
 }
 
-const char *syscall_resolve_num(int num, int offset)
+static const struct arch_syscall_table *__syscall_lookup_num(int num,
+							     int offset_arch)
 {
-	unsigned int iter;
+	unsigned int i;
 
-	for (iter = 0; iter < sizeof(wordlist)/sizeof(wordlist[0]); iter++) {
-		if (syscall_get_offset_value(&wordlist[iter], offset) == num)
-			return (stringpool + wordlist[iter].name);
+	for (i = 0; i < sizeof(wordlist)/sizeof(wordlist[0]); i++) {
+		if (__syscall_offset_value(&wordlist[i], offset_arch) == num)
+			return &wordlist[i];
 	}
 
 	return NULL;
 }
 
+int syscall_resolve_name(const char *name, int offset_arch)
+{
+	const struct arch_syscall_table *entry;
+
+	entry = __syscall_lookup_name(name);
+	if (!entry)
+		return __NR_SCMP_ERROR;
+
+	return __syscall_offset_value(entry, offset_arch);
+}
+
+const char *syscall_resolve_num(int num, int offset_arch)
+{
+	const struct arch_syscall_table *entry;
+
+	entry = __syscall_lookup_num(num, offset_arch);
+	if (!entry)
+		return NULL;
+
+	return (stringpool + entry->name);
+}
+
+enum scmp_kver syscall_resolve_name_kver(const char *name, int offset_kver)
+{
+	const struct arch_syscall_table *entry;
+
+	entry = __syscall_lookup_name(name);
+	if (!entry)
+		return __SCMP_KV_NULL;
+
+	return __syscall_offset_value(entry, offset_kver);
+}
+
+enum scmp_kver syscall_resolve_num_kver(int num,
+					int offset_arch, int offset_kver)
+{
+	const struct arch_syscall_table *entry;
+
+	entry = __syscall_lookup_num(num, offset_arch);
+	if (!entry)
+		return __SCMP_KV_NULL;
+
+	return __syscall_offset_value(entry, offset_kver);
+}
+
+/* DANGER: this is NOT THREAD-SAFE, use only for testing */
 const struct arch_syscall_def *syscall_iterate(unsigned int spot, int offset)
 {
 	unsigned int iter;
-        /* this is thread-unsafe, only use for testing */
 	static struct arch_syscall_def arch_def;
+
+	/* DANGER: see the note above, NOT THREAD-SAFE, use only for testing */
 
 	arch_def.name = NULL;
 	arch_def.num = __NR_SCMP_ERROR;
@@ -3588,7 +3779,7 @@ const struct arch_syscall_def *syscall_iterate(unsigned int spot, int offset)
 	for (iter = 0; iter < sizeof(wordlist)/sizeof(wordlist[0]); iter++) {
 		if (wordlist[iter].index == spot) {
 			arch_def.name = stringpool + wordlist[iter].name;
-			arch_def.num = syscall_get_offset_value(&wordlist[iter],
+			arch_def.num = __syscall_offset_value(&wordlist[iter],
 								offset);
 			return &arch_def;
 		}

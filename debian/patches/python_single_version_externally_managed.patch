@@ -1,0 +1,14 @@
+Fix building with setuptools instead of distutils.
+
+--- libseccomp-2.5.4.orig/src/python/Makefile.am
++++ libseccomp-2.5.4/src/python/Makefile.am
+@@ -40,7 +40,8 @@ build: ../libseccomp.la libseccomp.pxd s
+ 
+ install-exec-local: build
+ 	${PY_INSTALL} --install-lib=${DESTDIR}/${pyexecdir} \
+-		--record=${DESTDIR}/${pyexecdir}/install_files.txt
++		--record=${DESTDIR}/${pyexecdir}/install_files.txt \
++		--single-version-externally-managed
+ 
+ uninstall-local:
+ 	cat ${DESTDIR}/${pyexecdir}/install_files.txt | xargs ${RM} -f

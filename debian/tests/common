@@ -10,3 +10,6 @@ for tool in scmp_api_level scmp_arch_detect scmp_sys_resolver; do
   echo "Building $tool ..."
   gcc -O2 -g "$SRCDIR/tools/$tool.c" "$SRCDIR/tools/util.c" -lseccomp -o ../tools/$tool
 done
+
+LIBSECCOMP_TSTCFG_JOBS="$(echo "$DEB_BUILD_OPTIONS" | sed -n -e "s/^.*parallel=\([0-9]\+\).*$/\1/p")"
+export LIBSECCOMP_TSTCFG_JOBS

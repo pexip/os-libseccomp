@@ -1,1 +1,4 @@
-update_the_syscall_table_for_Linux_v6.7-rc3.patch
+python_single_version_externally_managed.patch
+tests_remove_the_fuzzer_from_test_62-sim-arch_transactions.patch
+api_fix_seccomp_export_bpf_mem_out-of-bounds_read.patch
+hash_fix_strict_aliasing_UB_in_MurMur_hash_implementation.patch
